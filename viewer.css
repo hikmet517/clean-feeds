@@ -1,0 +1,324 @@
+:root {
+    --main-border-color: lavender;
+    --main-bg-color: snow;
+    --main-hover-bg-color: lavender;
+
+    --clicked-bg-color: #c3e8f0;
+    --clicked-border-color: #9ebdc3;
+
+    --resizer-bg-color: var(--main-border-color);
+
+    --main-elem-bg-color: ghostwhite;
+    --main-elem-border-color: #e1e1e7;
+
+    --feed-pane-bg-color: var(--main-bg-color);
+    --feed-elem-bg-color: var(--main-elem-bg-color);
+    --feed-elem-border-color: var(--main-elem-border-color);
+
+    --function-pane-bg-color: var(--main-bg-color);
+    --function-elem-bg-color: var(--main-elem-bg-color);
+    --function-elem-border-color: var(--main-elem-border-color);
+
+    --entry-pane-bg-color: var(--main-bg-color);
+    --entry-elem-bg-color: var(--main-elem-bg-color);
+    --entry-elem-border-color: var(--main-elem-border-color);
+
+    --content-pane-bg-color: var(--main-bg-color);
+
+    --toolbar-bg-color: lavender;
+    --toolbar-border-color: #dcdcef;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    min-height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    font-family: sans-serif;
+    background-color: var(--main-bg-color);
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+a {
+    text-decoration-color: darkgray;
+}
+
+#container {
+    width: 100%;
+    min-height: 0;
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--main-border-color);
+    flex-direction: row;
+}
+
+.resizer[data-direction='horizontal'] {
+    background-color: var(--resizer-bg-color);
+    cursor: ew-resize;
+    /* height: 100%; */
+    width: 4px;
+}
+
+.resizer[data-direction='vertical'] {
+    background-color: var(--resizer-bg-color);
+    cursor: ns-resize;
+    height: 4px;
+    /* width: 100%; */
+}
+
+#left-pane {
+    width: 15%;
+    min-height: 100%;
+    max-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+}
+
+#entry-pane {
+    display: flex;
+    width: 30%;
+    min-height: 100%;
+    max-height: 100%;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--entry-pane-bg-color);
+}
+
+#entry-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem;
+    line-height: 1.5;
+}
+
+.entry-list-elem {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0.1rem;
+    padding: 0.2rem;
+
+    cursor: pointer;
+    background-color: var(--entry-elem-bg-color);
+    border: solid 1px var(--entry-elem-border-color);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.entry-list-elem-title {
+    flex: 1 1 100%;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.entry-list-elem-feed-date-cont {
+    font-size: 0.7rem;
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 1;
+    width: 100%;
+}
+
+.entry-list-elem-feed {
+    flex: 1 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.entry-list-elem-date {
+    margin-left: auto;
+}
+
+#content-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    background: var(--content-pane-bg-color);
+}
+
+#function-pane {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--function-pane-bg-color);
+}
+
+#function-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem;
+    line-height: 1.5;
+}
+
+.function-list-elem {
+    list-style: none;
+    display: block;
+    margin: 0.1rem;
+    padding: 0.2rem;
+
+    cursor: pointer;
+    background-color: var(--function-elem-bg-color);
+    border: solid 1px var(--function-elem-border-color);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#feed-pane {
+    /* Take the remaining height */
+    flex: 1;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--feed-pane-bg-color);
+}
+
+#feed-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem;
+    line-height: 1.5;
+}
+
+.feed-list-elem {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    margin: 0.1rem;
+    padding: 0.2rem;
+
+    cursor: pointer;
+    background-color: var(--feed-elem-bg-color);
+    border: solid 1px var(--feed-elem-border-color);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.feed-list-elem-title {
+    flex: 1 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.feed-list-elem-menu {
+    margin-left: auto;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.feed-list-elem-menu:hover {
+    background-color: var(--main-hover-bg-color);
+}
+
+#toolbar {
+    /* height: 2rem; */
+    width: 100%;
+    /* border: 1px solid #cbd5e0; */
+    display: flex;
+    flex-direction: row;
+    background-color: lavender;
+    border: solid 1px var(--toolbar-border-color);
+}
+
+#content-body {
+    padding: 2rem;
+    font-size: 1.1em;
+}
+
+video, figure, iframe, img {
+    max-width: 100% !important;
+    height: auto;
+}
+
+#content-header {
+    padding: 1.5rem;
+}
+
+.clicked {
+    background-color: var(--clicked-bg-color);
+    border-color: var(--clicked-border-color);
+}
+
+.unread {
+    font-weight: bold;
+}
+
+.read {
+    font-weight: normal;
+}
+
+button {
+    font-size: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+#toolbar > button > img {
+    vertical-align: middle;
+    padding: 0.2em;
+}
+
+.toolbar-elem {
+    display: flex;
+    flex: 1 1;
+}
+
+#mark-read {
+    margin-left: auto;
+}
+
+#feed-menu {
+    position: fixed;
+    border: 1px solid var(--main-border-color);
+    background-color: var(--main-bg-color);
+    box-shadow: 1px 1px 1px 1px #888888;
+    z-index: 100;
+}
+#feed-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.2rem;
+}
+
+.feed-menu-list-elem {
+    list-style: none;
+    display: flex;
+    flex-flow: col wrap;
+    margin: 0.1rem;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
+.feed-menu-list-elem:hover {
+    background-color: var(--clicked-bg-color);
+}
