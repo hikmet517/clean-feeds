@@ -76,10 +76,10 @@ async function addFeed() {
 
     // save
     chrome.storage.local.get({ feeds: {} }, function(obj) {
-      if (!(feed['feedlink'] in obj['feeds'])) {
+      if (!(url in obj['feeds'])) {
         feed['order'] = Object.values(obj['feeds']).length;
         console.log('in get', feed['feedlink']);
-        obj['feeds'][feed['feedlink']] = feed;
+        obj['feeds'][url] = feed;
         chrome.storage.local.set(obj, function() {
           fillFeedsPane();
         });
@@ -125,7 +125,7 @@ function fillFeedsPane() {
         else if (event.target.parentElement.classList.contains("feed-list-elem"))
           target = event.target.parentElement;
 
-        if (target) {
+        if (target && target != draggedElement) {
           draggedElement.parentNode.removeChild(draggedElement);
           target.parentElement.insertBefore(draggedElement, target);
           // save feeds' orders into storage
@@ -312,7 +312,8 @@ function deleteFeed() {
     if (res) {
       delete obj['feeds'][feedUrl];
       chrome.storage.local.set(obj, function() {
-        selectAllFeeds();
+        fillFunctionPane();
+        fillFeedsPane();
       });
     }
   });
@@ -577,6 +578,21 @@ function fillContentPane(event) {
     contentElem.setAttribute('id', 'content-body');
     contentElem.innerHTML = feeds[feedUrl]['entries'][entryLink]['content'];
 
+    // fix relative img links
+    if (obj['feeds'][feedUrl]['link'] !== '') {
+      let base = obj['feeds'][feedUrl]['link'];
+      if (base.endsWith('/'))
+        base = base.substr(0, base.length - 1);
+      for (let elem of contentElem.getElementsByTagName('img')) {
+        let elemSrc = elem.getAttribute('src');
+        if (elemSrc && elemSrc.startsWith('/')) {
+          if (elemSrc.startsWith('//'))
+            elemSrc = elemSrc.substr(1);
+          elem.setAttribute('src', base + elemSrc);
+        }
+      }
+    }
+
     // let baseElem = document.createElement('base');
     // baseElem.setAttribute('href', entryLink);
     // contentElem.appendChild(baseElem);
@@ -833,7 +849,7 @@ async function importFeeds() {
       console.log('length:', data['feeds'].length);
       for (const feed of data['feeds']) {
         console.log('adding:', feed['url']);
-        let feedRes = await fetchParseFeed(feed['url'], true);
+        let feedRes = fetchParseFeed(feed['url'], true);
         feeds.push(feedRes);
       }
       Promise.allSettled(feeds).then(function (feeds) {
@@ -854,7 +870,9 @@ async function importFeeds() {
             i++;
           }
           chrome.storage.local.set(obj, function() {
-            location.reload();
+            fillFeedsPane();
+            fillFunctionPane();
+            // location.reload();
           });
         });
 

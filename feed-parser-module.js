@@ -11,10 +11,10 @@ function parseAtom(dom, feedUrl) {
     feed['title'] = titleNode.textContent.trim();
   }
 
-  feed['base'] = '';
+  let base = '';
   let feedNode = dom.querySelector('feed');
   if (feedNode && feedNode.getAttribute('xml:base')) {
-    feed['base'] = feedNode.getAttribute('xml:base').trim();
+    base = feedNode.getAttribute('xml:base').trim();
   }
 
   feed['link'] = '';
@@ -22,7 +22,7 @@ function parseAtom(dom, feedUrl) {
   if (linkNode && linkNode.getAttribute('href'))
     feed['link'] = linkNode.getAttribute('href').trim();
   if (!(feed['link'].startsWith('http://') && feed['link'].startsWith('http://'))) {
-    feed['link'] = feed['base'] + feed['link'];
+    feed['link'] = base + feed['link'];
   }
 
 
@@ -31,7 +31,7 @@ function parseAtom(dom, feedUrl) {
   if (feedlinkNode && feedlinkNode.getAttribute('href'))
     feed['feedlink'] = feedlinkNode.getAttribute('href').trim();
   if (!(feed['feedlink'].startsWith('http://') && feed['feedlink'].startsWith('http://'))) {
-    feed['feedlink'] = feed['base'] + feed['feedlink'];
+    feed['feedlink'] = base + feed['feedlink'];
   }
 
 
@@ -58,7 +58,7 @@ function parseAtom(dom, feedUrl) {
       entry['link'] = entryLink.getAttribute('href').trim();
     }
     if (!(feed['link'].startsWith('http://') && feed['link'].startsWith('http://'))) {
-      feed['link'] = feed['base'] + feed['link'];
+      feed['link'] = base + feed['link'];
     }
 
     if (!entry['link'] || !entry['title']) {
@@ -93,7 +93,7 @@ function parseRss(dom, feedUrl) {
     feed['title'] = titleNode.textContent.trim();
 
   feed['link'] = '';
-  let linkNode = dom.querySelector('rss > channel > link');
+  let linkNode = dom.querySelector('rss > channel > link:not([rel]), rss > channel > link[rel=alternate]');
   if (linkNode) {
     if (linkNode.textContent.trim()) {
       feed['link'] = linkNode.textContent.trim();
