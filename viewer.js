@@ -6,6 +6,7 @@
 // info about feed
 // show unread entries in feed elem
 // relative links in content
+// improve error handling, return values of async when failed
 
 
 import queryFilter from './boolean-filter-module.js';
@@ -42,6 +43,11 @@ async function fetchParseFeed(url, init) {
   let content = await response.text();
   let feed = parseFeed(content, url);
 
+  if(!feed) {
+    console.error('parse failed');
+    return false;
+  }
+
   if (init) {
     feed['updatePeriod'] = 60 * 60 * 1000;  // 1 hour
     for (const [_link, entry] of Object.entries(feed['entries']))
@@ -62,9 +68,15 @@ async function addFeed() {
   let url = prompt('Enter url');
   if (url && url.trim()) {
     let feed = await fetchParseFeed(url.trim(), true);
+
+    if (!feed) {
+      console.error('fetchParseFeed failed');
+      return;
+    }
+
     // save
     chrome.storage.local.get({ feeds: {} }, function(obj) {
-      if (!obj['feeds'][feed['feedlink']]) {
+      if (!(feed['feedlink'] in obj['feeds'])) {
         feed['order'] = Object.values(obj['feeds']).length;
         console.log('in get', feed['feedlink']);
         obj['feeds'][feed['feedlink']] = feed;
@@ -257,14 +269,16 @@ function addTag() {
   });
 }
 
-async function updateFeed() {
+async function refreshFeed() {
   hideFeedContextMenu();
   let feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
   let newFeed = await fetchParseFeed(feedUrl, false);
+  if (!newFeed) {
+    console.error('fetchParseFeed failed');
+    return;
+  }
   chrome.storage.local.get({ feeds: {} }, function(obj) {
-    obj['feeds'][feedUrl]['entries'] = {...obj['feeds'][feedUrl]['entries'], ...newFeed['entries']};
-    obj['feeds'][feedUrl]['updated'] = newFeed['updated'];
-    obj['feeds'][feedUrl]['checked'] = (new Date()).toJSON();
+    obj['feeds'][feedUrl] = mergeFeeds(obj['feeds'][feedUrl], newFeed);
     chrome.storage.local.set(obj, function() {
       for(let elem of document.getElementsByClassName('feed-list-elem'))
         if (elem.getAttribute('feed-url') === feedUrl)
@@ -314,7 +328,7 @@ function initFeedMenu() {
   });
 
   let updateItem = document.getElementById('update-feed-item');
-  updateItem.addEventListener('click', updateFeed);
+  updateItem.addEventListener('click', refreshFeed);
   updateItem.addEventListener('mousedown', function(event) {
     event.stopPropagation();
   });
@@ -446,9 +460,6 @@ function addEntries(entries) {
   });
 
   for (const entry of entries) {
-    if(entry['hidden'])
-      continue;
-
     let elem = document.createElement('li');
     elem.classList.add('entry-list-elem');
     elem.setAttribute('feed-url', entry['feedlink']);
@@ -606,6 +617,17 @@ function clearInternalData() {
 
 document.getElementById('clear-data').addEventListener('click', clearInternalData);
 
+function mergeFeeds(oldFeed, newFeed) {
+  // merge entries
+  for (const [url, entry] of Object.entries(newFeed['entries'])) {
+    if ( !(url in oldFeed['entries']) ) {
+      oldFeed['entries'][url] = entry;
+    }
+  }
+  oldFeed['updated'] = newFeed['updated'];
+  oldFeed['checked'] = (new Date()).toJSON();
+  return oldFeed;
+}
 
 async function refreshFeeds() {
   chrome.storage.local.get( {feeds: {}}, async function(obj) {
@@ -614,29 +636,32 @@ async function refreshFeeds() {
       let checked = (new Date(feed['checked'])).getTime();
 
       // fetch and check
-      if ( Date.now() - checked > feed['updatePeriod'] ) {
+      if (Date.now() - checked > feed['updatePeriod']) {
         let newFeed = await fetchParseFeed(url, false);
+        if (!newFeed) {
+          console.error('fetchParseFeed failed');
+          continue;
+        }
 
         // no new data
         if (newFeed['updated'] === feed['updated'])
           continue;
 
-        obj['feeds'][url]['entries'] = {...obj['feeds'][url]['entries'], ...newFeed['entries']};
-        obj['feeds'][url]['updated'] = newFeed['updated'];
-        obj['feeds'][url]['checked'] = (new Date()).toJSON();
+        obj['feeds'][url] = mergeFeeds(obj['feeds'][url], newFeed);
         updated = true;
       }
     }
 
     if (updated) {
       // save
-      chrome.storage.local.set( obj, function() {
+      chrome.storage.local.set(obj, function() {
         // location.reload();
         selectAllFeeds();
       });
     }
   });
 }
+
 document.getElementById('refresh-feeds').addEventListener('click', refreshFeeds);
 
 function markReadUnread() {
@@ -666,13 +691,12 @@ function markReadUnread() {
 document.getElementById('mark-read').addEventListener('click', markReadUnread);
 
 function hideEntry() {
-  console.log('hideEntry');
   let contentItem = document.getElementById('content-pane');
   let feedUrl = contentItem.getAttribute('feed-url');
   let entryLink = contentItem.getAttribute('entry-link');
 
   chrome.storage.local.get({ feeds: {} }, function(obj) {
-    obj['feeds'][feedUrl]['entries'][entryLink]['hidden'] = true;
+    delete obj['feeds'][feedUrl]['entries'][entryLink];
     chrome.storage.local.set(obj, function() {
       if (!selectNextEntry())
         selectPreviousEntry();
@@ -682,7 +706,6 @@ function hideEntry() {
           break;
         }
       }
-      // selectAllFeeds();
     });
   });
 }
@@ -718,10 +741,10 @@ function selectNextEntry() {
 }
 
 function keyHandler(e) {
-  if (!e.repeat)
-    console.log(`Key "${e.key}" pressed  [event: keydown]`);
-  else
-    console.log(`Key "${e.key}" repeating  [event: keydown]`);
+  // if (!e.repeat)
+  //   console.log(`Key "${e.key}" pressed  [event: keydown]`);
+  // else
+  //   console.log(`Key "${e.key}" repeating  [event: keydown]`);
 
   if (e.key === 'a' || e.key === 'A') {
     addFeed();
@@ -818,7 +841,7 @@ async function importFeeds() {
           let i = 0;
           for (let feed of feeds) {
             console.log('feed.status:', feed.status);
-            if (feed.status === 'fulfilled') {
+            if (feed.status === 'fulfilled' && feed.value !== false) {
               let val = feed.value;
               let feedUrl = val['feedlink'];
               obj['feeds'][feedUrl] = val;

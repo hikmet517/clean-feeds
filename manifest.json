@@ -9,7 +9,9 @@
     "96": "icons/icon.svg"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "persistent": true
   },
   "permissions": [

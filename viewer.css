@@ -3,10 +3,10 @@
     --main-bg-color: snow;
     --main-hover-bg-color: lavender;
 
-    --clicked-bg-color: #c3e8f0;
+    --clicked-bg-color: #d0ecffff;
     --clicked-border-color: #9ebdc3;
 
-    --resizer-bg-color: var(--main-border-color);
+    --resizer-bg-color: #d0cbec;
 
     --main-elem-bg-color: ghostwhite;
     --main-elem-border-color: #e1e1e7;
