@@ -4,6 +4,7 @@ function parseAtom(dom, feedUrl) {
   let feed = {};
   feed['entries'] = {};
   feed['checked'] = (new Date()).toJSON();
+  feed['feedlink'] = feedUrl;
 
   feed['title'] = '';
   let titleNode = dom.querySelector('feed > title');
@@ -24,16 +25,6 @@ function parseAtom(dom, feedUrl) {
   if (!(feed['link'].startsWith('http://') && feed['link'].startsWith('http://'))) {
     feed['link'] = base + feed['link'];
   }
-
-
-  feed['feedlink'] = feedUrl;
-  let feedlinkNode = dom.querySelector('link[rel=self]');
-  if (feedlinkNode && feedlinkNode.getAttribute('href'))
-    feed['feedlink'] = feedlinkNode.getAttribute('href').trim();
-  if (!(feed['feedlink'].startsWith('http://') && feed['feedlink'].startsWith('http://'))) {
-    feed['feedlink'] = base + feed['feedlink'];
-  }
-
 
   feed['updated'] = new Date();
   let updatedNode = dom.querySelector('feed > updated');
@@ -66,7 +57,7 @@ function parseAtom(dom, feedUrl) {
       continue;
     }
 
-    entry['updated'] = '';
+    entry['updated'] = (new Date()).toJSON();
     let updatedNode = entryNode.querySelector('updated');
     if (updatedNode)
       entry['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
@@ -86,6 +77,7 @@ function parseRss(dom, feedUrl) {
   let feed = {};
   feed['entries'] = {};
   feed['checked'] = (new Date()).toJSON();
+  feed['feedlink'] = feedUrl;
 
   feed['title'] = '';
   let titleNode = dom.querySelector('rss > channel > title');
@@ -100,16 +92,6 @@ function parseRss(dom, feedUrl) {
     }
     else if ('href' in linkNode.attributes) {
       feed['link'] = linkNode.getAttribute('href').trim();
-    }
-  }
-
-  feed['feedlink'] = feedUrl;
-  for (let node of dom.querySelectorAll('rss > channel > link')) {
-    if (node.prefix && node.prefix == 'atom') {
-      if (node.getAttribute('rel') == 'self' && node.getAttribute('href')) {
-        feed['feedlink'] = node.getAttribute('href').trim();
-        break;
-      }
     }
   }
 
@@ -141,8 +123,8 @@ function parseRss(dom, feedUrl) {
       continue;
     }
 
-    entry['updated'] = '';
-    let updatedNode = entryNode.querySelector('pubDate');
+    entry['updated'] = (new Date()).toJSON();
+    let updatedNode = entryNode.querySelector('pubDate, date');
     if (updatedNode)
       entry['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 

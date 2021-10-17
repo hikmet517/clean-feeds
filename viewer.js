@@ -5,8 +5,10 @@
 // add rdf support
 // info about feed
 // show unread entries in feed elem
-// relative links in content
+// relative links in content (partially done, we handle imgs)
 // improve error handling, return values of async when failed
+// progress label, (like refreshing...)
+// const correctness
 
 
 import queryFilter from './boolean-filter-module.js';
@@ -14,6 +16,7 @@ import parseFeed from './feed-parser-module.js';
 import initResizer from './resizer-module.js';
 
 var draggedElement;
+var keys = new Set();
 
 initResizer(function(prevSibling) {
   // save settings
@@ -29,7 +32,7 @@ initResizer(function(prevSibling) {
 
 async function fetchParseFeed(url, init) {
   console.log('fetching:', url);
-  let response = await fetch(url, {
+  const response = await fetch(url, {
     method: 'GET',
     redirect: 'follow',
     referrerPolicy: 'no-referrer'
@@ -40,8 +43,8 @@ async function fetchParseFeed(url, init) {
     return false;
   }
 
-  let content = await response.text();
-  let feed = parseFeed(content, url);
+  const content = await response.text();
+  const feed = parseFeed(content, url);
 
   if(!feed) {
     console.error('parse failed');
@@ -65,9 +68,9 @@ function selectAllFeeds() {
 
 // add new feed
 async function addFeed() {
-  let url = prompt('Enter url');
+  const url = prompt('Enter url');
   if (url && url.trim()) {
-    let feed = await fetchParseFeed(url.trim(), true);
+    const feed = await fetchParseFeed(url.trim(), true);
 
     if (!feed) {
       console.error('fetchParseFeed failed');
@@ -77,8 +80,7 @@ async function addFeed() {
     // save
     chrome.storage.local.get({ feeds: {} }, function(obj) {
       if (!(url in obj['feeds'])) {
-        feed['order'] = Object.values(obj['feeds']).length;
-        console.log('in get', feed['feedlink']);
+        feed['order'] = Math.max(...Object.values(obj['feeds']).map(x => x['order'])) + 1;
         obj['feeds'][url] = feed;
         chrome.storage.local.set(obj, function() {
           fillFeedsPane();
@@ -166,7 +168,7 @@ function fillFeedsPane() {
 
     // sort and create elements
     tempArray.sort(function(fst, snd) {
-      return parseInt(fst.getAttribute('order')) - parseInt(snd.getAttribute('order'));
+      return fst.getAttribute('order') - snd.getAttribute('order');
     });
 
     // if there is feeds before, get selected one
@@ -200,16 +202,15 @@ function fillFeedsPane() {
 
 
 function showHideFeedMenu(event) {
-  let feedUrl = event.currentTarget.parentElement.getAttribute('feed-url');
+  const feedUrl = event.currentTarget.parentElement.getAttribute('feed-url');
   event.stopPropagation();
   let feedMenu = document.getElementById('feed-menu');
   if (('hidden' in feedMenu.attributes)) {
     feedMenu.setAttribute('feed-url', feedUrl);
-    feedMenu = document.getElementById('feed-menu');
     feedMenu.style.left = event.clientX + 10 + 'px';
     feedMenu.style.top = event.clientY + 10 + 'px';
     feedMenu.removeAttribute('hidden');
-    let rect = feedMenu.getBoundingClientRect();
+    const rect = feedMenu.getBoundingClientRect();
     if (rect.bottom > document.documentElement.clientHeight) {
       let clientHeight = document.documentElement.clientHeight;
       feedMenu.style.top = (clientHeight - feedMenu.scrollHeight - 10) + 'px';
@@ -224,7 +225,7 @@ function showHideFeedMenu(event) {
 
 
 function hideFeedContextMenu() {
-  let feedMenu = document.getElementById('feed-menu');
+  const feedMenu = document.getElementById('feed-menu');
   if (!('hidden' in feedMenu.attributes)) {
     feedMenu.setAttribute('hidden', 'true');
     for (let elem of document.getElementsByClassName('feed-list-elem-menu'))
@@ -236,7 +237,7 @@ document.addEventListener('mousedown', hideFeedContextMenu);
 
 function addTag() {
   hideFeedContextMenu();
-  let feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
+  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
 
   // get current tags
   chrome.storage.local.get({ feeds: {} }, function(obj) {
@@ -271,8 +272,8 @@ function addTag() {
 
 async function refreshFeed() {
   hideFeedContextMenu();
-  let feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
-  let newFeed = await fetchParseFeed(feedUrl, false);
+  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
+  const newFeed = await fetchParseFeed(feedUrl, false);
   if (!newFeed) {
     console.error('fetchParseFeed failed');
     return;
@@ -289,7 +290,7 @@ async function refreshFeed() {
 
 function changeFeedTitle() {
   hideFeedContextMenu();
-  let feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
+  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
   chrome.storage.local.get({ feeds: {} }, function(obj) {
     let oldTitle = obj['feeds'][feedUrl]['title'];
     let input = prompt('Enter new title', oldTitle);
@@ -306,7 +307,7 @@ function changeFeedTitle() {
 
 function deleteFeed() {
   hideFeedContextMenu();
-  let feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
+  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
   chrome.storage.local.get({ feeds: {} }, function(obj) {
     let res = window.confirm(`Are you sure you want to delete the feed '${obj['feeds'][feedUrl]['title']}'`);
     if (res) {
@@ -401,8 +402,8 @@ function fillEntryByTag(event) {
   }
   event.currentTarget.classList.add('clicked');
 
-  let tag = event.currentTarget.innerText.substr(1);
-  let entries = [];
+  const tag = event.currentTarget.innerText.substr(1);
+  const entries = [];
   chrome.storage.local.get({ feeds: {} }, function(obj) {
     for (const [_url, feed] of Object.entries(obj['feeds'])) {
       if (feed['tags'] && feed['tags'].includes(tag)) {
@@ -415,8 +416,8 @@ function fillEntryByTag(event) {
 }
 
 function queryFeeds(event) {
-  let target = event.currentTarget;
-  let input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])");
+  const target = event.currentTarget;
+  const input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])");
   if (input && input.trim().length != 0) {
     chrome.storage.local.get({ feeds: {} }, function(obj) {
       let result = queryFilter(input, Object.values(obj['feeds']), 'tags');
@@ -444,7 +445,7 @@ document.addEventListener('DOMContentLoaded', fillFunctionPane);
 
 function selectFirstEntry() {
   // select first entry
-  let entryElems = document.getElementsByClassName('entry-list-elem');
+  const entryElems = document.getElementsByClassName('entry-list-elem');
   if (entryElems.length > 0)
     entryElems[0].click();
 }
@@ -555,8 +556,6 @@ function fillContentPane(event) {
   event.currentTarget.classList.add('clicked');
 
   chrome.storage.local.get( {feeds: {}}, function(obj) {
-    let feeds = obj['feeds'];
-
     let contentPane = document.getElementById('content-pane');
     contentPane.setAttribute('feed-url', feedUrl);
     contentPane.setAttribute('entry-link', entryLink);
@@ -566,9 +565,9 @@ function fillContentPane(event) {
     let headerDiv = document.createElement('div');
     headerDiv.setAttribute('id', 'content-header');
     let headerElem = document.createElement('h1');
-    headerElem.appendChild(document.createTextNode( feeds[feedUrl]['entries'][entryLink]['title'] ));
+    headerElem.appendChild(document.createTextNode(obj['feeds'][feedUrl]['entries'][entryLink]['title']));
     let linkElem = document.createElement('a');
-    linkElem.setAttribute('href', feeds[feedUrl]['entries'][entryLink]['link']);
+    linkElem.setAttribute('href', obj['feeds'][feedUrl]['entries'][entryLink]['link']);
     linkElem.setAttribute('target', '_blank');
     linkElem.appendChild(headerElem);
     headerDiv.appendChild(linkElem);
@@ -576,7 +575,7 @@ function fillContentPane(event) {
     // content
     let contentElem = document.createElement('div');
     contentElem.setAttribute('id', 'content-body');
-    contentElem.innerHTML = feeds[feedUrl]['entries'][entryLink]['content'];
+    contentElem.innerHTML = obj['feeds'][feedUrl]['entries'][entryLink]['content'];
 
     // fix relative img links
     if (obj['feeds'][feedUrl]['link'] !== '') {
@@ -636,7 +635,7 @@ document.getElementById('clear-data').addEventListener('click', clearInternalDat
 function mergeFeeds(oldFeed, newFeed) {
   // merge entries
   for (const [url, entry] of Object.entries(newFeed['entries'])) {
-    if ( !(url in oldFeed['entries']) ) {
+    if (!(url in oldFeed['entries'])) {
       oldFeed['entries'][url] = entry;
     }
   }
@@ -706,7 +705,8 @@ function markReadUnread() {
 }
 document.getElementById('mark-read').addEventListener('click', markReadUnread);
 
-function hideEntry() {
+
+function deleteEntry() {
   let contentItem = document.getElementById('content-pane');
   let feedUrl = contentItem.getAttribute('feed-url');
   let entryLink = contentItem.getAttribute('entry-link');
@@ -725,6 +725,9 @@ function hideEntry() {
     });
   });
 }
+
+document.getElementById('delete-entry').addEventListener('click', deleteEntry);
+
 
 function selectPreviousEntry() {
   let entries = document.getElementsByClassName('entry-list-elem');
@@ -762,7 +765,16 @@ function keyHandler(e) {
   // else
   //   console.log(`Key "${e.key}" repeating  [event: keydown]`);
 
+  // Alt+tab is problematic
+  // because browser is not active any more, alt is remain pressed
+  if (e.key !== 'Alt')
+    keys.add(e.key);
+
+  if (keys.has('Control') || keys.has('Alt'))
+    return;
+
   if (e.key === 'a' || e.key === 'A') {
+    keys.delete(e.key);  // addFeed is prompting and this inhibits keyuphandler
     addFeed();
   }
 
@@ -783,7 +795,7 @@ function keyHandler(e) {
   else if (e.key === 'd' || e.key === 'D'
            || e.key === 'h' || e.key === 'H'
            || e.key == 'Delete') {
-    hideEntry();
+    deleteEntry();
   }
 
   else if(e.key === 'ArrowDown' || e.key === 'n' || e.key === 'N') {
@@ -797,7 +809,6 @@ function keyHandler(e) {
   }
 
   else if (e.key === 'e' || e.key === 'E') {
-    console.log('exporting...');
     exportFeeds();
   }
 
@@ -810,9 +821,16 @@ function keyHandler(e) {
 document.addEventListener('keydown', keyHandler);
 
 
+function keyUpHandler(e) {
+  keys.delete(e.key);
+}
+
+document.addEventListener('keyup', keyUpHandler);
+
+
 function exportFeeds() {
   chrome.storage.local.get({ feeds: {} }, function(obj) {
-    let feeds = [];
+    const feeds = [];
     for (const [url, feed] of Object.entries(obj['feeds'])) {
       let temp = {};
       temp['title'] = feed['title'];
@@ -822,8 +840,8 @@ function exportFeeds() {
       feeds.push(temp);
     }
 
-    let object = {'feeds': feeds};
-    let blob = new Blob([JSON.stringify(object, null, 2)], { type: 'application/json' });
+    const object = {'feeds': feeds};
+    const blob = new Blob([JSON.stringify(object, null, 2)], { type: 'application/json' });
     chrome.downloads.download({
       url: URL.createObjectURL(blob),
       filename: 'exported.json',
@@ -833,33 +851,30 @@ function exportFeeds() {
 }
 
 
-async function importFeeds() {
-  let inputElem = document.getElementById('input');
+function importFeeds() {
+  const inputElem = document.getElementById('input');
   inputElem.addEventListener("change", handleFiles, false);
-  async function handleFiles() {
+  function handleFiles() {
     let file = this.files[0];
-    console.log('file:', file);
+    console.log('importing from file:', file);
 
     // chrome.runtime.getURL(file);
     const reader = new FileReader();
-    reader.onload = async function(event) {
-      let content = event.target.result;
-      let data = JSON.parse(content);
-      let feeds = [];
-      console.log('length:', data['feeds'].length);
+    reader.onload = function(event) {
+      const content = event.target.result;
+      const data = JSON.parse(content);
+      const fetchedArray = [];
       for (const feed of data['feeds']) {
-        console.log('adding:', feed['url']);
-        let feedRes = fetchParseFeed(feed['url'], true);
-        feeds.push(feedRes);
+        const feedRes = fetchParseFeed(feed['url'], true);
+        fetchedArray.push(feedRes);
       }
-      Promise.allSettled(feeds).then(function (feeds) {
+      Promise.allSettled(fetchedArray).then(function (fetchedArray) {
         chrome.storage.local.get({ feeds: {} }, function(obj) {
           let i = 0;
-          for (let feed of feeds) {
-            console.log('feed.status:', feed.status);
-            if (feed.status === 'fulfilled' && feed.value !== false) {
-              let val = feed.value;
-              let feedUrl = val['feedlink'];
+          for (const fetched of fetchedArray) {
+            if (fetched.status === 'fulfilled' && fetched.value !== false) {
+              const val = fetched.value;
+              const feedUrl = val['feedlink'];
               obj['feeds'][feedUrl] = val;
               obj['feeds'][feedUrl]['title'] = data['feeds'][i]['title'];
               for (let [_entryUrl, entry] of Object.entries(obj['feeds'][feedUrl]['entries']))
@@ -875,7 +890,6 @@ async function importFeeds() {
             // location.reload();
           });
         });
-
       });
     };
     reader.readAsText(file);
