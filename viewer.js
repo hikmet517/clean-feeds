@@ -46,7 +46,7 @@ async function fetchParseFeed(url, init) {
   const feed = parseFeed(content, url);
 
   if(!feed) {
-    console.error('parse failed');
+    console.error('fetchParseFeed failed: ', url);
     return false;
   }
 
@@ -113,11 +113,10 @@ async function fetchParseFeed(url, init) {
         console.log('third try failed');
       }
     }
-  }
-
-  if (feed['icon']) {
-    for (let [_url, entry] of Object.entries(feed['entries'])) {
-      entry['icon'] = feed['icon'];
+    if (feed['icon']) {
+      for (let [_url, entry] of Object.entries(feed['entries'])) {
+        entry['icon'] = feed['icon'];
+      }
     }
   }
 
@@ -675,10 +674,14 @@ function fillContentPane(event) {
         }
       }
     }
-    for (let elem of contentElem.getElementsByTagName('a')) {
+    for (let elem of contentElem.getElementsByTagName('a'))
       elem.setAttribute('target', '_blank');
-    }
+
+    for (let elem of contentElem.querySelectorAll('script, object, applet, iframe, embed'))
+      elem.remove();
+
     contentPane.appendChild(contentElem);
+    contentPane.scrollTo(0, 0);
   });
 }
 
@@ -717,6 +720,7 @@ function mergeFeeds(oldFeed, newFeed) {
   // merge entries
   for (const [url, entry] of Object.entries(newFeed['entries'])) {
     if (!(url in oldFeed['entries'])) {
+      entry['icon'] = oldFeed['icon'];
       oldFeed['entries'][url] = entry;
     }
   }
@@ -735,7 +739,7 @@ async function refreshFeeds() {
       if (Date.now() - checked > feed['updatePeriod']) {
         let newFeed = await fetchParseFeed(url, false);
         if (!newFeed) {
-          console.error('fetchParseFeed failed');
+          console.error('fetchParseFeed failed:', url);
           continue;
         }
 
@@ -873,9 +877,7 @@ function keyHandler(e) {
     document.getElementById('content-header').children[0].click();
   }
 
-  else if (e.key === 'd' || e.key === 'D'
-           || e.key === 'h' || e.key === 'H'
-           || e.key == 'Delete') {
+  else if (e.key === 'd' || e.key === 'D' || e.key == 'Delete') {
     deleteEntry();
   }
 

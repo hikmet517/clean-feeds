@@ -66,9 +66,15 @@ function parseAtom(dom, feedUrl) {
 
     // entry content
     entry['content'] = '';
-    let contentNode = entryNode.querySelector('content, summary');
+    let contentNode = entryNode.querySelector('content');
     if (contentNode)
       entry['content'] = contentNode.textContent.trim();
+
+    if (entry['content'] === '') {
+      contentNode = entryNode.querySelector('summary');
+      if (contentNode)
+        entry['content'] = contentNode.textContent.trim();
+    }
 
     feed['entries'][entry['link']] = entry;
   }
@@ -131,7 +137,7 @@ function parseRss(dom, feedUrl) {
     let entryContent = entryNode.querySelector('encoded');
     if (entryContent)
       entry['content'] = entryContent.textContent.trim();
-    else {
+    if (entry['content'] === '') {
       entryContent = entryNode.querySelector('description');
       if (entryContent)
         entry['content'] = entryContent.textContent.trim();
