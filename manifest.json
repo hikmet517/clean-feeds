@@ -1,5 +1,5 @@
 {
-  "name": "Clean feeds",
+  "name": "Clean Feeds",
   "version": "0.0.2",
   "manifest_version": 2,
   "description": "Feed Reader",
@@ -25,7 +25,7 @@
     "default_icon": {
       "48": "icons/icon-48.png"
     },
-    "default_title": "feed-test"
+    "default_title": "Clean Feeds"
   },
   "web_accessible_resources": ["icons/*"],
   "browser_specific_settings": {
