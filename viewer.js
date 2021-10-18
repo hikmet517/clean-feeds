@@ -1,7 +1,6 @@
 // TODOs:
 // auto refresh
 // settings panel (refresh period)
-// feed icons
 // add rdf support
 // info about feed
 // show unread entries in feed elem
@@ -145,7 +144,12 @@ async function addFeed() {
     // save
     chrome.storage.local.get({ feeds: {} }, function(obj) {
       if (!(url in obj['feeds'])) {
-        feed['order'] = Math.max(...Object.values(obj['feeds']).map(x => x['order'])) + 1;
+        let order = 0;
+        for (let feed of Object.values(obj['feeds']))
+          if (feed['order'] > order)
+            order = feed['order'];
+        order = order + 1;
+        feed['order'] = order;
         obj['feeds'][url] = feed;
         chrome.storage.local.set(obj, function() {
           fillFeedsPane();
@@ -197,7 +201,7 @@ function fillFeedsPane() {
           target.parentElement.insertBefore(draggedElement, target);
           // save feeds' orders into storage
           chrome.storage.local.get( {feeds: {}}, function(obj) {
-            let i = 0;
+            let i = 1;
             for (let elem of document.getElementsByClassName('feed-list-elem')) {
               let feedUrl = elem.getAttribute('feed-url');
               elem.setAttribute('order', i);
@@ -654,6 +658,7 @@ function fillContentPane(event) {
     linkElem.setAttribute('target', '_blank');
     linkElem.appendChild(headerElem);
     headerDiv.appendChild(linkElem);
+    contentPane.appendChild(headerDiv);
 
     // content
     let contentElem = document.createElement('div');
@@ -662,24 +667,17 @@ function fillContentPane(event) {
 
     // fix relative img links
     if (obj['feeds'][feedUrl]['link'] !== '') {
-      let base = obj['feeds'][feedUrl]['link'];
-      if (base.endsWith('/'))
-        base = base.substr(0, base.length - 1);
       for (let elem of contentElem.getElementsByTagName('img')) {
-        let elemSrc = elem.getAttribute('src');
-        if (elemSrc && elemSrc.startsWith('/')) {
-          if (elemSrc.startsWith('//'))
-            elemSrc = elemSrc.substr(1);
-          elem.setAttribute('src', base + elemSrc);
+        let src = elem.getAttribute('src');
+        if (src) {
+          src = (new URL(src, obj['feeds'][feedUrl]['link'])).href;
+          elem.setAttribute('src', src);
         }
       }
     }
-
-    // let baseElem = document.createElement('base');
-    // baseElem.setAttribute('href', entryLink);
-    // contentElem.appendChild(baseElem);
-
-    contentPane.appendChild(headerDiv);
+    for (let elem of contentElem.getElementsByTagName('a')) {
+      elem.setAttribute('target', '_blank');
+    }
     contentPane.appendChild(contentElem);
   });
 }
