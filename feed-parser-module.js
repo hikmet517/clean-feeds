@@ -6,7 +6,6 @@ function parseAtom(dom, feedUrl) {
   feed['checked'] = (new Date()).toJSON();
   feed['feedlink'] = feedUrl;
 
-  feed['title'] = '';
   let titleNode = dom.querySelector('feed > title');
   if (titleNode) {
     feed['title'] = titleNode.textContent.trim();
@@ -18,12 +17,16 @@ function parseAtom(dom, feedUrl) {
     base = feedNode.getAttribute('xml:base').trim();
   }
 
-  feed['link'] = '';
   let linkNode = dom.querySelector('link:not([rel]), link[rel=alternate]');
   if (linkNode && linkNode.getAttribute('href'))
     feed['link'] = linkNode.getAttribute('href').trim();
   if (!(feed['link'].startsWith('http://') && feed['link'].startsWith('http://'))) {
     feed['link'] = base + feed['link'];
+  }
+
+  let iconNode = dom.querySelector('icon');
+  if (iconNode && iconNode.textContent.trim()) {
+    feed['icon'] = iconNode.textContent.trim();
   }
 
   feed['updated'] = new Date();
@@ -38,7 +41,6 @@ function parseAtom(dom, feedUrl) {
     entry['feedtitle'] = feed['title'];
 
     // entry title
-    entry['title'] = '';
     let entryTitle = entryNode.querySelector('title');
     if (entryTitle)
       entry['title'] = entryTitle.textContent.trim();
@@ -79,12 +81,10 @@ function parseRss(dom, feedUrl) {
   feed['checked'] = (new Date()).toJSON();
   feed['feedlink'] = feedUrl;
 
-  feed['title'] = '';
   let titleNode = dom.querySelector('rss > channel > title');
   if (titleNode)
     feed['title'] = titleNode.textContent.trim();
 
-  feed['link'] = '';
   let linkNode = dom.querySelector('rss > channel > link:not([rel]), rss > channel > link[rel=alternate]');
   if (linkNode) {
     if (linkNode.textContent.trim()) {
@@ -107,13 +107,11 @@ function parseRss(dom, feedUrl) {
     entry['feedtitle'] = feed['title'];
 
     // entry title
-    entry['title'] = '';
     let entryTitle = entryNode.querySelector('title');
     if (entryTitle)
       entry['title'] = entryTitle.textContent.trim();
 
     // entry link
-    entry['link'] = '';
     let entryLink = entryNode.querySelector('link');
     if (entryLink)
       entry['link'] = entryLink.textContent.trim();
@@ -129,6 +127,7 @@ function parseRss(dom, feedUrl) {
       entry['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 
     // entry content
+    entry['content'] = '';
     let entryContent = entryNode.querySelector('encoded');
     if (entryContent)
       entry['content'] = entryContent.textContent.trim();

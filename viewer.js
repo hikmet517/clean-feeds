@@ -51,10 +51,75 @@ async function fetchParseFeed(url, init) {
     return false;
   }
 
+  // initialize other data
   if (init) {
     feed['updatePeriod'] = 60 * 60 * 1000;  // 1 hour
     for (const [_link, entry] of Object.entries(feed['entries']))
       entry['read'] = false;
+
+    // read icon
+    let success = false;
+    if (feed['icon']) {
+      try {
+        console.log('first try', feed['icon']);
+        let response = await fetch(feed['icon'], {redirect: 'error'});
+        if (response.ok) {
+          success = true;
+        }
+      }
+      catch {
+        console.log('first try failed');
+        delete feed['icon'];
+      }
+    }
+    if (!success && feed['link']) {
+      try {
+        console.log('second try');
+        let response = await fetch(feed['link']);
+        if (response.ok) {
+          let content = await response.text();
+          const parser = new DOMParser();
+          const dom = parser.parseFromString(content, 'text/html');
+          for (let elem of dom.getElementsByTagName('link')) {
+            let att = elem.getAttribute('rel');
+            if (att && att == 'icon' || att == 'shortcut icon') {
+              let url = elem.getAttribute('href').trim();
+              let newurl = (new URL(url, feed['link'])).href;
+              console.log('second try, new url:', newurl);
+              let resp = await fetch(newurl, {redirect: 'error'});
+              if (resp.ok) {
+                feed['icon'] = newurl;
+                success = true;
+              }
+            }
+          }
+        }
+      }
+      catch {
+        console.log('second try failed');
+      }
+    }
+    if (!success) {
+      try {
+        console.log('third try');
+        let url = (new URL('/favicon.ico', feed['link'])).href;
+        console.log('third try, new url', url);
+        let response = await fetch(url);
+        if (response.ok) {
+          feed['icon'] = url;
+          success = true;
+        }
+      }
+      catch {
+        console.log('third try failed');
+      }
+    }
+  }
+
+  if (feed['icon']) {
+    for (let [_url, entry] of Object.entries(feed['entries'])) {
+      entry['icon'] = feed['icon'];
+    }
   }
 
   return feed;
@@ -145,10 +210,19 @@ function fillFeedsPane() {
       });
       // ==== ELEM'S DRAG FUNCTIONS END ====
 
+      let iconElem = document.createElement('img');
+      if (feed['icon'])
+        iconElem.setAttribute('src', feed['icon']);
+      else
+        iconElem.setAttribute('src', 'icons/16.png');
+      iconElem.classList.add('favicon');
+      elem.appendChild(iconElem);
+
       let titleElem = document.createElement('div');
       titleElem.classList.add('feed-list-elem-title');
       let content = document.createTextNode(feed['title']);
       titleElem.appendChild(content);
+      elem.appendChild(titleElem);
 
       let menuElem = document.createElement('button');
       menuElem.classList.add('feed-list-elem-menu');
@@ -160,9 +234,8 @@ function fillFeedsPane() {
       menuElem.addEventListener('mousedown', function(event) {
         event.stopPropagation();
       });
-
-      elem.appendChild(titleElem);
       elem.appendChild(menuElem);
+
       tempArray.push(elem);
     }
 
@@ -468,28 +541,38 @@ function addEntries(entries) {
     elem.setAttribute('entry-link', entry['link']);
     elem.addEventListener('click', fillContentPane);
 
-    let elemTitle = document.createElement('div');
-    elemTitle.appendChild(document.createTextNode(entry['title']));
-    elemTitle.classList.add('entry-list-elem-title');
-    elemTitle.classList.add(entry['read'] ? 'read' : 'unread');
-    elem.appendChild(elemTitle);
+    let titleElem = document.createElement('div');
+    titleElem.appendChild(document.createTextNode(entry['title']));
+    titleElem.classList.add('entry-list-elem-title');
+    titleElem.classList.add(entry['read'] ? 'read' : 'unread');
+    elem.appendChild(titleElem);
 
-    let titleDateDiv = document.createElement('div');
-    titleDateDiv.classList.add('entry-list-elem-feed-date-cont');
-    let elemFeed = document.createElement('div');
-    elemFeed.appendChild(document.createTextNode(entry['feedtitle']));
-    elemFeed.classList.add('entry-list-elem-feed');
-    titleDateDiv.appendChild(elemFeed);
+    let iconElem = document.createElement('img');
+    if (entry['icon'])
+      iconElem.setAttribute('src', entry['icon']);
+    else
+      iconElem.setAttribute('src', 'icons/16.png');
+    iconElem.classList.add('favicon');
+    elem.appendChild(iconElem);
+
+
+
+    let titleDateElem = document.createElement('div');
+    titleDateElem.classList.add('entry-list-elem-feed-date-cont');
+    let feedElem = document.createElement('div');
+    feedElem.appendChild(document.createTextNode(entry['feedtitle']));
+    feedElem.classList.add('entry-list-elem-feed');
+    titleDateElem.appendChild(feedElem);
 
     if (entry['updated']) {
-      let elemDate = document.createElement('div');
+      let dateElem = document.createElement('div');
       let date = new Date(entry['updated']);
-      let dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-      elemDate.appendChild(document.createTextNode(dateStr));
-      elemDate.classList.add('entry-list-elem-date');
-      titleDateDiv.appendChild(elemDate);
+      let dateStr = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR');
+      dateElem.appendChild(document.createTextNode(dateStr));
+      dateElem.classList.add('entry-list-elem-date');
+      titleDateElem.appendChild(dateElem);
     }
-    elem.appendChild(titleDateDiv);
+    elem.appendChild(titleDateElem);
 
     entryList.appendChild(elem);
   }

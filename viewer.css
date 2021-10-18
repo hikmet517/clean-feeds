@@ -222,6 +222,14 @@ a {
     text-overflow: ellipsis;
 }
 
+.favicon {
+    width: 16px;
+    height: 16px;
+    margin-left: 1px;
+    margin-right: 2px;
+    padding: 1px;
+}
+
 .feed-list-elem-title {
     flex: 1 1;
     white-space: nowrap;
