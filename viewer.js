@@ -31,22 +31,30 @@ initResizer(function(prevSibling) {
 
 async function fetchParseFeed(url, init) {
   console.log('fetching:', url);
-  const response = await fetch(url, {
-    method: 'GET',
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer'
-  });
 
-  if (!response.ok) {
-    console.error('Error fetching data');
-    return false;
+  let feed;
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer'
+    });
+
+    if (!response.ok) {
+      console.error('fetchParseFeed, fetch failed, response:', response);
+      return false;
+    }
+
+    const content = await response.text();
+    feed = parseFeed(content, url);
+
+    if (!feed) {
+      console.error('fetchParseFeed, parseFeed returned false:', url);
+      return false;
+    }
   }
-
-  const content = await response.text();
-  const feed = parseFeed(content, url);
-
-  if(!feed) {
-    console.error('fetchParseFeed failed: ', url);
+  catch (error) {
+    console.error('fetchParseFeed catched:', error);
     return false;
   }
 
@@ -119,7 +127,6 @@ async function fetchParseFeed(url, init) {
       }
     }
   }
-
   return feed;
 }
 

@@ -155,33 +155,39 @@ function parseRss(dom, feedUrl) {
  * @returns {Object}
  */
 function parseFeed(content, url) {
-  const parser = new DOMParser();
-  const dom = parser.parseFromString(content, 'application/xml');
-  const error = dom.querySelector('parsererror');
-  if (error) {
-    console.error('Parse Error');
-    return false;
+  try {
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(content, 'application/xml');
+    const error = dom.querySelector('parsererror');
+    if (error) {
+      console.error('parseFeed parse error');
+      return false;
+    }
+
+    let rootNode = dom.documentElement.nodeName.trim();
+
+    let feed = {};
+    feed['entries'] = {};
+    feed['checked'] = (new Date()).toJSON();
+
+    // PARSE ATOM FEED
+    if (rootNode === 'feed') {
+      return parseAtom(dom, url);
+    }
+
+    // PARSE RSS FEED
+    else if (rootNode === 'rss') {
+      return parseRss(dom, url);
+    }
+    else {
+      console.error('parseFeed, unknown feed type');
+      return false;
+    }
+  }
+  catch (error) {
+    console.error('parseFeed, catched:', error);
   }
 
-  let rootNode = dom.documentElement.nodeName.trim();
-
-  let feed = {};
-  feed['entries'] = {};
-  feed['checked'] = (new Date()).toJSON();
-
-  // PARSE ATOM FEED
-  if (rootNode === 'feed') {
-    return parseAtom(dom, url);
-  }
-
-  // PARSE RSS FEED
-  else if (rootNode === 'rss') {
-    return parseRss(dom, url);
-  }
-  else {
-    console.error('unknown feed type');
-    return false;
-  }
 }
 
 export default parseFeed;
