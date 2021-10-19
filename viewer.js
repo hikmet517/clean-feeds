@@ -15,7 +15,6 @@ import parseFeed from './feed-parser-module.js';
 import initResizer from './resizer-module.js';
 
 var draggedElement;
-var keys = new Set();
 
 initResizer(function(prevSibling) {
   // save settings
@@ -728,6 +727,7 @@ function mergeFeeds(oldFeed, newFeed) {
   for (const [url, entry] of Object.entries(newFeed['entries'])) {
     if (!(url in oldFeed['entries'])) {
       entry['icon'] = oldFeed['icon'];
+      entry['feedtitle'] = oldFeed['title'];
       oldFeed['entries'][url] = entry;
     }
   }
@@ -857,16 +857,7 @@ function keyHandler(e) {
   // else
   //   console.log(`Key "${e.key}" repeating  [event: keydown]`);
 
-  // Alt+tab is problematic
-  // because browser is not active any more, alt is remain pressed
-  if (e.key !== 'Alt')
-    keys.add(e.key);
-
-  if (keys.has('Control') || keys.has('Alt'))
-    return;
-
-  if (e.key === 'a' || e.key === 'A') {
-    keys.delete(e.key);  // addFeed is prompting and this inhibits keyuphandler
+  if (e.key === 'f' || e.key === 'F') {
     addFeed();
   }
 
@@ -909,13 +900,6 @@ function keyHandler(e) {
 }
 
 document.addEventListener('keydown', keyHandler);
-
-
-function keyUpHandler(e) {
-  keys.delete(e.key);
-}
-
-document.addEventListener('keyup', keyUpHandler);
 
 
 function exportFeeds() {

@@ -1,6 +1,6 @@
 # clean-feeds
 ## Shortcuts
-- a: add new feed
+- f: add new feed
 - m: mark as read
 - r: refresh feeds
 - b, o, v: open/view page
