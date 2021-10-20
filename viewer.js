@@ -659,7 +659,6 @@ function fillContentPane(event) {
     headerElem.appendChild(document.createTextNode(obj['feeds'][feedUrl]['entries'][entryLink]['title']));
     const linkElem = document.createElement('a');
     linkElem.setAttribute('href', obj['feeds'][feedUrl]['entries'][entryLink]['link']);
-    linkElem.setAttribute('target', '_blank');
     linkElem.appendChild(headerElem);
     headerDiv.appendChild(linkElem);
     contentPane.appendChild(headerDiv);
@@ -679,16 +678,19 @@ function fillContentPane(event) {
         }
       }
     }
-    for (const elem of contentElem.getElementsByTagName('a')) {
-      elem.setAttribute('target', '_blank');
-      elem.setAttribute('rel', 'noopener');
-    }
 
+    // remove problematic elements
     for (const elem of contentElem.querySelectorAll('script, object, applet, iframe, embed'))
       elem.remove();
 
     contentPane.appendChild(contentElem);
     contentPane.scrollTo(0, 0);
+
+    // links open in new tab
+    for (const elem of contentPane.getElementsByTagName('a')) {
+      elem.setAttribute('target', '_blank');
+      elem.setAttribute('rel', 'noopener');
+    }
   });
 }
 
