@@ -1,52 +1,52 @@
 // TODO: add rdf support
 
 function parseAtom(dom, feedUrl) {
-  let feed = {};
+  const feed = {};
   feed['entries'] = {};
   feed['checked'] = (new Date()).toJSON();
   feed['feedlink'] = feedUrl;
 
-  let titleNode = dom.querySelector('feed > title');
+  const titleNode = dom.querySelector('feed > title');
   if (titleNode) {
     feed['title'] = titleNode.textContent.trim();
   }
 
   let base = '';
-  let feedNode = dom.querySelector('feed');
+  const feedNode = dom.querySelector('feed');
   if (feedNode && feedNode.getAttribute('xml:base')) {
     base = feedNode.getAttribute('xml:base').trim();
   }
 
-  let linkNode = dom.querySelector('link:not([rel]), link[rel=alternate]');
+  const linkNode = dom.querySelector('link:not([rel]), link[rel=alternate]');
   if (linkNode && linkNode.getAttribute('href'))
     feed['link'] = linkNode.getAttribute('href').trim();
   if (!(feed['link'].startsWith('http://') && feed['link'].startsWith('http://'))) {
     feed['link'] = base + feed['link'];
   }
 
-  let iconNode = dom.querySelector('icon');
+  const iconNode = dom.querySelector('icon');
   if (iconNode && iconNode.textContent.trim()) {
     feed['icon'] = iconNode.textContent.trim();
   }
 
   feed['updated'] = new Date();
-  let updatedNode = dom.querySelector('feed > updated');
+  const updatedNode = dom.querySelector('feed > updated');
   if (updatedNode)
     feed['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 
   // entries
-  for (let entryNode of dom.querySelectorAll('feed > entry')) {
-    let entry = {};
+  for (const entryNode of dom.querySelectorAll('feed > entry')) {
+    const entry = {};
     entry['feedlink'] = feed['feedlink'];
     entry['feedtitle'] = feed['title'];
 
     // entry title
-    let entryTitle = entryNode.querySelector('title');
+    const entryTitle = entryNode.querySelector('title');
     if (entryTitle)
       entry['title'] = entryTitle.textContent.trim();
 
     // entry link
-    let entryLink = entryNode.querySelector('link:not([rel]), link[rel=alternate]');
+    const entryLink = entryNode.querySelector('link:not([rel]), link[rel=alternate]');
     if (entryLink && entryLink.getAttribute('href')) {
       entry['link'] = entryLink.getAttribute('href').trim();
     }
@@ -60,7 +60,7 @@ function parseAtom(dom, feedUrl) {
     }
 
     entry['updated'] = (new Date()).toJSON();
-    let updatedNode = entryNode.querySelector('updated');
+    const updatedNode = entryNode.querySelector('updated');
     if (updatedNode)
       entry['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 
@@ -82,16 +82,16 @@ function parseAtom(dom, feedUrl) {
 }
 
 function parseRss(dom, feedUrl) {
-  let feed = {};
+  const feed = {};
   feed['entries'] = {};
   feed['checked'] = (new Date()).toJSON();
   feed['feedlink'] = feedUrl;
 
-  let titleNode = dom.querySelector('rss > channel > title');
+  const titleNode = dom.querySelector('rss > channel > title');
   if (titleNode)
     feed['title'] = titleNode.textContent.trim();
 
-  let linkNode = dom.querySelector('rss > channel > link:not([rel]), rss > channel > link[rel=alternate]');
+  const linkNode = dom.querySelector('rss > channel > link:not([rel]), rss > channel > link[rel=alternate]');
   if (linkNode) {
     if (linkNode.textContent.trim()) {
       feed['link'] = linkNode.textContent.trim();
@@ -102,23 +102,23 @@ function parseRss(dom, feedUrl) {
   }
 
   feed['updated'] = new Date();
-  let updatedNode = dom.querySelector('rss > channel > pubDate, rss > channel > updated, rss > channel > lastBuildDate');
+  const updatedNode = dom.querySelector('rss > channel > pubDate, rss > channel > updated, rss > channel > lastBuildDate');
   if (updatedNode)
     feed['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 
   // entries
-  for (let entryNode of dom.querySelectorAll('rss > channel > item')) {
-    let entry = {};
+  for (const entryNode of dom.querySelectorAll('rss > channel > item')) {
+    const entry = {};
     entry['feedlink'] = feed['feedlink'];
     entry['feedtitle'] = feed['title'];
 
     // entry title
-    let entryTitle = entryNode.querySelector('title');
+    const entryTitle = entryNode.querySelector('title');
     if (entryTitle)
       entry['title'] = entryTitle.textContent.trim();
 
     // entry link
-    let entryLink = entryNode.querySelector('link');
+    const entryLink = entryNode.querySelector('link');
     if (entryLink)
       entry['link'] = entryLink.textContent.trim();
 
@@ -128,7 +128,7 @@ function parseRss(dom, feedUrl) {
     }
 
     entry['updated'] = (new Date()).toJSON();
-    let updatedNode = entryNode.querySelector('pubDate, date');
+    const updatedNode = entryNode.querySelector('pubDate, date');
     if (updatedNode)
       entry['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 
@@ -164,11 +164,7 @@ function parseFeed(content, url) {
       return false;
     }
 
-    let rootNode = dom.documentElement.nodeName.trim();
-
-    let feed = {};
-    feed['entries'] = {};
-    feed['checked'] = (new Date()).toJSON();
+    const rootNode = dom.documentElement.nodeName.trim();
 
     // PARSE ATOM FEED
     if (rootNode === 'feed') {

@@ -68,7 +68,7 @@ async function fetchParseFeed(url, init) {
     if (feed['icon']) {
       try {
         console.log('first try', feed['icon']);
-        let response = await fetch(feed['icon'], {redirect: 'error'});
+        const response = await fetch(feed['icon'], {redirect: 'error'});
         if (response.ok) {
           success = true;
         }
@@ -81,18 +81,18 @@ async function fetchParseFeed(url, init) {
     if (!success && feed['link']) {
       try {
         console.log('second try');
-        let response = await fetch(feed['link']);
+        const response = await fetch(feed['link']);
         if (response.ok) {
-          let content = await response.text();
+          const content = await response.text();
           const parser = new DOMParser();
           const dom = parser.parseFromString(content, 'text/html');
-          for (let elem of dom.getElementsByTagName('link')) {
-            let att = elem.getAttribute('rel');
+          for (const elem of dom.getElementsByTagName('link')) {
+            const att = elem.getAttribute('rel');
             if (att && att == 'icon' || att == 'shortcut icon') {
-              let url = elem.getAttribute('href').trim();
-              let newurl = (new URL(url, feed['link'])).href;
+              const url = elem.getAttribute('href').trim();
+              const newurl = (new URL(url, feed['link'])).href;
               console.log('second try, new url:', newurl);
-              let resp = await fetch(newurl, {redirect: 'error'});
+              const resp = await fetch(newurl, {redirect: 'error'});
               if (resp.ok) {
                 feed['icon'] = newurl;
                 success = true;
@@ -108,9 +108,9 @@ async function fetchParseFeed(url, init) {
     if (!success) {
       try {
         console.log('third try');
-        let url = (new URL('/favicon.ico', feed['link'])).href;
+        const url = (new URL('/favicon.ico', feed['link'])).href;
         console.log('third try, new url', url);
-        let response = await fetch(url);
+        const response = await fetch(url);
         if (response.ok) {
           feed['icon'] = url;
           success = true;
@@ -121,7 +121,7 @@ async function fetchParseFeed(url, init) {
       }
     }
     if (feed['icon']) {
-      for (let [_url, entry] of Object.entries(feed['entries'])) {
+      for (const [_url, entry] of Object.entries(feed['entries'])) {
         entry['icon'] = feed['icon'];
       }
     }
@@ -150,7 +150,7 @@ async function addFeed() {
     chrome.storage.local.get({ feeds: {} }, function(obj) {
       if (!(url in obj['feeds'])) {
         let order = 0;
-        for (let feed of Object.values(obj['feeds']))
+        for (const feed of Object.values(obj['feeds']))
           if (feed['order'] > order)
             order = feed['order'];
         order = order + 1;
@@ -171,9 +171,9 @@ document.getElementById('add-feed').addEventListener('click', addFeed);
 // using internal data
 function fillFeedsPane() {
   chrome.storage.local.get( {feeds: {}}, function(obj) {
-    let tempArray = [];
+    const tempArray = [];
     for (const [url, feed] of Object.entries(obj['feeds'])) {
-      let elem = document.createElement('li');
+      const elem = document.createElement('li');
 
       elem.classList.add('feed-list-elem');
       elem.setAttribute('feed-url', url);
@@ -207,8 +207,8 @@ function fillFeedsPane() {
           // save feeds' orders into storage
           chrome.storage.local.get( {feeds: {}}, function(obj) {
             let i = 1;
-            for (let elem of document.getElementsByClassName('feed-list-elem')) {
-              let feedUrl = elem.getAttribute('feed-url');
+            for (const elem of document.getElementsByClassName('feed-list-elem')) {
+              const feedUrl = elem.getAttribute('feed-url');
               elem.setAttribute('order', i);
               obj['feeds'][feedUrl]['order'] = i;
               i++;
@@ -219,7 +219,7 @@ function fillFeedsPane() {
       });
       // ==== ELEM'S DRAG FUNCTIONS END ====
 
-      let iconElem = document.createElement('img');
+      const iconElem = document.createElement('img');
       if (feed['icon'])
         iconElem.setAttribute('src', feed['icon']);
       else
@@ -227,15 +227,15 @@ function fillFeedsPane() {
       iconElem.classList.add('favicon');
       elem.appendChild(iconElem);
 
-      let titleElem = document.createElement('div');
+      const titleElem = document.createElement('div');
       titleElem.classList.add('feed-list-elem-title');
-      let content = document.createTextNode(feed['title']);
+      const content = document.createTextNode(feed['title']);
       titleElem.appendChild(content);
       elem.appendChild(titleElem);
 
-      let menuElem = document.createElement('button');
+      const menuElem = document.createElement('button');
       menuElem.classList.add('feed-list-elem-menu');
-      let menuElemImg = document.createElement('img');
+      const menuElemImg = document.createElement('img');
       menuElemImg.src = 'icons/open-menu.svg';
       menuElemImg.title = 'Open menu';
       menuElem.appendChild(menuElemImg);
@@ -255,21 +255,21 @@ function fillFeedsPane() {
 
     // if there is feeds before, get selected one
     let selectedFeedUrl = '';
-    for (let elem of document.getElementsByClassName('feed-list-elem')) {
+    for (const elem of document.getElementsByClassName('feed-list-elem')) {
       if (elem.classList.contains('clicked')) {
         selectedFeedUrl = elem.getAttribute('feed-url');
         break;
       }
     }
 
-    let feedsList = document.getElementById('feed-list');
+    const feedsList = document.getElementById('feed-list');
     feedsList.innerHTML = '';  // clear all
-    for (let elem of tempArray)
+    for (const elem of tempArray)
       feedsList.appendChild(elem);
 
     // restore selected url
     if (selectedFeedUrl !== '') {
-      for (let elem of document.getElementsByClassName('feed-list-elem')) {
+      for (const elem of document.getElementsByClassName('feed-list-elem')) {
         if (elem.getAttribute('feed-url') === selectedFeedUrl) {
           elem.click();
           return;
@@ -286,7 +286,7 @@ function fillFeedsPane() {
 function showHideFeedMenu(event) {
   const feedUrl = event.currentTarget.parentElement.getAttribute('feed-url');
   event.stopPropagation();
-  let feedMenu = document.getElementById('feed-menu');
+  const feedMenu = document.getElementById('feed-menu');
   if (('hidden' in feedMenu.attributes)) {
     feedMenu.setAttribute('feed-url', feedUrl);
     feedMenu.style.left = event.clientX + 10 + 'px';
@@ -294,7 +294,7 @@ function showHideFeedMenu(event) {
     feedMenu.removeAttribute('hidden');
     const rect = feedMenu.getBoundingClientRect();
     if (rect.bottom > document.documentElement.clientHeight) {
-      let clientHeight = document.documentElement.clientHeight;
+      const clientHeight = document.documentElement.clientHeight;
       feedMenu.style.top = (clientHeight - feedMenu.scrollHeight - 10) + 'px';
     }
     event.currentTarget.classList.add('clicked');
@@ -310,7 +310,7 @@ function hideFeedContextMenu() {
   const feedMenu = document.getElementById('feed-menu');
   if (!('hidden' in feedMenu.attributes)) {
     feedMenu.setAttribute('hidden', 'true');
-    for (let elem of document.getElementsByClassName('feed-list-elem-menu'))
+    for (const elem of document.getElementsByClassName('feed-list-elem-menu'))
       elem.classList.remove('clicked');
   }
 }
@@ -328,15 +328,13 @@ function addTag() {
       savedTags = [];
 
     // prepare prompt
-    let defaultPrompt = '';
-    for (let tag of savedTags)
-      defaultPrompt += tag + ' ';
+    const defaultPrompt = savedTags.join(' ');
 
     // ask
-    let input = prompt('Enter tags (separated by space)', defaultPrompt);
+    const input = prompt('Enter tags (separated by space)', defaultPrompt);
     if (input !== null) {
       savedTags = new Set();
-      for (let tag of input.trim().split(' '))
+      for (const tag of input.trim().split(' '))
         if (tag.trim())
           savedTags.add(tag.trim());
       savedTags = new Array(...savedTags);
@@ -363,7 +361,7 @@ async function refreshFeed() {
   chrome.storage.local.get({ feeds: {} }, function(obj) {
     obj['feeds'][feedUrl] = mergeFeeds(obj['feeds'][feedUrl], newFeed);
     chrome.storage.local.set(obj, function() {
-      for(let elem of document.getElementsByClassName('feed-list-elem'))
+      for(const elem of document.getElementsByClassName('feed-list-elem'))
         if (elem.getAttribute('feed-url') === feedUrl)
           elem.click();
     });
@@ -374,11 +372,11 @@ function changeFeedTitle() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
   chrome.storage.local.get({ feeds: {} }, function(obj) {
-    let oldTitle = obj['feeds'][feedUrl]['title'];
-    let input = prompt('Enter new title', oldTitle);
+    const oldTitle = obj['feeds'][feedUrl]['title'];
+    const input = prompt('Enter new title', oldTitle);
     if (input && input.trim()) {
       obj['feeds'][feedUrl]['title'] = input.trim();
-      for (let [_entryUrl, entry] of Object.entries(obj['feeds'][feedUrl]['entries']))
+      for (const [_entryUrl, entry] of Object.entries(obj['feeds'][feedUrl]['entries']))
         entry['feedtitle'] = obj['feeds'][feedUrl]['title'];
       chrome.storage.local.set(obj, function() {
         fillFeedsPane();
@@ -391,7 +389,7 @@ function deleteFeed() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
   chrome.storage.local.get({ feeds: {} }, function(obj) {
-    let res = window.confirm(`Are you sure you want to delete the feed '${obj['feeds'][feedUrl]['title']}'`);
+    const res = window.confirm(`Are you sure you want to delete the feed '${obj['feeds'][feedUrl]['title']}'`);
     if (res) {
       delete obj['feeds'][feedUrl];
       chrome.storage.local.set(obj, function() {
@@ -404,26 +402,26 @@ function deleteFeed() {
 
 
 function initFeedMenu() {
-  let addItem = document.getElementById('add-tag-item');
+  const addItem = document.getElementById('add-tag-item');
   addItem.addEventListener('click', addTag);
   // mousedown normally closed open menus, when clicked it's also called. stop that.
   addItem.addEventListener('mousedown', function(event) {
     event.stopPropagation();
   });
 
-  let updateItem = document.getElementById('update-feed-item');
+  const updateItem = document.getElementById('update-feed-item');
   updateItem.addEventListener('click', refreshFeed);
   updateItem.addEventListener('mousedown', function(event) {
     event.stopPropagation();
   });
 
-  let changeTitleItem = document.getElementById('change-title-item');
+  const changeTitleItem = document.getElementById('change-title-item');
   changeTitleItem.addEventListener('click', changeFeedTitle);
   changeTitleItem.addEventListener('mousedown', function(event) {
     event.stopPropagation();
   });
 
-  let deleteItem = document.getElementById('delete-feed-item');
+  const deleteItem = document.getElementById('delete-feed-item');
   deleteItem.addEventListener('click', deleteFeed);
   deleteItem.addEventListener('mousedown', function(event) {
     event.stopPropagation();
@@ -434,17 +432,17 @@ document.addEventListener('DOMContentLoaded', initFeedMenu);
 
 
 function fillFunctionPane() {
-  let listElem = document.getElementById('function-list');
+  const listElem = document.getElementById('function-list');
   listElem.innerHTML = '';
 
-  let allFeedsElem = document.createElement('li');
+  const allFeedsElem = document.createElement('li');
   allFeedsElem.classList.add('function-list-elem');
   allFeedsElem.setAttribute('id', 'all-feeds');
   allFeedsElem.appendChild(document.createTextNode('All Feeds'));
   allFeedsElem.addEventListener('click', fillEntryPaneAll);
   listElem.appendChild(allFeedsElem);
 
-  let queryElem = document.createElement('li');
+  const queryElem = document.createElement('li');
   queryElem.classList.add('function-list-elem');
   queryElem.setAttribute('id', 'query-feeds');
   queryElem.appendChild(document.createTextNode('Query Feeds'));
@@ -455,14 +453,14 @@ function fillFunctionPane() {
   chrome.storage.local.get({ feeds: {} }, function(obj) {
     for (const [_url, feed] of Object.entries(obj['feeds'])) {
       if (feed['tags']) {
-        for (let tag of feed['tags']) {
+        for (const tag of feed['tags']) {
           tags.add(tag);
         }
       }
     }
     tags = new Array(...tags).sort();
-    for (let tag of tags) {
-      let tagElem = document.createElement('li');
+    for (const tag of tags) {
+      const tagElem = document.createElement('li');
       tagElem.classList.add('function-list-elem');
       tagElem.classList.add('querytag-feeds');
       tagElem.appendChild(document.createTextNode('#' + tag));
@@ -476,10 +474,10 @@ function fillFunctionPane() {
 
 function fillEntryByTag(event) {
   // add/remove 'clicked'
-  for (let elem of document.getElementsByClassName('function-list-elem')) {
+  for (const elem of document.getElementsByClassName('function-list-elem')) {
     elem.classList.remove('clicked');
   }
-  for (let elem of document.getElementsByClassName('feed-list-elem')) {
+  for (const elem of document.getElementsByClassName('feed-list-elem')) {
     elem.classList.remove('clicked');
   }
   event.currentTarget.classList.add('clicked');
@@ -502,19 +500,19 @@ function queryFeeds(event) {
   const input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])");
   if (input && input.trim().length != 0) {
     chrome.storage.local.get({ feeds: {} }, function(obj) {
-      let result = queryFilter(input, Object.values(obj['feeds']), 'tags');
-      let entries = [];
-      for (let feed of result) {
+      const result = queryFilter(input, Object.values(obj['feeds']), 'tags');
+      const entries = [];
+      for (const feed of result) {
         entries.push(...Object.values(feed['entries']));
       }
       addEntries(entries);
       selectFirstEntry();
 
       // change clicked
-      for (let elem of document.getElementsByClassName('function-list-elem')) {
+      for (const elem of document.getElementsByClassName('function-list-elem')) {
         elem.classList.remove('clicked');
       }
-      for (let elem of document.getElementsByClassName('feed-list-elem')) {
+      for (const elem of document.getElementsByClassName('feed-list-elem')) {
         elem.classList.remove('clicked');
       }
       target.classList.add('clicked');
@@ -536,7 +534,7 @@ function selectFirstEntry() {
 
 // add entries to entry pane
 function addEntries(entries) {
-  let entryList = document.getElementById('entry-list');
+  const entryList = document.getElementById('entry-list');
   entryList.innerHTML = '';  // clear
 
   // sort entries
@@ -545,19 +543,19 @@ function addEntries(entries) {
   });
 
   for (const entry of entries) {
-    let elem = document.createElement('li');
+    const elem = document.createElement('li');
     elem.classList.add('entry-list-elem');
     elem.setAttribute('feed-url', entry['feedlink']);
     elem.setAttribute('entry-link', entry['link']);
     elem.addEventListener('click', fillContentPane);
 
-    let titleElem = document.createElement('div');
+    const titleElem = document.createElement('div');
     titleElem.appendChild(document.createTextNode(entry['title']));
     titleElem.classList.add('entry-list-elem-title');
     titleElem.classList.add(entry['read'] ? 'read' : 'unread');
     elem.appendChild(titleElem);
 
-    let iconElem = document.createElement('img');
+    const iconElem = document.createElement('img');
     if (entry['icon'])
       iconElem.setAttribute('src', entry['icon']);
     else
@@ -567,17 +565,17 @@ function addEntries(entries) {
 
 
 
-    let titleDateElem = document.createElement('div');
+    const titleDateElem = document.createElement('div');
     titleDateElem.classList.add('entry-list-elem-feed-date-cont');
-    let feedElem = document.createElement('div');
+    const feedElem = document.createElement('div');
     feedElem.appendChild(document.createTextNode(entry['feedtitle']));
     feedElem.classList.add('entry-list-elem-feed');
     titleDateElem.appendChild(feedElem);
 
     if (entry['updated']) {
-      let dateElem = document.createElement('div');
-      let date = new Date(entry['updated']);
-      let dateStr = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR');
+      const dateElem = document.createElement('div');
+      const date = new Date(entry['updated']);
+      const dateStr = date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR');
       dateElem.appendChild(document.createTextNode(dateStr));
       dateElem.classList.add('entry-list-elem-date');
       titleDateElem.appendChild(dateElem);
@@ -591,19 +589,19 @@ function addEntries(entries) {
 
 function fillEntryPaneAll(event) {
   // add/remove 'clicked'
-  for (let elem of document.getElementsByClassName('function-list-elem')) {
+  for (const elem of document.getElementsByClassName('function-list-elem')) {
     elem.classList.remove('clicked');
   }
-  for (let elem of document.getElementsByClassName('feed-list-elem')) {
+  for (const elem of document.getElementsByClassName('feed-list-elem')) {
     elem.classList.remove('clicked');
   }
   event.currentTarget.classList.add('clicked');
 
   chrome.storage.local.get({ feeds: {} }, function(obj) {
-    let entryList = document.getElementById('entry-list');
+    const entryList = document.getElementById('entry-list');
     entryList.innerHTML = '';  // clear
 
-    let entries = [];
+    const entries = [];
     for (const [_feedUrl, feed] of Object.entries(obj['feeds'])) {
       for (const [_entryUrl, entry] of Object.entries(feed['entries'])) {
         entries.push(entry);
@@ -618,19 +616,19 @@ function fillEntryPaneAll(event) {
 // when a feed (feed-list-elem) on left pane is clicked
 // fill entry-pane (mid-pane)
 function fillEntryPane(event) {
-  let feedUrl = event.currentTarget.getAttribute('feed-url');
+  const feedUrl = event.currentTarget.getAttribute('feed-url');
 
   // add/remove 'clicked' class
-  for (let elem of document.getElementsByClassName('feed-list-elem')) {
+  for (const elem of document.getElementsByClassName('feed-list-elem')) {
     elem.classList.remove('clicked');
   }
-  for (let elem of document.getElementsByClassName('function-list-elem')) {
+  for (const elem of document.getElementsByClassName('function-list-elem')) {
     elem.classList.remove('clicked');
   }
   event.currentTarget.classList.add('clicked');
 
   chrome.storage.local.get({ feeds: {} }, function(obj) {
-    let entries = Object.values(obj['feeds'][feedUrl]['entries']);
+    const entries = Object.values(obj['feeds'][feedUrl]['entries']);
     addEntries(entries);
     selectFirstEntry();
   });
@@ -639,27 +637,27 @@ function fillEntryPane(event) {
 // when an entry clicked
 // fill content pane
 function fillContentPane(event) {
-  let feedUrl = event.currentTarget.getAttribute('feed-url');
-  let entryLink = event.currentTarget.getAttribute('entry-link');
+  const feedUrl = event.currentTarget.getAttribute('feed-url');
+  const entryLink = event.currentTarget.getAttribute('entry-link');
 
   // add/remove 'clicked' class
-  for(let elem of event.currentTarget.parentElement.children) {
+  for(const elem of event.currentTarget.parentElement.children) {
     elem.classList.remove('clicked');
   }
   event.currentTarget.classList.add('clicked');
 
   chrome.storage.local.get( {feeds: {}}, function(obj) {
-    let contentPane = document.getElementById('content-pane');
+    const contentPane = document.getElementById('content-pane');
     contentPane.setAttribute('feed-url', feedUrl);
     contentPane.setAttribute('entry-link', entryLink);
     contentPane.innerHTML = '';  // clear old data
 
     // header and link
-    let headerDiv = document.createElement('div');
+    const headerDiv = document.createElement('div');
     headerDiv.setAttribute('id', 'content-header');
-    let headerElem = document.createElement('h1');
+    const headerElem = document.createElement('h1');
     headerElem.appendChild(document.createTextNode(obj['feeds'][feedUrl]['entries'][entryLink]['title']));
-    let linkElem = document.createElement('a');
+    const linkElem = document.createElement('a');
     linkElem.setAttribute('href', obj['feeds'][feedUrl]['entries'][entryLink]['link']);
     linkElem.setAttribute('target', '_blank');
     linkElem.appendChild(headerElem);
@@ -667,13 +665,13 @@ function fillContentPane(event) {
     contentPane.appendChild(headerDiv);
 
     // content
-    let contentElem = document.createElement('div');
+    const contentElem = document.createElement('div');
     contentElem.setAttribute('id', 'content-body');
     contentElem.innerHTML = obj['feeds'][feedUrl]['entries'][entryLink]['content'];
 
     // fix relative img links
     if (obj['feeds'][feedUrl]['link'] !== '') {
-      for (let elem of contentElem.getElementsByTagName('img')) {
+      for (const elem of contentElem.getElementsByTagName('img')) {
         let src = elem.getAttribute('src');
         if (src) {
           src = (new URL(src, obj['feeds'][feedUrl]['link'])).href;
@@ -681,10 +679,12 @@ function fillContentPane(event) {
         }
       }
     }
-    for (let elem of contentElem.getElementsByTagName('a'))
+    for (const elem of contentElem.getElementsByTagName('a')) {
       elem.setAttribute('target', '_blank');
+      elem.setAttribute('rel', 'noopener');
+    }
 
-    for (let elem of contentElem.querySelectorAll('script, object, applet, iframe, embed'))
+    for (const elem of contentElem.querySelectorAll('script, object, applet, iframe, embed'))
       elem.remove();
 
     contentPane.appendChild(contentElem);
@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function clearInternalData() {
-  let res = window.confirm('Are you sure you want to delete all the data?');
+  const res = window.confirm('Are you sure you want to delete all the data?');
   if (res) {
     chrome.storage.local.clear(function() {
       location.reload();
@@ -741,11 +741,11 @@ async function refreshFeeds() {
   chrome.storage.local.get( {feeds: {}}, async function(obj) {
     let updated = false;
     for (const [url, feed] of Object.entries(obj['feeds'])) {
-      let checked = (new Date(feed['checked'])).getTime();
+      const checked = (new Date(feed['checked'])).getTime();
 
       // fetch and check
       if (Date.now() - checked > feed['updatePeriod']) {
-        let newFeed = await fetchParseFeed(url, false);
+        const newFeed = await fetchParseFeed(url, false);
         if (!newFeed) {
           console.error('fetchParseFeed failed:', url);
           continue;
@@ -773,20 +773,20 @@ async function refreshFeeds() {
 document.getElementById('refresh-feeds').addEventListener('click', refreshFeeds);
 
 function markReadUnread() {
-  let contentItem = document.getElementById('content-pane');
-  let feedUrl = contentItem.getAttribute('feed-url');
-  let entryLink = contentItem.getAttribute('entry-link');
+  const contentItem = document.getElementById('content-pane');
+  const feedUrl = contentItem.getAttribute('feed-url');
+  const entryLink = contentItem.getAttribute('entry-link');
 
   if ( feedUrl && entryLink) {
     chrome.storage.local.get( {feeds: {}}, function(obj) {
-      let oldState = obj['feeds'][feedUrl]['entries'][entryLink]['read'];
-      let newState = !oldState;
+      const oldState = obj['feeds'][feedUrl]['entries'][entryLink]['read'];
+      const newState = !oldState;
 
       obj['feeds'][feedUrl]['entries'][entryLink]['read'] = newState;
       chrome.storage.local.set( obj, function() {
-        for ( let elem of document.getElementsByClassName('entry-list-elem') ) {
+        for ( const elem of document.getElementsByClassName('entry-list-elem') ) {
           if ( elem.getAttribute('entry-link') === entryLink ) {
-            let elemTitle = elem.getElementsByClassName('entry-list-elem-title')[0];
+            const elemTitle = elem.getElementsByClassName('entry-list-elem-title')[0];
             elemTitle.classList.add( newState ? 'read' : 'unread' );
             elemTitle.classList.remove( oldState ? 'read' : 'unread' );
             break;
@@ -796,20 +796,21 @@ function markReadUnread() {
     });
   }
 }
+
 document.getElementById('mark-read').addEventListener('click', markReadUnread);
 
 
 function deleteEntry() {
-  let contentItem = document.getElementById('content-pane');
-  let feedUrl = contentItem.getAttribute('feed-url');
-  let entryLink = contentItem.getAttribute('entry-link');
+  const contentItem = document.getElementById('content-pane');
+  const feedUrl = contentItem.getAttribute('feed-url');
+  const entryLink = contentItem.getAttribute('entry-link');
 
   chrome.storage.local.get({ feeds: {} }, function(obj) {
     delete obj['feeds'][feedUrl]['entries'][entryLink];
     chrome.storage.local.set(obj, function() {
       if (!selectNextEntry())
         selectPreviousEntry();
-      for (let elem of document.getElementsByClassName('entry-list-elem')) {
+      for (const elem of document.getElementsByClassName('entry-list-elem')) {
         if (elem.getAttribute('entry-link') === entryLink) {
           elem.remove();
           break;
@@ -823,9 +824,9 @@ document.getElementById('delete-entry').addEventListener('click', deleteEntry);
 
 
 function selectPreviousEntry() {
-  let entries = document.getElementsByClassName('entry-list-elem');
+  const entries = document.getElementsByClassName('entry-list-elem');
   let i = 0;
-  for (let elem of entries) {
+  for (const elem of entries) {
     if (elem.classList.contains('clicked')) {
       if (i - 1 >= 0) {
         entries[i - 1].click();
@@ -838,9 +839,9 @@ function selectPreviousEntry() {
 }
 
 function selectNextEntry() {
-  let entries = document.getElementsByClassName('entry-list-elem');
+  const entries = document.getElementsByClassName('entry-list-elem');
   let i = 0;
-  for (let elem of entries) {
+  for (const elem of entries) {
     if (elem.classList.contains('clicked')) {
       if (i + 1 < entries.length) {
         entries[i + 1].click();
@@ -907,7 +908,7 @@ function exportFeeds() {
   chrome.storage.local.get({ feeds: {} }, function(obj) {
     const feeds = [];
     for (const [url, feed] of Object.entries(obj['feeds'])) {
-      let temp = {};
+      const temp = {};
       temp['title'] = feed['title'];
       temp['url'] = url;
       temp['order'] = feed['order'];
@@ -930,7 +931,7 @@ function importFeeds() {
   const inputElem = document.getElementById('input');
   inputElem.addEventListener("change", handleFiles, false);
   function handleFiles() {
-    let file = this.files[0];
+    const file = this.files[0];
     console.log('importing from file:', file);
 
     // chrome.runtime.getURL(file);
@@ -952,7 +953,7 @@ function importFeeds() {
               const feedUrl = val['feedlink'];
               obj['feeds'][feedUrl] = val;
               obj['feeds'][feedUrl]['title'] = data['feeds'][i]['title'];
-              for (let [_entryUrl, entry] of Object.entries(obj['feeds'][feedUrl]['entries']))
+              for (const [_entryUrl, entry] of Object.entries(obj['feeds'][feedUrl]['entries']))
                 entry['feedtitle'] = obj['feeds'][feedUrl]['title'];
               obj['feeds'][feedUrl]['tags'] = data['feeds'][i]['tags'];
               obj['feeds'][feedUrl]['order'] = data['feeds'][i]['order'];
