@@ -530,6 +530,7 @@ function selectFirstEntry() {
   const entryElems = document.getElementsByClassName('entry-list-elem');
   if (entryElems.length > 0)
     entryElems[0].click();
+  document.getElementById('entry-pane').scrollTo(0, 0);
 }
 
 
@@ -879,12 +880,12 @@ function keyHandler(e) {
     deleteEntry();
   }
 
-  else if(e.key === 'ArrowDown' || e.key === 'n' || e.key === 'N') {
+  else if(e.key === 'n' || e.key === 'N') {
     e.preventDefault();
     selectNextEntry();
   }
 
-  else if(e.key === 'ArrowUp' || e.key === 'p' || e.key === 'P') {
+  else if(e.key === 'p' || e.key === 'P') {
     e.preventDefault();
     selectPreviousEntry();
   }
