@@ -876,7 +876,10 @@ function keyHandler(e) {
   else if (e.key === 'b' || e.key === 'B'
            || e.key === 'o' || e.key === 'O'
            || e.key === 'v' || e.key === 'V') {
-    document.getElementById('content-header').children[0].click();
+    const link =document.getElementById('content-header').children[0].getAttribute('href');
+    chrome.tabs.getCurrent(function (tab) {
+      chrome.tabs.create({ url: link, openerTabId: tab.id});
+    });
   }
 
   else if (e.key === 'd' || e.key === 'D' || e.key == 'Delete') {
