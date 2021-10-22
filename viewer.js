@@ -9,6 +9,7 @@
 // progress label, (like refreshing...)
 // const correctness
 // delete old entries (older than 10 days)
+// when changing element using keyboard, scroll to selected element
 
 
 import queryFilter from './boolean-filter-module.js';
@@ -160,6 +161,7 @@ async function addFeed() {
       objCache['feeds'][url] = feed;
       chrome.storage.local.set(objCache, function() {
         fillFeedPane();
+        selectAllFeeds();
       });
     }
   }
@@ -367,6 +369,7 @@ function changeFeedTitle() {
       entry['feedtitle'] = objCache['feeds'][feedUrl]['title'];
     chrome.storage.local.set(objCache, function() {
       fillFeedPane();
+      selectAllFeeds();
     });
   }
 }
@@ -380,6 +383,7 @@ function deleteFeed() {
     chrome.storage.local.set(objCache, function() {
       fillFunctionPane();
       fillFeedPane();
+      selectAllFeeds();
     });
   }
 }
@@ -407,6 +411,12 @@ function initFeedMenu() {
   const deleteItem = document.getElementById('delete-feed-item');
   deleteItem.addEventListener('click', deleteFeed);
   deleteItem.addEventListener('mousedown', function(event) {
+    event.stopPropagation();
+  });
+
+  const deleteOldItem = document.getElementById('delete-old-item');
+  deleteOldItem.addEventListener('click', deleteOldEntriesFeed);
+  deleteOldItem.addEventListener('mousedown', function(event) {
     event.stopPropagation();
   });
 }
@@ -677,12 +687,28 @@ function setLastStyle() {
   });
 }
 
+function deleteOldEntriesFeed() {
+  hideFeedContextMenu();
+  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
+  const days = parseInt(window.prompt('Delete entries older than (days)'));
+  if (days) {
+    const d = new Date();
+    d.setDate(d.getDate() - days);
+    for (const [entryUrl, entry] of Object.entries(objCache['feeds'][feedUrl]['entries'])) {
+      if (new Date(entry['updated']) < d)
+        delete objCache['feeds'][feedUrl]['entries'][entryUrl];
+    }
+    chrome.storage.local.set(objCache, function() {
+      selectAllFeeds();
+    });
+  }
+}
 
 function deleteOldEntries() {
   const days = parseInt(window.prompt('Delete entries older than (days)'));
   if (days) {
     const d = new Date();
-    d.setDate(d.getDate() - 1);
+    d.setDate(d.getDate() - days);
     for (const [url, feed] of Object.entries(objCache['feeds'])) {
       for (const [entryUrl, entry] of Object.entries(feed['entries'])) {
         if (new Date(entry['updated']) < d)
@@ -923,8 +949,8 @@ function importFeeds() {
           i++;
         }
         chrome.storage.local.set(objCache, function() {
-          fillFeedPane();
           fillFunctionPane();
+          fillFeedPane();
           selectAllFeeds();
         });
       });
