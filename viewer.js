@@ -8,7 +8,8 @@
 // improve error handling, return values of async when failed
 // progress label, (like refreshing...)
 // const correctness
-// optimize calls to storage.get
+// delete old entries (older than 10 days)
+
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
@@ -313,7 +314,7 @@ function addTag() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
 
-  let savedTags = obj['feeds'][feedUrl]['tags'];
+  let savedTags = objCache['feeds'][feedUrl]['tags'];
   if (!savedTags)
     savedTags = [];
 
@@ -677,6 +678,23 @@ function setLastStyle() {
 }
 
 
+function deleteOldEntries() {
+  const days = parseInt(window.prompt('Delete entries older than (days)'));
+  if (days) {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
+    for (const [url, feed] of Object.entries(objCache['feeds'])) {
+      for (const [entryUrl, entry] of Object.entries(feed['entries'])) {
+        if (new Date(entry['updated']) < d)
+          delete objCache['feeds'][url]['entries'][entryUrl];
+      }
+    }
+    chrome.storage.local.set(objCache, function() {
+      selectAllFeeds();
+    });
+  }
+}
+
 function clearInternalData() {
   const res = window.confirm('Are you sure you want to delete all the data?');
   if (res) {
@@ -867,7 +885,7 @@ function exportFeeds() {
   const blob = new Blob([JSON.stringify(object, null, 2)], { type: 'application/json' });
   chrome.downloads.download({
     url: URL.createObjectURL(blob),
-    filename: 'exported.json',
+    filename: 'feeds.json',
     saveAs: true
   });
 }
@@ -934,6 +952,7 @@ function init() {
   document.getElementById('refresh-feeds').addEventListener('click', refreshFeeds);
   document.getElementById('import-feeds').addEventListener('click', importFeeds);
   document.getElementById('export-feeds').addEventListener('click', exportFeeds);
+  document.getElementById('delete-old').addEventListener('click', deleteOldEntries);
   document.getElementById('clear-data').addEventListener('click', clearInternalData);
   document.getElementById('delete-entry').addEventListener('click', deleteEntry);
   document.getElementById('mark-read').addEventListener('click', markReadUnread);
