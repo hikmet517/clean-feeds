@@ -646,13 +646,20 @@ function fillContentPane(event) {
   contentElem.setAttribute('id', 'content-body');
   contentElem.innerHTML = objCache['feeds'][feedUrl]['entries'][entryLink]['content'];
 
-  // fix relative img links
+  // fix relative img, a links
   if (objCache['feeds'][feedUrl]['link'] !== '') {
     for (const elem of contentElem.getElementsByTagName('img')) {
       let src = elem.getAttribute('src');
       if (src) {
         src = (new URL(src, objCache['feeds'][feedUrl]['link'])).href;
         elem.setAttribute('src', src);
+      }
+    }
+    for (const elem of contentElem.getElementsByTagName('a')) {
+      let src = elem.getAttribute('href');
+      if (src) {
+        src = (new URL(src, objCache['feeds'][feedUrl]['link'])).href;
+        elem.setAttribute('href', src);
       }
     }
   }
