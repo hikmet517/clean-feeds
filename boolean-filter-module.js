@@ -3,13 +3,15 @@
 // Array.prototype.isEmpty = function() { return this.length == 0; };
 // String.prototype.isEmpty = function() { return this.length == 0; };
 
+
+const symbols = ['(', ')', '|', '&', '!'];
+
 /**
  * Tokenizes string into list of tokens (string).
  * @param {string} input
  * @returns {string[]}
  */
 function tokenize(input) {
-  const symbols = ['(', ')', '|', '&', '!'];
   let tokens = [];
   let str = '';
   for (let i = 0; i < input.length; i++) {
@@ -44,6 +46,22 @@ function tokenize(input) {
     tokens.push(str);
   }
   return tokens;
+}
+
+function normalizeTokens(tokens) {
+  let newTokens = [];
+  for (let i=0; i<tokens.length-1; i++) {
+    newTokens.push(tokens[i]);
+    // both are tags
+    if ( !symbols.includes(tokens[i]) && !symbols.includes(tokens[i+1]) ) {
+      newTokens.push('&');
+    }
+    else if (!symbols.includes(tokens[i]) && tokens[i+1] === '!') {
+      newTokens.push('&');
+    }
+  }
+  newTokens.push(tokens[tokens.length-1]);
+  return newTokens;
 }
 
 /**
@@ -133,7 +151,7 @@ function parse(tokens) {
           else
             expr.push(elem);
         }
-        // stack is consumed, cannot found, raise error
+        // stack is consumed, cannot found '(', raise error
         else {
           console.error("parse error: missing '('");
           return false;
@@ -285,7 +303,8 @@ function handleOr(left, right) {
 function queryFilter(input, entries, tagProperty) {
   let tokens = (tokenize(input));
   // console.log('TOKENS:', tokens);
-  let ast = parse(tokens);
+  let normTokens = normalizeTokens(tokens);
+  let ast = parse(normTokens);
   // console.log('AST:', ast);
   let result = evalAst(ast, entries, tagProperty);
   // console.log('RESULT:', result);

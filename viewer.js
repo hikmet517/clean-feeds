@@ -586,6 +586,7 @@ function fillEntryPaneAll(event) {
       entries.push(entry);
     }
   }
+  console.log('total number of entry:', entries.length);
   addEntries(entries);
   selectFirstEntry();
 }
@@ -699,7 +700,7 @@ function deleteOldEntriesFeed() {
         delete objCache['feeds'][feedUrl]['entries'][entryUrl];
     }
     chrome.storage.local.set(objCache, function() {
-      selectAllFeeds();
+      fillFeedPane();
     });
   }
 }
