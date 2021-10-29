@@ -68,7 +68,27 @@
         <li id="update-feed-item" class="feed-menu-list-elem">Update</li>
         <li id="delete-feed-item" class="feed-menu-list-elem">Delete</li>
         <li id="delete-old-item" class="feed-menu-list-elem">Delete old entries</li>
+        <li id="properties-item" class="feed-menu-list-elem">Properties</li>
       </ul>
+    </div>
+    <div hidden="true" id="feed-info">
+      <button style="float: right" id="feed-info-close" title="Close">
+        <img src="icons/delete.svg">
+      </button>
+      <table>
+        <tr>
+          <td class="td-left">Title:</td>
+          <td id="feed-info-title" class="td-right">The Register</td>
+        </tr>
+        <tr>
+          <td class="td-left">Url:</td>
+          <td id="feed-info-url" class="td-right">https://www.theregister.com/headlines.atom</td>
+        </tr>
+        <tr>
+          <td class="td-left">Feeds:</td>
+          <td id="feed-info-feeds" class="td-right">50</td>
+        </tr>
+      </table>
     </div>
     <input type="file" id="input" hidden>
   </body>

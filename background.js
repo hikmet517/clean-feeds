@@ -1,24 +1,17 @@
-var tabId = -1;
-
 function openViewer() {
-  if (tabId === -1) {
-
-    // create and store tabId
-    chrome.tabs.create({
-      url: "viewer.html"
-    }, function(tab) {
-      tabId = tab.id;
-
-      // when closed set tabId to -1
-      chrome.tabs.onRemoved.addListener(function(tabid, _removed) {
-        if (tabid === tabId)
-          tabId = -1;
+  const u = chrome.extension.getURL('viewer.html');
+  chrome.tabs.query({ url: u }, (tabs) => {
+    // tab is not opened
+    if (!tabs || tabs.length === 0) {
+      chrome.tabs.create({ url: u });
+    }
+    // already open, select the tab
+    else {
+      chrome.windows.update(tabs[0].windowId, { focused: true }, () => {
+        chrome.tabs.update(tabs[0].id, { highlighted: true, active: true });
       });
-    });
-  }
-  else {
-    chrome.tabs.update(tabId, { highlighted: true });
-  }
+    }
+  });
 }
 
 chrome.browserAction.onClicked.addListener(openViewer);

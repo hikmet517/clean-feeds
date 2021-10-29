@@ -420,6 +420,29 @@ function initFeedMenu() {
   deleteOldItem.addEventListener('mousedown', function(event) {
     event.stopPropagation();
   });
+
+  const propertiesItem = document.getElementById('properties-item');
+  propertiesItem.addEventListener('click', showPropertiesFeed);
+  propertiesItem.addEventListener('mousedown', function(event) {
+    event.stopPropagation();
+  });
+}
+
+function showPropertiesFeed(event) {
+  hideFeedContextMenu();
+  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
+  document.getElementById('feed-info-title').textContent = objCache['feeds'][feedUrl]['title'];
+  document.getElementById('feed-info-url').textContent = feedUrl;
+  const entryCount = Object.values(objCache['feeds'][feedUrl]['entries']).length;
+  document.getElementById('feed-info-feeds').textContent = entryCount;
+  const feedInfoElem = document.getElementById('feed-info');
+  feedInfoElem.hidden = false;
+  const rect = feedInfoElem.getBoundingClientRect();
+  feedInfoElem.style.left = `${(document.documentElement.clientWidth - rect.width) / 2}px`;
+  feedInfoElem.style.top = `${(document.documentElement.clientHeight - rect.height) / 3}px`;
+  document.getElementById('feed-info-close').addEventListener('click', () => {
+    document.getElementById('feed-info').hidden = true;
+  });
 }
 
 function fillFunctionPane() {

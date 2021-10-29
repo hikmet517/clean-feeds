@@ -322,7 +322,7 @@ button {
     position: fixed;
     border: 1px solid var(--main-border-color);
     background-color: var(--main-bg-color);
-    box-shadow: 1px 1px 1px 1px #888888;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 100;
 }
 #feed-menu-list {
@@ -342,4 +342,22 @@ button {
 
 .feed-menu-list-elem:hover {
     background-color: var(--clicked-bg-color);
+}
+
+#feed-info{
+    position: fixed;
+    padding: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    border: 1px solid var(--clicked-border-color);
+    background-color: var(--main-bg-color);
+    z-index: 100;
+}
+
+.td-left {
+  text-align: right;
+  padding: 0.2rem;
+}
+
+.td-right {
+  padding: 0.2rem;
 }
