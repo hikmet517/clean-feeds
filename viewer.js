@@ -1,15 +1,16 @@
 // TODOs:
-// auto refresh
 // settings panel (refresh period)
 // add rdf support
 // info about feed
 // show unread entries in feed elem
 // relative links in content (partially done, we handle imgs)
 // improve error handling, return values of async when failed
-// progress label, (like refreshing...)
 // const correctness
 // delete old entries (older than 10 days)
 // when changing element using keyboard, scroll to selected element
+// regex based auto-filtering, (delete automatically if matches)
+// favorite entry
+// when fetching keep only last n entries (except favorites)
 
 
 import queryFilter from './boolean-filter-module.js';
@@ -755,6 +756,8 @@ function mergeFeeds(oldFeed, newFeed) {
 }
 
 async function refreshFeeds() {
+  let statusElem = document.getElementById('status-text');
+  statusElem.textContent = "Refreshing...";
   let updated = false;
   for (const [url, feed] of Object.entries(objCache['feeds'])) {
     const checked = (new Date(feed['checked'])).getTime();
@@ -779,9 +782,12 @@ async function refreshFeeds() {
   if (updated) {
     // save
     chrome.storage.local.set(objCache, function() {
-      // location.reload();
+      statusElem.textContent = "";
       selectAllFeeds();
     });
+  }
+  else {
+    statusElem.textContent = "";
   }
 }
 
@@ -928,6 +934,8 @@ function importFeeds() {
   const inputElem = document.getElementById('input');
   inputElem.addEventListener("change", handleFiles, false);
   function handleFiles() {
+    let statusElem = document.getElementById('status-text');
+    statusElem.textContent = "Importing...";
     const file = this.files[0];
     console.log('importing from file:', file);
 
@@ -957,6 +965,7 @@ function importFeeds() {
           i++;
         }
         chrome.storage.local.set(objCache, function() {
+          statusElem.textContent = "";
           fillFunctionPane();
           fillFeedPane();
           selectAllFeeds();
