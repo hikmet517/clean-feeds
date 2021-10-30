@@ -61,16 +61,19 @@
       <div class="resizer" data-direction="horizontal"></div>
       <div id="content-pane"></div>
     </div>
+
     <div hidden="true" id="feed-menu">
       <ul id="feed-menu-list">
         <li id="add-tag-item" class="feed-menu-list-elem">Edit tags</li>
         <li id="change-title-item" class="feed-menu-list-elem">Edit title</li>
+        <li id="change-numentries-item" class="feed-menu-list-elem">Edit number of entries to keep</li>
         <li id="update-feed-item" class="feed-menu-list-elem">Update</li>
         <li id="delete-feed-item" class="feed-menu-list-elem">Delete</li>
         <li id="delete-old-item" class="feed-menu-list-elem">Delete old entries</li>
         <li id="properties-item" class="feed-menu-list-elem">Properties</li>
       </ul>
     </div>
+
     <div hidden="true" id="feed-info">
       <button style="float: right" id="feed-info-close" title="Close">
         <img src="icons/delete.svg">
@@ -85,11 +88,17 @@
           <td id="feed-info-url" class="td-right">https://www.theregister.com/headlines.atom</td>
         </tr>
         <tr>
-          <td class="td-left">Feeds:</td>
-          <td id="feed-info-feeds" class="td-right">50</td>
+          <td class="td-left"># of entries:</td>
+          <td id="feed-info-entries" class="td-right">50</td>
+        </tr>
+        <tr>
+          <td class="td-left"># of entries to keep:</td>
+          <td id="feed-info-numentries" class="td-right">50</td>
         </tr>
       </table>
     </div>
+
     <input type="file" id="input" hidden>
+
   </body>
 </html>

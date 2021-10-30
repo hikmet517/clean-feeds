@@ -9,9 +9,8 @@
 // delete old entries (older than 10 days)
 // when changing element using keyboard, scroll to selected element
 // regex based auto-filtering, (delete automatically if matches)
-// favorite entry
-// when fetching keep only last n entries (except favorites)
-
+// when fetching keep only last n entries (except favorited entries)
+// a function to restore left pane
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
@@ -20,6 +19,8 @@ import initResizer from './resizer-module.js';
 var draggedElement;  // for dragging feed elem
 var objCache;      // cache of feed data
 
+const UPDATEPERIOD = 60 * 60 * 1000;
+const NUMENTRIES = 60;
 
 initResizer(function(prevSibling) {
   // save settings
@@ -64,7 +65,8 @@ async function fetchParseFeed(url, init) {
 
   // initialize other data
   if (init) {
-    feed['updatePeriod'] = 60 * 60 * 1000;  // 1 hour
+    feed['updatePeriod'] = UPDATEPERIOD;  // 1 hour
+    feed['numEntries'] = NUMENTRIES;
     for (const [_link, entry] of Object.entries(feed['entries']))
       entry['read'] = false;
 
@@ -280,6 +282,9 @@ function fillFeedPane() {
       }
     }
   }
+  else {
+    selectAllFeeds();
+  }
 }
 
 function showHideFeedMenu(event) {
@@ -375,6 +380,17 @@ function changeFeedTitle() {
   }
 }
 
+function changeNumEntries() {
+  hideFeedContextMenu();
+  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
+  const oldNumEntries = objCache['feeds'][feedUrl]['numEntries'];
+  const input = prompt('Enter number of entries to keep', oldNumEntries);
+  if (input && input.trim()) {
+    objCache['feeds'][feedUrl]['numEntries'] = parseInt(input.trim());
+    chrome.storage.local.set(objCache);
+  }
+}
+
 function deleteFeed() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
@@ -409,6 +425,12 @@ function initFeedMenu() {
     event.stopPropagation();
   });
 
+  const changeNumEntriesItem = document.getElementById('change-numentries-item');
+  changeNumEntriesItem.addEventListener('click', changeNumEntries);
+  changeNumEntriesItem.addEventListener('mousedown', function(event) {
+    event.stopPropagation();
+  });
+
   const deleteItem = document.getElementById('delete-feed-item');
   deleteItem.addEventListener('click', deleteFeed);
   deleteItem.addEventListener('mousedown', function(event) {
@@ -428,13 +450,14 @@ function initFeedMenu() {
   });
 }
 
-function showPropertiesFeed(event) {
+function showPropertiesFeed() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
   document.getElementById('feed-info-title').textContent = objCache['feeds'][feedUrl]['title'];
   document.getElementById('feed-info-url').textContent = feedUrl;
   const entryCount = Object.values(objCache['feeds'][feedUrl]['entries']).length;
-  document.getElementById('feed-info-feeds').textContent = entryCount;
+  document.getElementById('feed-info-entries').textContent = entryCount;
+  document.getElementById('feed-info-numentries').textContent = objCache['feeds'][feedUrl]['numEntries'];
   const feedInfoElem = document.getElementById('feed-info');
   feedInfoElem.hidden = false;
   const rect = feedInfoElem.getBoundingClientRect();
@@ -587,6 +610,7 @@ function addEntries(entries) {
 
     entryList.appendChild(elem);
   }
+  document.getElementById('status-text').textContent = `${entries.length} entries`;
 }
 
 
@@ -775,6 +799,22 @@ function mergeFeeds(oldFeed, newFeed) {
   }
   oldFeed['updated'] = newFeed['updated'];
   oldFeed['checked'] = (new Date()).toJSON();
+
+  if(!oldFeed['numEntries'])
+    oldFeed['numEntries'] = NUMENTRIES;
+
+  // sort everything
+  let entries = Object.values(oldFeed['entries']);
+  entries.sort(function(fst, snd) {
+    return (new Date(snd['updated'])) - (new Date(fst['updated']));
+  });
+
+  // keep only last `NUMENTRIES`
+  oldFeed['entries'] = {};
+  for (let i=0; i<NUMENTRIES && i<entries.length; i++) {
+    oldFeed['entries'][entries[i]['link']] = entries[i];
+  }
+
   return oldFeed;
 }
 
@@ -1010,7 +1050,6 @@ function init() {
       objCache = obj;
       fillFunctionPane();
       fillFeedPane();
-      selectAllFeeds();
     });
   });
   // toolbar buttons
