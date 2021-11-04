@@ -318,6 +318,13 @@ function hideFeedContextMenu() {
   }
 }
 
+function hideFeedInfo() {
+  const feedMenu = document.getElementById('feed-info');
+  if (!('hidden' in feedMenu.attributes)) {
+    feedMenu.setAttribute('hidden', 'true');
+  }
+}
+
 function addTag() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
@@ -1042,7 +1049,10 @@ function importFeeds() {
 
 
 function init() {
-  document.addEventListener('mousedown', hideFeedContextMenu);
+  document.addEventListener('mousedown', function () {
+    hideFeedContextMenu();
+    hideFeedInfo();
+  });
   document.addEventListener('DOMContentLoaded', function() {
     initFeedMenu();
     setLastStyle();
