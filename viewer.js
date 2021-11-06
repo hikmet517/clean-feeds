@@ -1,16 +1,13 @@
 // TODOs:
 // settings panel (refresh period)
 // add rdf support
-// info about feed
 // show unread entries in feed elem
 // relative links in content (partially done, we handle imgs)
 // improve error handling, return values of async when failed
 // const correctness
 // delete old entries (older than 10 days)
-// when changing element using keyboard, scroll to selected element
 // regex based auto-filtering, (delete automatically if matches)
 // when fetching keep only last n entries (except favorited entries)
-// a function to restore left pane
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
@@ -18,6 +15,10 @@ import initResizer from './resizer-module.js';
 
 var draggedElement;  // for dragging feed elem
 var objCache;      // cache of feed data
+
+var leftSelection;  // 'all', 'feed', 'tag', 'query'
+var leftData;
+// var midSelection;
 
 const UPDATEPERIOD = 60 * 60 * 1000;
 const NUMENTRIES = 60;
@@ -137,11 +138,6 @@ async function fetchParseFeed(url, init) {
 }
 
 
-function selectAllFeeds() {
-  document.getElementById('all-feeds').click();
-}
-
-
 // add new feed, initiated by either clicking the button or pressing 'f'
 async function addFeed() {
   const url = prompt('Enter url');
@@ -164,7 +160,7 @@ async function addFeed() {
       objCache['feeds'][url] = feed;
       chrome.storage.local.set(objCache, function() {
         fillFeedPane();
-        selectAllFeeds();
+        restoreLeft();
       });
     }
   }
@@ -195,7 +191,7 @@ function feedListElemDrop(event) {
     // save feeds' orders into storage
     let i = 1;
     for (const elem of document.getElementsByClassName('feed-list-elem')) {
-      const feedUrl = elem.getAttribute('feed-url');
+      const feedUrl = elem.getAttribute('id');
       elem.setAttribute('order', i);
       objCache['feeds'][feedUrl]['order'] = i;
       i++;
@@ -207,12 +203,13 @@ function feedListElemDrop(event) {
 
 // fill feed pane (left pane), using cached data
 function fillFeedPane() {
+  console.log('fillFeedPane');
   const tempArray = [];
   for (const [url, feed] of Object.entries(objCache['feeds'])) {
     const elem = document.createElement('li');
 
     elem.classList.add('feed-list-elem');
-    elem.setAttribute('feed-url', url);
+    elem.setAttribute('id', url);
     elem.setAttribute('order', feed['order']);
     elem.setAttribute('title', feed['title']);
     elem.addEventListener('click', fillEntryPaneByFeed);
@@ -259,36 +256,14 @@ function fillFeedPane() {
     return fst.getAttribute('order') - snd.getAttribute('order');
   });
 
-  // if there is feeds before, get selected one
-  let selectedFeedUrl = '';
-  for (const elem of document.getElementsByClassName('feed-list-elem')) {
-    if (elem.classList.contains('clicked')) {
-      selectedFeedUrl = elem.getAttribute('feed-url');
-      break;
-    }
-  }
-
   const feedsList = document.getElementById('feed-list');
   feedsList.innerHTML = '';  // clear all
   for (const elem of tempArray)
     feedsList.appendChild(elem);
-
-  // restore selected url
-  if (selectedFeedUrl !== '') {
-    for (const elem of document.getElementsByClassName('feed-list-elem')) {
-      if (elem.getAttribute('feed-url') === selectedFeedUrl) {
-        elem.click();
-        return;
-      }
-    }
-  }
-  else {
-    selectAllFeeds();
-  }
 }
 
 function showHideFeedMenu(event) {
-  const feedUrl = event.currentTarget.parentElement.getAttribute('feed-url');
+  const feedUrl = event.currentTarget.parentElement.getAttribute('id');
   event.stopPropagation();
   const feedMenu = document.getElementById('feed-menu');
   if (('hidden' in feedMenu.attributes)) {
@@ -318,13 +293,6 @@ function hideFeedContextMenu() {
   }
 }
 
-function hideFeedInfo() {
-  const feedMenu = document.getElementById('feed-info');
-  if (!('hidden' in feedMenu.attributes)) {
-    feedMenu.setAttribute('hidden', 'true');
-  }
-}
-
 function addTag() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
@@ -338,7 +306,7 @@ function addTag() {
 
   // ask
   const input = prompt('Enter tags (separated by space)', defaultPrompt);
-  if (input !== null) {
+  if (input) {
     savedTags = new Set();
     for (const tag of input.trim().split(' '))
       if (tag.trim())
@@ -365,9 +333,7 @@ async function refreshFeed() {
   }
   objCache['feeds'][feedUrl] = mergeFeeds(objCache['feeds'][feedUrl], newFeed);
   chrome.storage.local.set(objCache, function() {
-    for (const elem of document.getElementsByClassName('feed-list-elem'))
-      if (elem.getAttribute('feed-url') === feedUrl)
-        elem.click();
+    restoreLeft();
   });
 }
 
@@ -382,7 +348,7 @@ function changeFeedTitle() {
       entry['feedtitle'] = objCache['feeds'][feedUrl]['title'];
     chrome.storage.local.set(objCache, function() {
       fillFeedPane();
-      selectAllFeeds();
+      restoreLeft();
     });
   }
 }
@@ -407,7 +373,7 @@ function deleteFeed() {
     chrome.storage.local.set(objCache, function() {
       fillFunctionPane();
       fillFeedPane();
-      selectAllFeeds();
+      restoreLeft();
     });
   }
 }
@@ -508,6 +474,7 @@ function fillFunctionPane() {
     tagElem.classList.add('function-list-elem');
     tagElem.classList.add('querytag-feeds');
     tagElem.appendChild(document.createTextNode('#' + tag));
+    tagElem.setAttribute('id', '#' + tag);
     tagElem.addEventListener('click', fillEntryPaneByTag);
     listElem.appendChild(tagElem);
   }
@@ -515,6 +482,7 @@ function fillFunctionPane() {
 
 function fillEntryPaneByTag(event) {
   console.log('fillEntryPaneByTag');
+
   // add/remove 'clicked'
   for (const elem of document.getElementsByClassName('function-list-elem')) {
     elem.classList.remove('clicked');
@@ -532,13 +500,13 @@ function fillEntryPaneByTag(event) {
     }
   }
   addEntries(entries);
-  selectFirstEntry();
+  restoreMid();
+
+  leftSelection = 'tag';
+  leftData = '#' + tag;
 }
 
-function queryFeeds(event) {
-  console.log('queryFeeds');
-  const target = event.currentTarget;
-  const input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])");
+function makeQuery(input) {
   if (input && input.trim().length != 0) {
     const result = queryFilter(input, Object.values(objCache['feeds']), 'tags');
     const entries = [];
@@ -546,7 +514,7 @@ function queryFeeds(event) {
       entries.push(...Object.values(feed['entries']));
     }
     addEntries(entries);
-    selectFirstEntry();
+    restoreMid();
 
     // change clicked
     for (const elem of document.getElementsByClassName('function-list-elem')) {
@@ -555,12 +523,36 @@ function queryFeeds(event) {
     for (const elem of document.getElementsByClassName('feed-list-elem')) {
       elem.classList.remove('clicked');
     }
-    target.classList.add('clicked');
+    document.getElementById('query-feeds').classList.add('clicked');
+
+    leftSelection = 'query';
+    leftData = input;
   }
 }
 
-function selectFirstEntry() {
-  // select first entry
+function queryFeeds(_event) {
+  console.log('queryFeeds');
+  const input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])");
+  makeQuery(input);
+}
+
+
+function restoreMid() {
+  // if (midSelection) {
+  //   const elem = document.getElementById(midSelection);
+  //   if (elem) {
+  //     elem.click();
+  //     elem.scrollIntoView({ block: "center" });
+  //   }
+  //   else {
+  //     // select first entry
+  //     const entryElems = document.getElementsByClassName('entry-list-elem');
+  //     if (entryElems.length > 0)
+  //       entryElems[0].click();
+  //     document.getElementById('entry-pane').scrollTo(0, 0);
+  //   }
+  // }
+
   const entryElems = document.getElementsByClassName('entry-list-elem');
   if (entryElems.length > 0)
     entryElems[0].click();
@@ -643,7 +635,10 @@ function fillEntryPaneAll(event) {
   }
   console.log('total number of entry:', entries.length);
   addEntries(entries);
-  selectFirstEntry();
+  restoreMid();
+
+  leftSelection = 'all';
+  leftData = '';
 }
 
 
@@ -651,7 +646,7 @@ function fillEntryPaneAll(event) {
 // fill entry-pane (mid-pane)
 function fillEntryPaneByFeed(event) {
   console.log('fillEntryPaneByFeed');
-  const feedUrl = event.currentTarget.getAttribute('feed-url');
+  const feedUrl = event.currentTarget.getAttribute('id');
 
   // add/remove 'clicked' class
   for (const elem of document.getElementsByClassName('feed-list-elem')) {
@@ -664,7 +659,10 @@ function fillEntryPaneByFeed(event) {
 
   const entries = Object.values(objCache['feeds'][feedUrl]['entries']);
   addEntries(entries);
-  selectFirstEntry();
+  restoreMid();
+
+  leftSelection = 'feed';
+  leftData = feedUrl;
 }
 
 // when an entry clicked
@@ -679,6 +677,7 @@ function fillContentPane(event) {
     elem.classList.remove('clicked');
   }
   event.currentTarget.classList.add('clicked');
+  midSelection = entryLink;
 
   const contentPane = document.getElementById('content-pane');
   contentPane.setAttribute('feed-url', feedUrl);
@@ -762,7 +761,7 @@ function deleteOldEntriesFeed() {
         delete objCache['feeds'][feedUrl]['entries'][entryUrl];
     }
     chrome.storage.local.set(objCache, function() {
-      fillFeedPane();
+      restoreLeft();
     });
   }
 }
@@ -779,7 +778,7 @@ function deleteOldEntries() {
       }
     }
     chrome.storage.local.set(objCache, function() {
-      selectAllFeeds();
+      restoreLeft();
     });
   }
 }
@@ -853,7 +852,7 @@ async function refreshFeeds() {
     // save
     chrome.storage.local.set(objCache, function() {
       statusElem.textContent = "";
-      selectAllFeeds();
+      restoreLeft();
     });
   }
   else {
@@ -895,6 +894,20 @@ function deleteEntry() {
   });
 }
 
+function scrollToEntry(elem) {
+  const pane = document.getElementById('entry-pane');
+  const rect = elem.getBoundingClientRect();
+  const topOffset = window.innerHeight - pane.clientHeight;
+  if (rect.top - 10 < topOffset) {
+    elem.scrollIntoView(true);
+    pane.scrollBy(0, -10);
+  }
+  else if (rect.bottom + 10 > window.innerHeight) {
+    elem.scrollIntoView(false);
+    pane.scrollBy(0, 10);
+  }
+}
+
 function selectPreviousEntry() {
   const entries = document.getElementsByClassName('entry-list-elem');
   let i = 0;
@@ -902,6 +915,7 @@ function selectPreviousEntry() {
     if (elem.classList.contains('clicked')) {
       if (i - 1 >= 0) {
         entries[i - 1].click();
+        scrollToEntry(entries[i - 1]);
         return true;
       }
     }
@@ -917,6 +931,7 @@ function selectNextEntry() {
     if (elem.classList.contains('clicked')) {
       if (i + 1 < entries.length) {
         entries[i + 1].click();
+        scrollToEntry(entries[i + 1]);
         return true;
       }
     }
@@ -1038,7 +1053,7 @@ function importFeeds() {
           statusElem.textContent = "";
           fillFunctionPane();
           fillFeedPane();
-          selectAllFeeds();
+          restoreLeft();
         });
       });
     };
@@ -1047,11 +1062,37 @@ function importFeeds() {
   inputElem.click();
 }
 
+function restoreLeft() {
+  console.log('restoreLeft');
+  if (!leftSelection || leftSelection === 'all') {
+    leftSelection = 'all';
+    document.getElementById('all-feeds').click();
+  }
+
+  else if (leftSelection === 'feed') {
+    const elem = document.getElementById(leftData);
+    if (elem)  // might be deleted
+      elem.click();
+    else
+      document.getElementById('all-feeds').click();
+  }
+
+  else if (leftSelection === 'tag') {
+    const elem = document.getElementById(leftData);
+    if (elem)
+      elem.click();
+    else
+      document.getElementById('all-feeds').click();
+  }
+
+  else if (leftSelection === 'query') {
+    makeQuery(leftData);
+  }
+}
 
 function init() {
   document.addEventListener('mousedown', function () {
     hideFeedContextMenu();
-    hideFeedInfo();
   });
   document.addEventListener('DOMContentLoaded', function() {
     initFeedMenu();
@@ -1060,6 +1101,7 @@ function init() {
       objCache = obj;
       fillFunctionPane();
       fillFeedPane();
+      restoreLeft();
     });
   });
   // toolbar buttons
