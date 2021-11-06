@@ -2,12 +2,12 @@
 // settings panel (refresh period)
 // add rdf support
 // show unread entries in feed elem
-// relative links in content (partially done, we handle imgs)
 // improve error handling, return values of async when failed
 // const correctness
 // delete old entries (older than 10 days)
 // regex based auto-filtering, (delete automatically if matches)
 // when fetching keep only last n entries (except favorited entries)
+// bug: entry url is not always unique, should not be used as id
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
@@ -677,7 +677,7 @@ function fillContentPane(event) {
     elem.classList.remove('clicked');
   }
   event.currentTarget.classList.add('clicked');
-  midSelection = entryLink;
+  // midSelection = entryLink;
 
   const contentPane = document.getElementById('content-pane');
   contentPane.setAttribute('feed-url', feedUrl);

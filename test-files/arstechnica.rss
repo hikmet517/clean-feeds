@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Ars Technica</title>
+	<atom:link href="https://arstechnica.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://arstechnica.com</link>
+	<description>Serving the Technologist for more than a decade. IT news, reviews, and analysis.</description>
+	<lastBuildDate>Fri, 08 Oct 2021 11:59:43 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.9.18</generator>
+
+<image>
+	<url>https://cdn.arstechnica.net/wp-content/uploads/2016/10/cropped-ars-logo-512_480-32x32.png</url>
+	<title>Ars Technica</title>
+	<link>https://arstechnica.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Rocket Report: Falcon Heavy delayed due payload issue, DART gets a date</title>
+		<link>https://arstechnica.com/?p=1802188</link>
+		<pubDate>Fri, 08 Oct 2021 11:00:23 +0000</pubDate>
+		<dc:creator><![CDATA[Eric Berger]]></dc:creator>
+				<category><![CDATA[Science]]></category>
+		<category><![CDATA[rocket report]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802188</guid>
+		<description><![CDATA[Also, an update on Arca's first orbital launch attempt.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/NASA_SLS-CROPPED-800x496.jpeg" alt="NASA's SLS rocket has passed its design certification review.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/NASA_SLS-CROPPED.jpeg" class="enlarge-link" data-height="665" data-width="1072">Enlarge</a> <span class="sep">/</span> NASA's SLS rocket has passed its design certification review. (credit: <a rel="nofollow" class="caption-link" href="https://www.nasa.gov/">NASA</a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Welcome to Edition 4.19 of the Rocket Report! If all goes well during the course of the next week, Capt. James T. Kirk will become a real-life star trekker. There's plenty of other news this week as well, including some words on how SpaceX managed to snag an Italian government satellite launch.</p>
+<p>As always, we <a href="https://arstechnica.wufoo.com/forms/launch-stories/">welcome reader submissions</a>, and if you don't want to miss an issue, please subscribe using the box below (the form will not appear on AMP-enabled versions of the site). Each report will include information on small-, medium-, and heavy-lift rockets as well as a quick look ahead at the next three launches on the calendar.</p>
+<div class="image shortcode-img center full"><img src="https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll.png"></div>
+<p><strong>Blue Origin announces full manifest for next flight</strong>. <a href="https://www.blueorigin.com/news/shatner-powers-announced-ns18" target="_blank" rel="noopener">The company said</a> <em>Star Trek</em> actor William Shatner and Blue Origin's VP of mission of flight operations, Audrey Powers, will round out the passenger manifest for the second human flight on board New Shepard. They will join paying customers Chris Boshuizen and Glen de Vries for the flight, which is scheduled to launch from West Texas at 8 am CT (13:00 UTC) on October 12.</p></div><p><a href="https://arstechnica.com/?p=1802188#p3">Read 28 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802188&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>No, your antibodies are not better than vaccination: An explainer</title>
+		<link>https://arstechnica.com/?p=1802249</link>
+		<pubDate>Fri, 08 Oct 2021 10:15:45 +0000</pubDate>
+		<dc:creator><![CDATA[Beth Mole]]></dc:creator>
+				<category><![CDATA[Features]]></category>
+		<category><![CDATA[Science]]></category>
+		<category><![CDATA[antibodies]]></category>
+		<category><![CDATA[COVID-19]]></category>
+		<category><![CDATA[efficacy]]></category>
+		<category><![CDATA[infection]]></category>
+		<category><![CDATA[protection]]></category>
+		<category><![CDATA[public health]]></category>
+		<category><![CDATA[vaccination]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802249</guid>
+		<description><![CDATA[Infection does offer some immune protection—but it's unreliable compared with vaccines.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-1231238590-800x497.jpeg" alt="A masked woman makes a heart symbol with her hands.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-1231238590.jpeg" class="enlarge-link" data-height="2199" data-width="3543">Enlarge</a> <span class="sep">/</span> Dr. Silvia Gelvez gestures after receiving a dose of the Pfizer-BioNTech vaccine against COVID-19, at Colombia University Clinic in Bogota on February 18, 2021. (credit: <a rel="nofollow" class="caption-link" href="https://www.gettyimages.com/detail/news-photo/doctor-silvia-gelvez-gestures-after-receiving-a-dose-of-the-news-photo/1231238590">Getty | RAUL ARBOLEDA </a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>As long as there have been vaccines against COVID-19, there have been arguments for why people shouldn't get those vaccines. One of the more persistent—and hairier—arguments is that people who have already been infected with the pandemic coronavirus, SARS-CoV-2, don't need a vaccine. An infection will generate immune responses similar to those generated by vaccines, the thinking goes. So, why waste coveted vaccine doses on people who already have immune responses against the virus—which may also needlessly put those people at risk of vaccine side effects, however rare?</p>
+<p>It's a reasonable question, and there is legitimate scientific debate about it. There are also different approaches to the issue in terms of public health policy. In Israel, for example, people who have recovered from COVID-19 after testing positive on a PCR test can get a vaccination "<a href="https://corona.health.gov.il/en/directives/green-pass-info/">Green Pass</a>" that's valid for up to six months. The pass allows them entry into various places just as it does for people who are fully vaccinated. In the European Union, some member states offer a similar "<a href="https://ec.europa.eu/commission/presscorner/detail/en/QANDA_21_2781">Digital COVID Certificate</a>" to people who have recovered from COVID-19 <em>and</em> received just one dose of a two-dose mRNA vaccine regimen.</p>
+<p>In the US, however, public health officials are unequivocal in their approach: people are categorized as either vaccinated or unvaccinated, regardless of prior infection. It's an approach with many strengths, including robust scientific data supporting vaccination for people who have recovered. That data—which we'll get into below—has consistently shown that immune responses from natural infections are extremely variable, thus unreliable. Vaccines, on the other hand, have repeatedly proven to generate highly protective immune responses.</p></div><p><a href="https://arstechnica.com/?p=1802249#p3">Read 16 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802249&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Resident Evil reboot trailer looks like a welcome return to gaming roots</title>
+		<link>https://arstechnica.com/?p=1802183</link>
+		<pubDate>Thu, 07 Oct 2021 23:33:11 +0000</pubDate>
+		<dc:creator><![CDATA[Jennifer Ouellette]]></dc:creator>
+				<category><![CDATA[Gaming & Culture]]></category>
+		<category><![CDATA[entertainment]]></category>
+		<category><![CDATA[film trailers]]></category>
+		<category><![CDATA[Resident Evil film franchise]]></category>
+		<category><![CDATA[Resident evil: welcome to raccoon city]]></category>
+		<category><![CDATA[Sony Pictures]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802183</guid>
+		<description><![CDATA[Director Johannes Roberts wanted to evoke dark tone and scary aspects of the games.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+
+
+
+
+
+<div><a name="page-1"></a></div>
+      <ul class="gallery shortcode-gallery gallery-wide">
+          <li>
+        <div class="gallery-item-content">  
+        <div class="gallery-image"><img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/evil2-980x630.jpg" alt=""></div>
+        <p>
+          Back to a familiar place... and time.                      [credit:
+                        <a href="https://www.sonypictures.com/">YouTube/Sony Pictures</a>
+                        ]
+                  </p>
+        </div>
+      </li>
+      </ul>
+  
+<p>When the first <em>Resident Evil</em> game debuted in 1998, it was an immediate commercial and critical success, spawning several sequel games, comics, novels, and a very lucrative film franchise directed by Paul W.S. Anderson and starring Milla Jovovich. But those films were only loosely based on the games, keeping a few primary characters and the basic concept, but little else. Sony Pictures just dropped the official trailer for its upcoming reboot, <a href="https://en.wikipedia.org/wiki/Resident_Evil:_Welcome_to_Raccoon_City"><em>Resident Evil: Welcome to Raccoon City</em></a>, and it looks like it will hew much more closely to the source material than its big-screen predecessors.</p>
+<p><strong>(Some spoilers for the first two games in the franchise below, but no major reveals.)</strong></p>
+<p>The sixth and final film in the Anderson series was released fairly recently, in 2016. But the franchise made a ton of money, so naturally a complete reboot was in the works by early 2017, with Johannes Roberts (<em>47 Meters Down</em>) at the helm.</p></div><p><a href="https://arstechnica.com/?p=1802183#p3">Read 7 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802183&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>iPadOS 15 mini-review: It’s all about the home screen</title>
+		<link>https://arstechnica.com/?p=1802043</link>
+		<pubDate>Thu, 07 Oct 2021 22:33:14 +0000</pubDate>
+		<dc:creator><![CDATA[Samuel Axon]]></dc:creator>
+				<category><![CDATA[Tech]]></category>
+		<category><![CDATA[apple]]></category>
+		<category><![CDATA[Gadgetology]]></category>
+		<category><![CDATA[iOS]]></category>
+		<category><![CDATA[iOS 15]]></category>
+		<category><![CDATA[ipad]]></category>
+		<category><![CDATA[iPadOS]]></category>
+		<category><![CDATA[iPadOS 15]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802043</guid>
+		<description><![CDATA[As an addendum to our iOS 15 review, we look at what's new on the iPad.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/iPadOS-15-cover-800x559.png" alt="Widgets on iPadOS 15's home screen.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/iPadOS-15-cover.png" class="enlarge-link" data-height="1668" data-width="2388">Enlarge</a> <span class="sep">/</span> Widgets on iPadOS 15's home screen. (credit: Samuel Axon)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Last year, Apple released a meaty iOS update for iPhones, but some of the biggest changes didn't make it over to the iPad. This year, the iPhone update is modest—so does that mean that the iPad update is the big one this time around?</p>
+<p>Well, that depends on your point of view. iPadOS 15 brings almost everything iOS 15 brought to iPhones, but it also brings those major iOS 14 omissions from last year to the tablet. As a result, iPadOS 15 feels like a significant update if you haven't been using an iPhone lately, but if you've already used iOS 14's new home screen and app library features, it instead ends up feeling like it's late to the party.</p>
+<p>We published a lengthy, <a href="https://arstechnica.com/gadgets/2021/10/ios-15-review-apple-turns-its-focus-to-the-little-things/4/#h2">iPhone-focused review of iOS 15</a> earlier this week. Consider this a short addendum to that review that puts the spotlight on the iPad. Refer to the earlier review for details on new features like Focus that aren't iPad specific or for a list of iPads that are supported by iPadOS 15.</p></div><p><a href="https://arstechnica.com/?p=1802043#p3">Read 37 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802043&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Lunar samples returned by Chang’e-5 tell of recent volcanism</title>
+		<link>https://arstechnica.com/?p=1802125</link>
+		<pubDate>Thu, 07 Oct 2021 19:42:45 +0000</pubDate>
+		<dc:creator><![CDATA[John Timmer]]></dc:creator>
+				<category><![CDATA[Science]]></category>
+		<category><![CDATA[astronomy]]></category>
+		<category><![CDATA[Chang'e 5]]></category>
+		<category><![CDATA[moon]]></category>
+		<category><![CDATA[planetary science]]></category>
+		<category><![CDATA[volcanism]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802125</guid>
+		<description><![CDATA["Recent" is relative—the samples are roughly two billion years old.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/Che-abl7958-image-6-800x800.png" alt="Greyscale image showing a slice through a rock with a complex structure.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/Che-abl7958-image-6.png" class="enlarge-link" data-height="3473" data-width="3474">Enlarge</a> <span class="sep">/</span> An electron micrograph of some of the volcanic material returned by the Chang'e 5 mission. (credit: Beijing SHRIMP Center, Institute of Geology, CAGS)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Chang'e-5 represented a major step forward for China's lunar program, as it was the first of the country's missions to return samples to Earth. Now the results of dating the samples are in, and it's clear that while the deposits are old, they're young enough to be a bit of an oddity.</p>
+<h2>To the Moon and back</h2>
+<p>China has now successfully landed several probes and rovers on the lunar surface as part of a larger exploration program. Chang'e 5 represented the next step, as it had a drill to obtain subsurface samples and a return vehicle that could take them back to Earth. The spacecraft <a href="https://arstechnica.com/science/2020/12/china-likely-to-attempt-its-change-5-moon-landing-on-tuesday/">successfully landed</a> almost two years ago, and a few weeks later, it returned <a href="https://arstechnica.com/science/2020/12/china-completes-lunar-sampling-mission-eyes-next-steps-on-the-moon/">roughly 2 kilograms of rock</a> to Earth from the Moon.</p>
+<p>China has the benefit of decades of knowledge gained since the Apollo missions, along with a greater theoretical understanding of the Moon's formation. And it carefully chose Chang'e 5's landing site, a large volcanic deposit called the Oceanus Procellarum, thought to be one of the younger areas of the Moon's surface. But "younger" covers a lot of ground, as estimates based on its crater count ranged from 3.2 billion years old down to just 1.2 billion.</p></div><p><a href="https://arstechnica.com/?p=1802125#p3">Read 11 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802125&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Cloudflare doesn’t have to cut off copyright-infringing websites, judge rules</title>
+		<link>https://arstechnica.com/?p=1802094</link>
+		<pubDate>Thu, 07 Oct 2021 18:43:28 +0000</pubDate>
+		<dc:creator><![CDATA[Jon Brodkin]]></dc:creator>
+				<category><![CDATA[Policy]]></category>
+		<category><![CDATA[cloudflare]]></category>
+		<category><![CDATA[copyright]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802094</guid>
+		<description><![CDATA[Judge rules content-delivery service doesn't "contribute" to copyright infringement.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/getty-copyright-infringement-800x533.jpg" alt="A copyright infringement notice lying on a desk next to a keyboard">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/getty-copyright-infringement.jpg" class="enlarge-link" data-height="1414" data-width="2121">Enlarge</a> </p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Cloudflare is not liable for the copyright infringement of websites that use its content-delivery and security services, a federal judge ruled yesterday.</p>
+<p>Cloudflare was <a href="https://storage.courtlistener.com/recap/gov.uscourts.cand.339512/gov.uscourts.cand.339512.1.0.pdf">sued in November 2018</a> by Mon Cheri Bridals and Maggie Sottero Designs, two wedding dress manufacturers and sellers that alleged Cloudflare was guilty of contributory copyright infringement because it didn't terminate services for websites that infringed on the dressmakers' copyrighted designs. The companies sought a jury trial, but Judge Vince Chhabria yesterday granted Cloudflare's motion for summary judgment in a <a href="https://storage.courtlistener.com/recap/gov.uscourts.cand.339512/gov.uscourts.cand.339512.151.0.pdf">ruling</a> in US District Court for the Northern District of California.</p>
+<p>Chhabria noted that the dressmakers have been harmed "by the proliferation of counterfeit retailers that sell knock-off dresses using the plaintiffs' copyrighted images" and that they have "gone after the infringers in a range of actions, but to no avail—every time a website is successfully shut down, a new one takes its place." Chhabria continued:</p></div><p><a href="https://arstechnica.com/?p=1802094#p3">Read 16 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802094&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>How bushmeat could help us meet the world’s climate goals</title>
+		<link>https://arstechnica.com/?p=1801919</link>
+		<pubDate>Thu, 07 Oct 2021 18:02:13 +0000</pubDate>
+		<dc:creator><![CDATA[Doug Johnson]]></dc:creator>
+				<category><![CDATA[Science]]></category>
+		<category><![CDATA[bush meat]]></category>
+		<category><![CDATA[carbon]]></category>
+		<category><![CDATA[climate]]></category>
+		<category><![CDATA[wild meat]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801919</guid>
+		<description><![CDATA[It’s difficult but possible to meet human and environmental needs with wild meat.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-992591730-800x589.jpg" alt="Image of hunters with a walrus.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-992591730.jpg" class="enlarge-link" data-height="754" data-width="1024">Enlarge</a> <span class="sep">/</span> While the term "bushmeat" has regional connotations, Indigenous hunting goes on around the globe. (credit: <a rel="nofollow" class="caption-link" href="https://www.gettyimages.com/detail/news-photo/pacific-walrus-caught-by-hunters-of-the-lorino-settlement-news-photo/992591730?adppopup=true">Yuri Smityuk / Getty Images</a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Hunting, capturing, and eating wild meat comes with its share of risks, both in terms of environmental and human health. The consumption of bushmeat—a term that can be applied to meat from a long roster of wild animals around the world—for instance, can involve endangered species being killed, either accidentally or on purpose. The practice has untapped potential, but we need to strike a balance between sustainable consumption, ecology, and human traditions and livelihoods to get the most out of it, <a href="https://www.nature.com/articles/s41598-021-98282-4">new research</a> suggests.</p>
+<p>A team led by Martin Nielsen, a professor at the University of Copenhagen’s department of food and resource economics, pored over 49 studies about wild meat for their paper. The source material, published between 1973 and 2019, tried to quantify how much wild meat, including many species of mammals and birds, contributed to the diets of a total of 150,000 people living in the Amazonian and Afro-tropical areas. Mainly, this includes small-scale Indigenous farmers living on the fringes of a forest who consume a substantial amount of bushmeat that they kill in the process of protecting their crops from predation, Nielsen said, though some of the bushmeat does come from hunting expeditions.</p>
+<p>In the paper, the team also posed a hypothetical question—what would happen if these regions had their wild meat consumption replaced with cattle or poultry production? The answer: it would produce a larger carbon footprint. This hypothetical substitution would see an additional 71 tonnes of carbon released in the case of cattle, or three tonnes for chickens. The averted emissions largely come from avoiding cutting<span style="font-size: 14px;"> down trees for the sake of livestock production.</span></p></div><p><a href="https://arstechnica.com/?p=1801919#p3">Read 16 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801919&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Google’s fourth podcasting service will reportedly be “YouTube Podcasts“</title>
+		<link>https://arstechnica.com/?p=1801974</link>
+		<pubDate>Thu, 07 Oct 2021 17:19:08 +0000</pubDate>
+		<dc:creator><![CDATA[Ron Amadeo]]></dc:creator>
+				<category><![CDATA[Podcasts]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[podcasts]]></category>
+		<category><![CDATA[YouTube]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801974</guid>
+		<description><![CDATA[YouTube already covers TV, Movies, Music, and Gaming, so sure, Podcasts are next. ]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2015/02/youtube-640x427.jpg" alt="Google’s fourth podcasting service will reportedly be “YouTube Podcasts“">
+      <p class="caption" style="font-size:0.8em">(credit: <a rel="nofollow" class="caption-link" href="https://secure.flickr.com/photos/korosirego/4481461680/in/photolist-hxGgxd-9DQpia-ivPouS-Corac-5sJzst-9F5HDK-7X5Mqb-8dbpbZ-96ZubC-5SHXyZ-jPTMo-7Q1EqG-9Dzr78-7aXhhm-99Y7br-7JFTqh-jMmvR-3an2Ho-arF7Km-8fnHWy-6uFcW9-4EDMaw-adFB5j-46S8dd-KaeZT-y33RM-f1j1D-jDDcY3-sySps-9zMH12-cpbTeq-7xL68t-8deGSy-g8Y9qs-8MU1Ek-QpkTe-qMvPE-87JDZg-8deGMu-7tMy7s-pvXHn-cyfyR5-5QWYZE-agrAh4-ySpv7-aGaK5r-9WkVEa-7knnZN-8mroJZ-5RxoyF">Rego Korosi</a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Who's ready for "YouTube Podcasts"?</p>
+<p><a href="https://www.bloomberg.com/news/articles/2021-10-05/youtube-looks-to-hire-its-first-executive-focused-on-podcasts">Bloomberg</a> reports that YouTube is hiring an executive to "oversee its podcasting experience," which currently does not really exist. YouTube is a popular place for podcast hosting, but the site doesn't offer any podcast-specific features.</p>
+<p>YouTube is the most popular video site on Earth, and if you're a for-profit company obsessed with growth, it's actually a bit of a problem that everyone already uses YouTube. The endless quest for more revenue and more watch minutes has led YouTube to expand into areas other than the typical YouTube video.</p></div><p><a href="https://arstechnica.com/?p=1801974#p3">Read 7 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801974&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Hands-on with Back 4 Blood’s retail version: Our three-hour stream is now on VOD</title>
+		<link>https://arstechnica.com/?p=1802034</link>
+		<pubDate>Thu, 07 Oct 2021 16:54:22 +0000</pubDate>
+		<dc:creator><![CDATA[Sam Machkovech]]></dc:creator>
+				<category><![CDATA[Gaming & Culture]]></category>
+		<category><![CDATA[back 4 blood]]></category>
+		<category><![CDATA[let's play]]></category>
+		<category><![CDATA[twitch]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802034</guid>
+		<description><![CDATA[If you didn't watch and chat live on Twitch, we've preserved our session for you.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+
+
+
+
+
+<div><a name="page-1"></a></div>
+      <ul class="gallery shortcode-gallery gallery-wide">
+          <li>
+        <div class="gallery-item-content">  
+        <div class="gallery-image"><img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/b4b-listing-980x551.jpg" alt=""></div>
+        <p>
+          Ah, crap, here we go again with co-op zombie action in <em>Back 4 Blood</em>.                      [credit:
+                        Turtle Rock / WB Games                        ]
+                  </p>
+        </div>
+      </li>
+      </ul>
+  
+<p>2021 is apparently the year of <em>Left 4 Dead</em> spiritual successors, with two co-op shooters catching our attention thanks to their ties to that original Valve series: this week's <em><a href="https://amzn.to/3DhM4Zl" target="_blank" rel="noopener">Back 4 Blood</a> </em>and this fall's <a href="https://arstechnica.com/gaming/2021/06/the-anacrusis-left-4-dead-sci-fi-persistent-ai-coming-to-pc-xbox-this-fall/"><em>Anacrusis</em></a>.</p>
+<p><a href="https://arstechnica.com/gaming/2020/12/back-4-blood-alpha-test-turns-out-left-4-dead-mixes-well-with-slay-the-spire/"><em>Back 4 Blood</em></a>, developed by Turtle Rock Studios, is first out of the gate, with its zombie co-op action now officially live for people who shell out a whopping $99.99 for the game's "ultimate" edition on Xbox consoles and PC. The more patient among you can wait until October 12, when the standard game not only goes live but becomes a part of paid <a href="https://amzn.to/3oH5ZNl" target="_blank" rel="noopener">Xbox Game Pass</a> subscriptions.</p>
+<p>If you need something to tide you over while waiting to get your band of zombie-slaying friends back together, fear not: we have our early copies of the game, and we're eager to see exactly how it looks as a full retail product. The game can no longer hide behind <a href="https://arstechnica.com/gaming/2021/08/back-4-blood-beta-impressions-a-template-for-potential-co-op-greatness/">the safe haze of a "beta test,"</a> and we'll see how game balance, technical performance, an unlockable card system, and any microtransactions play out in the real world.</p></div><p><a href="https://arstechnica.com/?p=1802034#p3">Read 4 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802034&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>The Locke kids are not alright in official trailer for Locke and Key S2</title>
+		<link>https://arstechnica.com/?p=1801801</link>
+		<pubDate>Thu, 07 Oct 2021 16:36:46 +0000</pubDate>
+		<dc:creator><![CDATA[Jennifer Ouellette]]></dc:creator>
+				<category><![CDATA[Gaming & Culture]]></category>
+		<category><![CDATA[Netflix]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801801</guid>
+		<description><![CDATA["This world has so much potential to be reborn. To be ruled."]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+
+
+
+
+
+<div><a name="page-1"></a></div>
+      <ul class="gallery shortcode-gallery gallery-wide">
+          <li>
+        <div class="gallery-item-content">  
+        <div class="gallery-image"><img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/locke2-980x653.jpg" alt=""></div>
+        <p>
+          Welcome back to Key House.                      [credit:
+                        YouTube/Netflix                        ]
+                  </p>
+        </div>
+      </li>
+      </ul>
+  
+<p>It has been a long, pandemic-induced wait, but the official trailer for the second season of <a href="https://arstechnica.com/gaming/2020/02/locke-and-key-series-was-worth-the-wait/"><em>Locke and Key</em></a> is finally here. This is Netflix's adaptation of the award-winning <a href="https://en.wikipedia.org/wiki/Locke_%26_Key">comic book series</a> written by Joe Hill and illustrated by Gabe Rodriguez. In our 2020 <a href="https://arstechnica.com/gaming/2020/12/tv-technica-2020-our-favorite-shows-and-binges-in-a-year-of-living-distantly/">year-end TV roundup</a>, I wrote that the series successfully brought "the fabled Key House and the darkly fantastical world of the comics to vivid life." I've been eager for more of the story—and we'll be getting a lot more, since the series has already been renewed for a third season.</p>
+<p><strong>(Spoilers for the first season below.)</strong></p>
+<p>Following the brutal murder of their father, Rendell (Bill Heck, <em>The Alienist</em>), the surviving members of the Locke family—mom Nina (Darby Stanchfield, <em>Scandal</em>) and three children, Tyler (Connor Jessup, <em>Falling Skies</em>), Kinsey (Emilia Jones, <em>Doctor Who</em>), and Bode (Jackson Robert Scott, <em>IT</em> and <em>IT Chapter Two</em>)—arrive at Keyhouse, Rendell's Massachusetts ancestral home. Shortly after arrival, Bode, the youngest sibling, finds a magical key, and then another, and another, each with its own special power. The keys whisper to those who are sensitive to them—and of course, Bode, Tyler, and Kinsey can hear them. </p></div><p><a href="https://arstechnica.com/?p=1801801#p3">Read 9 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801801&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>GM’s next driver-assist system will be hands-free in “95% of situations”</title>
+		<link>https://arstechnica.com/?p=1802014</link>
+		<pubDate>Thu, 07 Oct 2021 16:12:18 +0000</pubDate>
+		<dc:creator><![CDATA[Jonathan M. Gitlin]]></dc:creator>
+				<category><![CDATA[Cars]]></category>
+		<category><![CDATA[ADAS]]></category>
+		<category><![CDATA[advanced driver assistance systems]]></category>
+		<category><![CDATA[General Motors]]></category>
+		<category><![CDATA[hands-free driving]]></category>
+		<category><![CDATA[Super Cruise]]></category>
+		<category><![CDATA[Ultra Cruise]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1802014</guid>
+		<description><![CDATA[The advanced system will use lidar, cameras, and radar—and debut in a Cadillac.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GM-UltraCruise-800x450.jpg" alt="Ultra Cruise will ultimately enable door-to-door hands-free driving on all public paved roads in the US and Canada, says the company.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GM-UltraCruise.jpg" class="enlarge-link" data-height="2250" data-width="4000">Enlarge</a> <span class="sep">/</span> Ultra Cruise will ultimately enable door-to-door hands-free driving on all public paved roads in the US and Canada, says the company. (credit: General Motors)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>On Wednesday and Thursday, General Motors laid out its plan for the coming years to its investors. The company wants "a world with zero crashes, zero emissions, and zero congestion," said Chair and CEO Mary Barra, explaining that GM's investment in electric vehicles and autonomous driving technology has given it an early start.</p>
+<p>GM revealed that a new electric Silverado truck will be formally unveiled at CES in 2022, and a $30,000 Chevrolet electric crossover is also in development. Both of these models, as well as electric Buicks, GMCs, Hummer EVs, and Cadillacs, will use GM's new family of <a href="https://arstechnica.com/cars/2020/03/general-motors-announces-new-battery-platform-claims-100kwh-soon/">Ultium batteries</a> and <a href="https://arstechnica.com/cars/2020/09/this-family-of-electric-motors-will-drive-gms-new-electric-vehicles/">Ultium Drive motors</a>.</p>
+<p>Some or all of those vehicles will be equipped with GM's Super Cruise hands-free driver-assistance system, but the company soon plans to deploy an even more capable hands-free driver-assistance system. Called Ultra Cruise, it will eventually allow for "hands-free driving in 95 percent of all driving scenarios," GM says.</p></div><p><a href="https://arstechnica.com/?p=1802014#p3">Read 5 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1802014&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Jabra owner goes after gaming with SteelSeries acquisition</title>
+		<link>https://arstechnica.com/?p=1801977</link>
+		<pubDate>Thu, 07 Oct 2021 15:48:07 +0000</pubDate>
+		<dc:creator><![CDATA[Scharon Harding]]></dc:creator>
+				<category><![CDATA[Gaming & Culture]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[acquisitions]]></category>
+		<category><![CDATA[gaming peripherals]]></category>
+		<category><![CDATA[jabra]]></category>
+		<category><![CDATA[SteelSeries]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801977</guid>
+		<description><![CDATA[Jabra parent company GN makes an approximately $1.2 billion deal. ]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/buyimg_arctis_prime_002.jpg__1920x1080_q100_crop-fit_optimize_subsampling-2-800x459.jpg" alt="SteelSeries arctis prime on headset stand near monitor">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/buyimg_arctis_prime_002.jpg__1920x1080_q100_crop-fit_optimize_subsampling-2.jpg" class="enlarge-link" data-height="1080" data-width="1882">Enlarge</a> <span class="sep">/</span> SteelSeries' Arctis headsets are well-known among gamers. (credit: <a rel="nofollow" class="caption-link" href="https://steelseries.com/gaming-headsets/arctis-prime">SteelSeries</a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Gaming peripherals-maker SteelSeries is being purchased by GN, the owner of audio equipment company Jabra. The deal announced Wednesday gives GN access to SteelSeries’ headsets, keyboards, mice, and other peripherals for PC and console gaming, as well as its sub-brands, like Nahimic.</p>
+<p>Denmark-based GN is buying SteelSeries from Axcel, a Nordic private equity firm, in a deal that reportedly amounts to 8 billion DKK (about $1.2 billion).</p>
+<p>Founded in 2001 in Denmark, SteelSeries has made a name for itself with a large selection of advanced peripherals targeting console and PC gamers. As an audio company, GN is undoubtedly interested in SteelSeries’ Arctis headset lineup, which comprises a wide range of prices and form factors and has become a go-to brand among gamers. SteelSeries also has a reputation with other types of peripherals, including its Apex Pro mechanical keyboard (you’ll regularly see gamers sharing <a href="https://twitter.com/hashtag/PeelSeries?src=hashtag_click">social media posts</a> of the keyboard as they peel the sticker off its unique OLED screen).</p></div><p><a href="https://arstechnica.com/?p=1801977#p3">Read 6 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801977&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Windows 11 bug could reduce Ryzen CPU performance by up to 15%, AMD says</title>
+		<link>https://arstechnica.com/?p=1801973</link>
+		<pubDate>Thu, 07 Oct 2021 15:20:56 +0000</pubDate>
+		<dc:creator><![CDATA[Andrew Cunningham]]></dc:creator>
+				<category><![CDATA[Gaming & Culture]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[AMD Ryzen]]></category>
+		<category><![CDATA[windows 11]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801973</guid>
+		<description><![CDATA[Software fixes for the problems are coming later this month. ]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/ryzen-cpu-800x450.jpg" alt="Windows 11 bug could reduce Ryzen CPU performance by up to 15%, AMD says">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/ryzen-cpu.jpg" class="enlarge-link" data-height="558" data-width="992">Enlarge</a> (credit: AMD)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Most people shouldn't rush out to install brand-new operating system versions on day one, and <a href="https://arstechnica.com/gadgets/2021/10/windows-11-the-ars-technica-review/">Windows 11</a> is no exception to that rule. <a href="https://www.amd.com/en/support/kb/faq/pa-400">AMD has published information about a pair of bugs</a> that can reduce performance for Ryzen processors running Windows 11 by as much as 15 percent, though how much slowdown you observe will vary based on what you're doing and the CPU you're using. AMD expects both bugs to be fixed later this month.</p>
+<p>The first issue AMD has identified increases L3 cache latency by up to three times, affecting apps that rely on fast memory performance. AMD says that most affected apps will slow down by between 3 and 5 percent but that some "games commonly used for eSports" could see dips of between 10 and 15 percent. AMD says that a Windows update will fix this issue later this month, so as long as you're checking for and installing Windows updates regularly, you won't need to do anything special to resolve the problem.</p>
+
+<p>The second bug is related to an AMD processor feature that tries to use your fastest individual CPU cores when running lightly threaded tasks rather than treating all cores the same. AMD doesn't put a number on this one but says the problem "may be more detectable" in processors with eight or more cores and a 65 W or higher TDP. This would include most 2000, 3000, 4000, and 5000-series Ryzen 7 and Ryzen 9 desktop CPUs and APUs. AMD says that a "software update," not a Windows update, will be released to fix the problem later in October, so you may need to install new AMD chipset drivers or some other software to get the fix.</p></div><p><a href="https://arstechnica.com/?p=1801973#p3">Read 1 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801973&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Safeway spent $367M to prepare for Theranos tests that never came</title>
+		<link>https://arstechnica.com/?p=1801978</link>
+		<pubDate>Thu, 07 Oct 2021 14:53:56 +0000</pubDate>
+		<dc:creator><![CDATA[Tim De Chant]]></dc:creator>
+				<category><![CDATA[Policy]]></category>
+		<category><![CDATA[clinical labs]]></category>
+		<category><![CDATA[court]]></category>
+		<category><![CDATA[diagnostic tests]]></category>
+		<category><![CDATA[Elizabeth Holmes criminal trial]]></category>
+		<category><![CDATA[Safeway]]></category>
+		<category><![CDATA[Theranos]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801978</guid>
+		<description><![CDATA[Elizabeth Holmes' charisma sealed the deal, but Theranos never delivered.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2018/10/holmes-800x534.jpg" alt="Elizabeth Holmes, founder and chief executive officer of Theranos, is on trial for wire fraud.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2018/10/holmes.jpg" class="enlarge-link" data-height="801" data-width="1200">Enlarge</a> <span class="sep">/</span> Elizabeth Holmes, founder and chief executive officer of Theranos, is on trial for wire fraud. (credit: David Paul Morris/Bloomberg/Getty Images)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Theranos founder Elizabeth Holmes’ charisma may have convinced the CEO of a major grocery store chain to form a partnership with the company, but it wasn’t enough to prevent the relationship from souring when the blood-testing startup inevitably couldn’t deliver on its promises.</p>
+<p>In court for Holmes’ criminal trial yesterday, former Safeway CEO Steven Burd described how his admiration of Holmes and her company rose and then fell over the course of three years, from 2010 until 2013, when he retired. Holmes has been charged with 10 counts of wire fraud and two counts of conspiracy to commit wire fraud.</p>
+<p>When Burd first heard of Holmes’ startup and its promised rapid blood testing technology, he <a href="https://www.nytimes.com/article/elizabeth-holmes-theranos-trial-updates.html">said</a> he was “immediately interested in meeting Theranos, particularly the founder.” The idea that people could give a small amount of blood and quickly receive the results “was a fascinating concept.”</p></div><p><a href="https://arstechnica.com/?p=1801978#p3">Read 11 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801978&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>US gov’t will slap contractors with civil lawsuits for hiding breaches</title>
+		<link>https://arstechnica.com/?p=1801922</link>
+		<pubDate>Thu, 07 Oct 2021 12:46:05 +0000</pubDate>
+		<dc:creator><![CDATA[Ax Sharma]]></dc:creator>
+				<category><![CDATA[Biz & IT]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[civil cyber fraud initiative]]></category>
+		<category><![CDATA[cyber-attack]]></category>
+		<category><![CDATA[cybersecurity]]></category>
+		<category><![CDATA[data breach]]></category>
+		<category><![CDATA[DoJ]]></category>
+		<category><![CDATA[False Claims Act]]></category>
+		<category><![CDATA[government]]></category>
+		<category><![CDATA[law]]></category>
+		<category><![CDATA[legislation]]></category>
+		<category><![CDATA[usdoj]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801922</guid>
+		<description><![CDATA[Civil Cyber-Fraud Initiative mandates data-breach reporting for gov't contractors.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2016/05/capitol-640x404.jpg" alt="US gov’t will slap contractors with civil lawsuits for hiding breaches">
+  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>In a groundbreaking initiative announced by the Department of Justice this week, federal contractors will be sued if they fail to report a cyber attack or data breaches. The newly introduced "Civil Cyber-Fraud Initiative" will leverage the existing <a href="https://en.wikipedia.org/wiki/False_Claims_Act" target="_blank" rel="noopener">False Claims Act</a> to pursue contractors and grant recipients involved in what the DOJ calls "cybersecurity fraud." Usually, the False Claims Act is used by the government to tackle civil lawsuits over false claims made in relation to federal funds and property connected with government programs.</p>
+<h2>Cyber contractors chose silence “for too long”</h2>
+<p>"For too long, companies have chosen silence under the mistaken belief that it is less risky to hide a breach than to bring it forward and to report it,” said Deputy Attorney General Lisa O. Monaco, who is pioneering the initiative. "Well, that changes today. We are announcing today that we will use our civil enforcement tools to pursue companies, those who are government contractors who receive federal funds, when they fail to follow required cybersecurity standards—because we know that puts all of us at risk. This is a tool that we have to ensure that taxpayer dollars are used appropriately and guard the public fisc and public trust."</p>
+<p>The introduction of the Civil Cyber-Fraud Initiative is the "direct result" of the department's ongoing thorough review of the cybersecurity landscape ordered by the deputy attorney general in May. The goal behind these review activities is to develop actionable recommendations that enhance and expand the DOJ's efforts to combat cyber threats.</p></div><p><a href="https://arstechnica.com/?p=1801922#p3">Read 9 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801922&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>The best part of Windows 11 is a revamped Windows Subsystem for Linux</title>
+		<link>https://arstechnica.com/?p=1801283</link>
+		<pubDate>Thu, 07 Oct 2021 10:45:49 +0000</pubDate>
+		<dc:creator><![CDATA[Jim Salter]]></dc:creator>
+				<category><![CDATA[Features]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[win11]]></category>
+		<category><![CDATA[windows 11]]></category>
+		<category><![CDATA[windows subsystem for linux]]></category>
+		<category><![CDATA[wsl]]></category>
+		<category><![CDATA[wslg]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801283</guid>
+		<description><![CDATA[WSL is finally easy to install—and offers automatic sound/graphics support.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/Screenshot-5-800x533.png" alt="Installing and using the Windows Subsystem for Linux is easier and more productive under Windows 11 than it was under Windows 10.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/Screenshot-5.png" class="enlarge-link" data-height="1504" data-width="2256">Enlarge</a> <span class="sep">/</span> Installing and using the Windows Subsystem for Linux is easier and more productive under Windows 11 than it was under Windows 10. (credit: Jim Salter)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>In our main Windows 11 <a href="https://arstechnica.com/gadgets/2021/10/windows-11-the-ars-technica-review/">review</a> posted earlier this week, we covered the majority of new features and design decisions in Microsoft's newest consumer OS—and it feels reasonable to characterize the overall impression given there as "lukewarm." The good news is that we still hadn't covered the best part of Windows 11: Linux.</p>
+<p>For years now, Windows 10's Windows Subsystem for Linux has been making life easier for developers, sysadmins, and hobbyists who have one foot in the Windows world and one foot in the Linux world. But WSL, handy as it is, has been hobbled by several things it could <em>not</em> do. Installing WSL has never been as easy as it should be—and getting graphical apps to work has historically been <em>possible</em> but also a pain in the butt that required some fairly obscure third-party software.</p>
+<p>Windows 11 finally fixes both of those problems. The Windows Subsystem for Linux isn't <em>perfect</em> on Windows 11, but it's a huge improvement over what came before.</p></div><p><a href="https://arstechnica.com/?p=1801283#p3">Read 25 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801283&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Citing liberty, Idaho Lt. Gov. McGeachin bans vaccine mandates in power grab</title>
+		<link>https://arstechnica.com/?p=1801880</link>
+		<pubDate>Thu, 07 Oct 2021 00:39:03 +0000</pubDate>
+		<dc:creator><![CDATA[Beth Mole]]></dc:creator>
+				<category><![CDATA[Science]]></category>
+		<category><![CDATA[COVID-19]]></category>
+		<category><![CDATA[governor]]></category>
+		<category><![CDATA[idaho]]></category>
+		<category><![CDATA[Mandates]]></category>
+		<category><![CDATA[masks]]></category>
+		<category><![CDATA[public health]]></category>
+		<category><![CDATA[vaccine]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801880</guid>
+		<description><![CDATA[Gov. Brad Little will reverse all McGeachin's actions when he gets back to state. ]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-1231559080-800x534.jpeg" alt="A warmly dressed woman speaks into a microphone.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-1231559080.jpeg" class="enlarge-link" data-height="4502" data-width="6748">Enlarge</a> <span class="sep">/</span> Idaho Lt. Gov. Janice McGeachin speaks during a mask-burning event at the Idaho Statehouse on March 6, 2021, in Boise, Idaho.  (credit: <a rel="nofollow" class="caption-link" href="https://www.gettyimages.com/detail/news-photo/idaho-lieutenant-governor-janice-mcgeachin-speaks-during-a-news-photo/1231559080?adppopup=true">Getty | Nathan Howard</a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Idaho Lt. Gov. Janice McGeachin grabbed the reins Tuesday by banning COVID-19 vaccination "passports" and mandatory COVID-19 testing in the state while Gov. Brad Little was away on travel. She also sought information on deploying the National Guard to the Texas border.</p>
+<p>Gov. Little was, in fact, in Texas on Tuesday, meeting with nine other Republican governors regarding the Biden administration's handling of border issues.</p>
+<p>"I am in Texas performing my duties as the duly elected Governor of Idaho, and I have not authorized the Lt. Governor to act on my behalf," Little said <a href="https://www.facebook.com/governorbradlittle/posts/414932983337521">in a statement late Tuesday</a>. "I will be rescinding and reversing any actions taken by the Lt. Governor when I return."</p></div><p><a href="https://arstechnica.com/?p=1801880#p3">Read 9 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801880&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>WHO recommends malaria vaccine for use in children</title>
+		<link>https://arstechnica.com/?p=1801872</link>
+		<pubDate>Wed, 06 Oct 2021 23:07:33 +0000</pubDate>
+		<dc:creator><![CDATA[John Timmer]]></dc:creator>
+				<category><![CDATA[Science]]></category>
+		<category><![CDATA[Health]]></category>
+		<category><![CDATA[malaria]]></category>
+		<category><![CDATA[medicine]]></category>
+		<category><![CDATA[vaccines]]></category>
+		<category><![CDATA[WHO]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801872</guid>
+		<description><![CDATA[While the efficacy is under 50 percent, it should still save numerous lives.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-1140271350-800x534.jpg" alt="A woman holds a baby as it gets a vaccine.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/GettyImages-1140271350.jpg" class="enlarge-link" data-height="683" data-width="1024">Enlarge</a> <span class="sep">/</span> A nurse administers the RTS,S vaccine. (credit: <a rel="nofollow" class="caption-link" href="https://www.gettyimages.com/detail/news-photo/nurse-administers-a-vaccine-to-a-child-at-ewin-polyclinic-news-photo/1140271350?adppopup=true">CRISTINA ALDEHUELA / Getty Images</a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>On Wednesday, the World Health Organization (WHO) <a href="https://www.who.int/news/item/06-10-2021-who-recommends-groundbreaking-malaria-vaccine-for-children-at-risk">announced a first</a>: it was recommending a vaccine against malaria for administration to children. The decision follows <a href="https://arstechnica.com/science/2019/04/malaria-vaccine-rollout-is-a-gamble-an-imperfect-tool-used-imperfectly/">a program started in 2019</a> in three African countries, which eventually saw over 800,000 children vaccinated.</p>
+<p>The <a href="https://www.malariavaccine.org/sites/www.malariavaccine.org/files/content/page/files/PATH_MVI_RTSS_Fact%20sheet_042019.pdf">vaccine itself</a> is called RTS,S/AS01 or Mosquirix, and it checks all the boxes for conspiracy theorists, having been developed by a large pharmaceutical company (GlaxoSmithKline) with support from the Gates Foundation. The vaccine is based on proteins found on the surface of the most common malarial parasite, and it requires four doses starting when children are less than a year old. Development of the vaccine started in 1987, and testing of its efficacy dates back to 2014. With over 2.3 million doses administered, it has a solid safety profile, and it has shown an efficacy between 30 and 50 percent in different trials.</p>
+<p>That may not seem all that great, especially compared to the numbers we've all watched many of the <a href="https://arstechnica.com/tag/covid-19/">COVID-19</a> vaccines produce. But the WHO estimates that over a quarter-million children under the age of 5 die of malaria every year in Africa alone, with many others falling seriously ill. As such, even a 30 percent efficacy can have a substantial impact.</p></div><p><a href="https://arstechnica.com/?p=1801872#p3">Read 3 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801872&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>One America News founder claimed he started network at AT&#038;T’s request</title>
+		<link>https://arstechnica.com/?p=1801788</link>
+		<pubDate>Wed, 06 Oct 2021 21:11:17 +0000</pubDate>
+		<dc:creator><![CDATA[Jon Brodkin]]></dc:creator>
+				<category><![CDATA[Policy]]></category>
+		<category><![CDATA[AT&T]]></category>
+		<category><![CDATA[oan]]></category>
+		<category><![CDATA[one america news]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801788</guid>
+		<description><![CDATA[AT&#038;T "told us they wanted a conservative network," OAN founder said in court.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/OAN_Logo_CROPPED.jpeg" alt="Eagle-trimmed logo for One American News Network.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/OAN_Logo_CROPPED.jpeg" class="enlarge-link" data-height="343" data-width="769">Enlarge</a> (credit: <a rel="nofollow" class="caption-link" href="https://www.oann.com/">One America News Network</a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>A <a href="https://www.reuters.com/investigates/special-report/usa-oneamerica-att/">Reuters report</a> published today with the title "How AT&amp;T helped build far-right One America News" alleges that the telecom giant played a significant role "in creating and funding OAN, a network that continues to spread conspiracy theories about the 2020 election and the COVID-19 pandemic."</p>
+<p>While there's no evidence or allegation that AT&amp;T played a direct role in creating OAN, Reuters points to a court case in which OAN's founder said he created the network after AT&amp;T "told us they wanted a conservative network." OAN also apparently gets the vast majority of its revenue from a carriage deal with the AT&amp;T-owned DirecTV, which is by far the largest cable or satellite TV provider that carries the channel. OAN is <a href="https://www.oann.com/wheretowatch/">carried by</a> providers including DirecTV, AT&amp;T U-verse, Verizon FiOS, and CenturyLink, but not by large cable operators such as Comcast, Charter, and Cox.</p>
+<p>OAN owner Herring Networks claimed in a <a href="courtlistener.com/docket/5929058/herring-networks-inc-v-at-and-t-services-inc/">2016 lawsuit</a> that AT&amp;T promised to carry OAN on DirecTV in exchange for OAN's public support of AT&amp;T's attempt to purchase the satellite provider, which required government approval. OAN's lawsuit claimed that AT&amp;T reneged on the deal once its purchase of DirecTV was finalized in 2015. OAN finally got on DirecTV in 2017, weeks after agreeing to drop its lawsuit against AT&amp;T. Herring also claimed in court that AT&amp;T in 2013 proposed acquiring a 5 percent ownership stake in Herring, but that purchase was never made.</p></div><p><a href="https://arstechnica.com/?p=1801788#p3">Read 16 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801788&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+		<item>
+		<title>Nobel awarded for making common, cheap chemicals into catalysts</title>
+		<link>https://arstechnica.com/?p=1801799</link>
+		<pubDate>Wed, 06 Oct 2021 20:59:05 +0000</pubDate>
+		<dc:creator><![CDATA[John Timmer]]></dc:creator>
+				<category><![CDATA[Science]]></category>
+		<category><![CDATA[catalyst]]></category>
+		<category><![CDATA[chemistry]]></category>
+		<category><![CDATA[Nobel prize]]></category>
+
+		<guid isPermaLink="false">https://arstechnica.com/?p=1801799</guid>
+		<description><![CDATA[Common chemicals can often work better than pricey metal catalysts.]]></description>
+				<content:encoded><![CDATA[<div id="rss-wrap">
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2021/10/Screen-Shot-2021-10-06-at-4.14.57-PM-800x470.png" alt="Image of a line diagram of a chemical.">
+      <p class="caption" style="font-size:0.8em"><a href="https://cdn.arstechnica.net/wp-content/uploads/2021/10/Screen-Shot-2021-10-06-at-4.14.57-PM.png" class="enlarge-link" data-height="707" data-width="1204">Enlarge</a> <span class="sep">/</span> Proline is a common amino acid. It's also an effective catalyst. (credit: <a rel="nofollow" class="caption-link" href="https://en.wikipedia.org/wiki/Proline#/media/File:Prolin_-_Proline.svg">Wikimedia Commons </a>)</p>  </figure>
+
+
+
+
+
+
+<div><a name="page-1"></a></div>
+<p>Platinum is a ferociously expensive metal that is difficult to obtain and purify. Most of the small supply we produce every year isn't put to use for its properties as a metal. Instead, it's used as a catalyst for producing a variety of chemicals—and for cleaning up your car's exhaust. Everything made with platinum carries an added burden of cost and environmental damage because of that use.</p>
+<p>This year, the Nobel Prize in Chemistry honors two researchers for helping to trigger a burst of research into catalysts that leave the metals behind. Benjamin List and David MacMillan made key discoveries that started the field of organocatalysis, developing catalysts that could be made from cheap, common chemicals. Their work took a disorganized set of anecdotes and gave them a strong conceptual footing that allowed many other labs to go further.</p>
+<h2>Not so metal</h2>
+<p>At their heart, chemical reactions involve the transfer of electrons, either between atoms or into new configurations of chemical bonds. Metals are often effective catalysts because they ease the process of transferring electrons. Many metals will easily make a temporary loan of their electrons during a reaction or, if properly prepared, can draw electrons from other chemicals in order to hasten a process.</p></div><p><a href="https://arstechnica.com/?p=1801799#p3">Read 12 remaining paragraphs</a> | <a href="https://arstechnica.com/?p=1801799&comments=1">Comments</a></p>]]></content:encoded>
+			</item>
+	</channel>
+</rss>

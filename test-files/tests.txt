@@ -1,0 +1,16 @@
+https://arstechnica.com/rss
+https://gizmodo.com/rss
+https://www.theverge.com/rss/index.xml
+https://protesilaos.com/codelog.xml
+https://planet.emacslife.com/atom.xml
+https://lars.ingebrigtsen.no/feed/
+https://www.theregister.com/headlines.atom
+https://www.reddit.com/r/emacs/.rss
+http://xahlee.info/comp/blog.xml
+
+
+// read internal data
+data = null;
+chrome.storage.local.get( {feeds: {}}, function(obj) {
+  data = obj;
+});

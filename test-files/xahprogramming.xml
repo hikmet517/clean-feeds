@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="http://xahlee.info/comp/">
+
+ <title>Xah Programing Blog</title>
+ <subtitle>Programing, Computing, Tech Geeking</subtitle>
+ <link rel="self" href="blog.xml"/>
+ <link rel="alternate" href="blog.html"/>
+ <updated>2021-06-14T23:36:00-07:00</updated>
+ <author>
+   <name>Xah Lee</name>
+   <uri>http://xahlee.info/</uri>
+ </author>
+ <id>http://xahlee.info/comp/blog.html</id>
+ <icon>http://xahlee.org/ics/sum.png</icon>
+ <rights>© 2011 to 2021, Xah Lee</rights>
+
+<entry>
+<title>Microsoft Defender blocks website by mistake</title>
+<id>tag:xahlee,2021-06-15:063601</id>
+<updated>2021-06-14T23:36:00-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+wtf Microsoft, blocked one of my page, thinking it's phishing site.
+The page, actually contains no JavaScript.
+</p>
+
+<figure>
+<img src="blog_files/Microsoft_block_xahlee_site_2021-06-14.png" alt="Microsoft block xahlee site 2021-06-14" width="1079" height="739" />
+<figcaption>
+Microsoft block xahlee site 2021-06-14
+[Microsoft Windows Tips http://xahlee.info/mswin/index.html]
+</figcaption>
+</figure>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/i/Microsoft_block_xahlee_site_2021-06-14.png"/>
+</entry>
+
+<entry>
+<title>Meaning of Symbolic Pattern Matching Languages</title>
+<id>tag:xahlee,2021-06-15:015223</id>
+<updated>2021-06-14T18:52:22-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/M/Wolfram_Language_symbolic.html">Meaning of Symbolic Pattern Matching Languages</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/M/Wolfram_Language_symbolic.html"/>
+</entry>
+
+<entry>
+<title>The Mathematica Book Online</title>
+<id>tag:xahlee,2021-06-15:015153</id>
+<updated>2021-06-14T18:51:52-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/M/the_Mathematica_book_online.html">The Mathematica Book Online</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/M/the_Mathematica_book_online.html"/>
+</entry>
+
+<entry>
+<title>Wolfram Language Clones</title>
+<id>tag:xahlee,2021-06-15:015104</id>
+<updated>2021-06-22T11:16:55-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/M/Wolfram_Language_clone.html">Wolfram Language Clones</a>
+</p>
+
+<p> Lots people asked me for this. I recommend just buy wolframlang, start with the free engine or script. Focus on mastering math/AI. Don't get dragged into opensource corp drama.
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/M/Wolfram_Language_clone.html"/>
+</entry>
+
+<entry>
+<title>UNIX Tar Problem: File Length Truncation, Unicode Name Support</title>
+<id>tag:xahlee,2021-06-15:015019</id>
+<updated>2021-06-14T18:50:18-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/unix_tar_problem.html">UNIX Tar Problem: File Length Truncation, Unicode Name Support</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/unix_tar_problem.html"/>
+</entry>
+
+<entry>
+<title>File Aliases Considered a Plague</title>
+<id>tag:xahlee,2021-06-15:014814</id>
+<updated>2021-06-14T18:48:13-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<ul>
+<li><a href="http://xahlee.info/UnixResource_dir/writ/hardlink_softlink_alias_junction_plague.html">File Aliases Considered a Plague</a></li>
+<li><a href="http://xahlee.info/UnixResource_dir/writ/windows_virtualstore.html">Windows Vista VirtualStore Problem</a></li>
+<li><a href="http://xahlee.info/comp/mac_os_xs_DS_Store_unix_init_svn.html">Linux Dot File Problems: .svn .htaccess .DS_Store etc</a></li>
+<li><a href="http://xahlee.info/perl/perl_validate_local_links.html">Perl: Validate Local Links</a></li>
+</ul>
+
+<p>
+some old essays. reviewed.
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/UnixResource_dir/writ/hardlink_softlink_alias_junction_plague.html"/>
+</entry>
+
+<entry>
+<title>UNIX Tar Problem: File Length Truncation, Unicode Name Support</title>
+<id>tag:xahlee,2021-06-13:055128</id>
+<updated>2021-06-12T22:51:27-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/unix_tar_problem.html">UNIX Tar Problem: File Length Truncation, Unicode Name Support</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/unix_tar_problem.html"/>
+</entry>
+
+<entry>
+<title>Technical Writing: Fruit Apple Banana vs X Y Z</title>
+<id>tag:xahlee,2021-06-13:055047</id>
+<updated>2021-06-12T22:50:46-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/tech_writing_apple_banana_vs_xyz.html">Technical Writing: Fruit Apple Banana vs X Y Z</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/tech_writing_apple_banana_vs_xyz.html"/>
+</entry>
+
+<entry>
+<title>perl, officially dead</title>
+<id>tag:xahlee,2021-06-12:054452</id>
+<updated>2021-06-11T22:44:51-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+these perl scripts, was on my site, but sometimes during 2010, due to the newfangled github, every joe and their dog has a github account with code, i moved them to github.
+A mistake. NEVER follow fashion and fads or the corps.
+Now, i move them back on my website.
+</p>
+
+<ul>
+<li><a href="http://xahlee.info/python/mac_resource_fork.html">Perl Scripts For Removing Mac Resource Fork, .DS_Store, Thumbs.db etc</a></li>
+<li><a href="http://xahlee.info/perl/perl_report_files_resource_fork.html">Perl: Report Files Resource Fork</a></li>
+<li><a href="http://xahlee.info/perl/perl_delete_image_file_resource_fork.html">Perl: Delete Image File Resource Fork</a></li>
+<li><a href="http://xahlee.info/perl/perl_delete_macos9_icon_file.html">Perl: Delete Macos9 Icon File</a></li>
+<li><a href="http://xahlee.info/perl/perl_check_bad_filename.html">Perl: Check Bad Filename</a></li>
+<li><a href="http://xahlee.info/perl/perl_delete_DS_Store.html">Perl: delete_DS_Store</a></li>
+</ul>
+
+<p>
+I think i finally, officially, will no longer code any perl.
+Perl, was my first industrial language. Coded it in a job for 4 years during the dot com days
+</p>
+
+<p>
+See also:
+history of computing, year 1999. you can search what these people are doing now. Perl: Send Email <a href="http://xahlee.info/perl/perl_email.html">Perl: Send Email</a>
+</p>
+
+<p>
+<code class="path_xl">c:/Users/xah/git/xahscripts/file_util/</code>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/blog.html"/>
+</entry>
+
+<entry>
+<title>Windows: Delete Lockscreen Background Image</title>
+<id>tag:xahlee,2021-06-12:054319</id>
+<updated>2021-06-11T22:43:18-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/mswin/windows_lockscreen_image.html">Windows: Delete Lockscreen Background Image</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/mswin/windows_lockscreen_image.html"/>
+</entry>
+
+<entry>
+<title>Moving Button UI Problem</title>
+<id>tag:xahlee,2021-06-09:200412</id>
+<updated>2021-06-09T13:04:11-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/mswin/Firefox_unhide_forward_button.html">Moving Button UI Problem</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/mswin/Firefox_unhide_forward_button.html"/>
+</entry>
+
+<entry>
+<title>Windows: Delete Lockscreen Background Image</title>
+<id>tag:xahlee,2021-06-08:235944</id>
+<updated>2021-06-08T16:59:43-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/mswin/windows_lockscreen_image.html">Windows: Delete Lockscreen Background Image</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/mswin/windows_lockscreen_image.html"/>
+</entry>
+
+<entry>
+<title>PowerShell: Windows Registry</title>
+<id>tag:xahlee,2021-06-08:235746</id>
+<updated>2021-06-08T16:57:45-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/powershell/powershell_registry.html">PowerShell: Windows Registry</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/powershell/powershell_registry.html"/>
+</entry>
+
+<entry>
+<title>Xah Github Punch Card. updated</title>
+<id>tag:xahlee,2021-06-08:235636</id>
+<updated>2021-06-08T16:56:35-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/xah_punch_card.html">Xah Github Punch Card</a>
+updated
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/xah_punch_card.html"/>
+</entry>
+
+<entry>
+<title>Unicode Jargon “Code Point” and Notation U+03B1</title>
+<id>tag:xahlee,2021-06-08:233233</id>
+<updated>2021-06-08T16:32:32-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/unicode_jargon_code_point_and_notation.html">Unicode Jargon “Code Point” and Notation U+03B1</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/unicode_jargon_code_point_and_notation.html"/>
+</entry>
+
+<entry>
+<title>Which Faakhead Invented Hello World?</title>
+<id>tag:xahlee,2021-06-08:233211</id>
+<updated>2021-06-08T16:32:10-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/hello_world.html">Which Faakhead Invented Hello World?</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/hello_world.html"/>
+</entry>
+
+<entry>
+<title>hackers, pets of the establishment</title>
+<id>tag:xahlee,2021-06-08:230026</id>
+<updated>2021-06-08T16:00:25-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+2021-06-01 dear hackers: Ever watched the matrix, or star wars? where good guys fight the big bro? and ever seen opensorce fsf fanatics shrill against corps? am starting to think, such imagery is intentionally crafted by the establishment, tickles the good guy psychology, so u remain small n inconsequential.
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/blog.html"/>
+</entry>
+
+<entry>
+<title>Microsoft Windows Logo history</title>
+<id>tag:xahlee,2021-06-08:225707</id>
+<updated>2021-06-08T15:57:06-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<div>
+<a href="http://xahlee.info/logo_design/Windows_logos_logo.html">
+<img src="blog_files/Windows_3.svg" alt="Windows_3.x_logo" /><br />
+Microsoft Windows Logo history</a>
+</div>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/logo_design/Windows_logos_logo.html"/>
+</entry>
+
+<entry>
+<title>In-place Algorithm for Reversing a List in Perl, Python, Lisp, Mathematica</title>
+<id>tag:xahlee,2021-06-08:225647</id>
+<updated>2021-06-08T15:56:46-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/in-place_algorithm.html">In-place Algorithm for Reversing a List in Perl, Python, Lisp, Mathematica</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/in-place_algorithm.html"/>
+</entry>
+
+<entry>
+<title>xahlee.info site traffic</title>
+<id>tag:xahlee,2021-06-08:225310</id>
+<updated>2021-06-08T15:53:09-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/XahLee_info_site_traffic.html">xahlee.info site traffic</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/XahLee_info_site_traffic.html"/>
+</entry>
+
+<entry>
+<title>Intro to Wolfram Language Pattern Matching for Lisp Programers</title>
+<id>tag:xahlee,2021-06-08:225300</id>
+<updated>2021-06-08T15:52:59-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<ul>
+<li><a href="http://xahlee.info/UnixResource_dir/writ/notations_mma.html">Intro to Wolfram Language Pattern Matching for Lisp Programers</a></li>
+<li><a href="http://xahlee.info/comp/regex_parsing_index.html">Xah Regular Expression Articles Index</a></li>
+</ul>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/UnixResource_dir/writ/notations_mma.html"/>
+</entry>
+
+<entry>
+<title>Logo Design in Software Industry</title>
+<id>tag:xahlee,2021-06-08:225212</id>
+<updated>2021-06-08T15:52:11-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/logo_design/index.html">Logo Design in Software Industry</a>
+<br />
+major update
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/logo_design/index.html"/>
+</entry>
+
+<entry>
+<title>Why Does Struct Datatype Encroach Namespace?</title>
+<id>tag:xahlee,2021-06-08:225134</id>
+<updated>2021-06-08T15:51:33-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/comp/struct_datatype_and_namespace.html">Why Does Struct Datatype Encroach Namespace?</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/struct_datatype_and_namespace.html"/>
+</entry>
+
+<entry>
+<title>Why I'm Switching from Mac to Windows</title>
+<id>tag:xahlee,2021-06-08:224911</id>
+<updated>2021-06-08T15:49:10-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+Year 2009.
+<a href="http://xahlee.info/mswin/switch_to_windows.html">Why I'm Switching from Mac to Windows</a>
+<br />
+this answers those question about, which one should you use, Mac, linux, or windows
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/mswin/switch_to_windows.html"/>
+</entry>
+
+<entry>
+<title>Windows problem</title>
+<id>tag:xahlee,2021-06-08:224816</id>
+<updated>2021-06-08T15:48:15-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p> This is truly annoying. You plug in headphone, but then you have to click on screen else no work. </p>
+
+<figure>
+<img src="blog_files/Windows_10_headphone_popup_2021-05-29.png" alt="Windows 10 headphone popup 2021-05-29" width="401" height="217" />
+<figcaption>
+Windows 10 headphone popup 2021-05-29
+</figcaption>
+</figure>
+
+<span class="todo">xtodo 2021-06-08 Microsoft Windows problem. put into a file and index</span>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/blog.html"/>
+</entry>
+
+<entry>
+<title>PowerShell: Backup Script Example</title>
+<id>tag:xahlee,2021-06-08:224714</id>
+<updated>2021-06-08T15:47:13-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/powershell/powershell_backup_script.html">PowerShell: Backup Script Example</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/powershell/powershell_backup_script.html"/>
+</entry>
+
+<entry>
+<title>PowerShell Tutorial</title>
+<id>tag:xahlee,2021-06-08:224035</id>
+<updated>2021-06-08T15:40:34-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/powershell/index.html">PowerShell Tutorial</a> <br /> worked a lot on it. starting to take shape.
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/powershell/index.html"/>
+</entry>
+
+<entry>
+<title>old articles</title>
+<id>tag:xahlee,2021-06-08:224010</id>
+<updated>2021-06-08T15:40:09-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+computing history, 2010.
+interesting in revisting old articles is to see which link went dead, why, squatter, what happen to people, which stood test of time, how things changed etc.
+</p>
+
+<ul>
+<li><a href="http://xahlee.info/comp/WMSCI.html">World Multiconference on Systemics, Cybernetics and Informatics</a></li>
+<li><a href="http://xahlee.info/js/captcha.html">Anti-bot Test: CAPTCHA!</a></li>
+<li><a href="http://xahlee.info/js/domain_names.html">Domain Names, Cybersquatting, Resell Market</a></li>
+<li><a href="http://xahlee.info/js/alternative_search_engines.html">Google Search Problems; Alternative Search Engines</a></li>
+</ul>
+
+<ul>
+<li><a href="http://xahlee.info/UnixResource_dir/writ/Mathematica_expressiveness.html">Vector Normalize Function in Mathematica, APL, Haskell, Ruby, Python, Perl, Lisp, JavaScript, Java, …</a></li>
+</ul>
+
+<ul>
+<li><a href="http://xahlee.info/mswin/file_shredding.html">How to Secure Delete Files, Shred Files, Wipe Drive</a></li>
+</ul>
+
+<ul>
+<li><a href="http://xahlee.info/mswin/unicode_support_file_names.html">Unicode Support in File Names: Windows, Mac, Emacs, Unison, Rsync, USB, Zip</a></li>
+<li><a href="http://xahlee.info/python/mac_resource_fork.html">Perl Scripts For Removing Mac Resource Fork, “.DS_Store”, “Thumbs.db”…</a></li>
+</ul>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/blog.html"/>
+</entry>
+
+<entry>
+<title>working on PowerShell</title>
+<id>tag:xahlee,2021-06-08:222110</id>
+<updated>2021-06-08T15:21:09-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+2021-05-23
+Gosh. Worked on PowerShell so much in past week.
+Feels like am now a semi-master of powershell. Lol. Well, comfortable in using it at least.
+In fact, i know more about it than bash now. Never studied bash.
+And my reason for digging into powershell, or a shell lang, is that i discovered, over 10 years, a realization, that shell lang actually is a lang designed for working with files. For example, many things that's 1 line of shell pipe, requires 5 to 10 lines of perl python, or 20 in elisp golang.
+And @Georrg helped in that realization few months ago.
+I've written a essay about this
+<a href="http://xahlee.info/comp/what_lang_to_use_for_find_replace.html">One Language to Rule Them All? Or, What Language to Use for Find Replace?</a>.
+And the interesting question i want to explore is, can a general purpose scripting lang, such as perl python ruby, or even lowish level golang, be designed to have a shell-style language characteristics (with pipes etc), and yet lose no good properties.
+Am inclined to think yes. Primarily, the lang just need a generic postfix operator, and functional lang in nature.
+In fact, i'd think Wolfram Lang is already 90% it. Just need to change some syntax to avoid nesting. (but this is not a trivial problem. for example, dealing with matrix and trees.)
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/comp/blog.html"/>
+</entry>
+
+<entry>
+<title>Windows: Registry Tutorial</title>
+<id>tag:xahlee,2021-06-08:222010</id>
+<updated>2021-06-08T15:20:09-07:00</updated>
+ <content type="xhtml">
+ <div xmlns="http://www.w3.org/1999/xhtml">
+
+<p>
+<a href="http://xahlee.info/mswin/MS_windows_registry.html">Windows: Registry Tutorial</a>
+</p>
+
+</div>
+ </content>
+<link rel="alternate" href="http://xahlee.info/mswin/MS_windows_registry.html"/>
+</entry>
+
+</feed>

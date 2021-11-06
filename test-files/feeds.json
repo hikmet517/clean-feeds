@@ -1,0 +1,76 @@
+{
+  "feeds": [
+    {
+      "title": "Planet Emacslife",
+      "url": "http://planet.emacslife.com/atom.xml",
+      "order": 1,
+      "tags": [
+        "emacs",
+        "blog"
+      ]
+    },
+    {
+      "title": "Engadget",
+      "url": "http://www.engadget.com/rss.xml",
+      "order": 2,
+      "tags": [
+        "tech",
+        "news"
+      ]
+    },
+    {
+      "title": "Xah Programing Blog",
+      "url": "http://xahlee.info/comp/blog.xml",
+      "order": 3,
+      "tags": [
+        "blog",
+        "dev"
+      ]
+    },
+    {
+      "title": "Pierre Neidhardt's homepage",
+      "url": "https://ambrevar.xyz/atom.xml",
+      "order": 4,
+      "tags": [
+        "emacs",
+        "blog",
+        "dev"
+      ]
+    },
+    {
+      "title": "Ars Technica",
+      "url": "https://arstechnica.com/feed/",
+      "order": 5,
+      "tags": [
+        "tech",
+        "news"
+      ]
+    },
+    {
+      "title": "begriffs.com",
+      "url": "https://begriffs.com/atom.xml",
+      "order": 6,
+      "tags": [
+        "blog",
+        "dev"
+      ]
+    },
+    {
+      "title": "Gizmodo",
+      "url": "https://gizmodo.com/rss",
+      "order": 7,
+      "tags": [
+        "tech",
+        "news"
+      ]
+    },
+    {
+      "title": "Dilbert",
+      "url": "https://kimmo.suominen.com/stuff/dilbert.xml",
+      "order": 8,
+      "tags": [
+        "comic"
+      ]
+    }
+  ]
+}
