@@ -6,8 +6,7 @@
 // const correctness
 // delete old entries (older than 10 days)
 // regex based auto-filtering, (delete automatically if matches)
-// when fetching keep only last n entries (except favorited entries)
-// bug: entry url is not always unique, should not be used as id
+// favorited entries (always keep these, do not automatically delete)
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
@@ -18,7 +17,6 @@ var objCache;      // cache of feed data
 
 var leftSelection;  // 'all', 'feed', 'tag', 'query'
 var leftData;
-// var midSelection;
 
 const UPDATEPERIOD = 60 * 60 * 1000;
 const NUMENTRIES = 60;
@@ -538,21 +536,6 @@ function queryFeeds(_event) {
 
 
 function restoreMid() {
-  // if (midSelection) {
-  //   const elem = document.getElementById(midSelection);
-  //   if (elem) {
-  //     elem.click();
-  //     elem.scrollIntoView({ block: "center" });
-  //   }
-  //   else {
-  //     // select first entry
-  //     const entryElems = document.getElementsByClassName('entry-list-elem');
-  //     if (entryElems.length > 0)
-  //       entryElems[0].click();
-  //     document.getElementById('entry-pane').scrollTo(0, 0);
-  //   }
-  // }
-
   const entryElems = document.getElementsByClassName('entry-list-elem');
   if (entryElems.length > 0)
     entryElems[0].click();
@@ -573,7 +556,7 @@ function addEntries(entries) {
     const elem = document.createElement('li');
     elem.classList.add('entry-list-elem');
     elem.setAttribute('feed-url', entry['feedlink']);
-    elem.setAttribute('id', entry['link']);
+    elem.setAttribute('entry-link', entry['link']);
     elem.addEventListener('click', fillContentPane);
 
     const titleElem = document.createElement('div');
@@ -670,14 +653,13 @@ function fillEntryPaneByFeed(event) {
 function fillContentPane(event) {
   console.log('fillContentPane');
   const feedUrl = event.currentTarget.getAttribute('feed-url');
-  const entryLink = event.currentTarget.getAttribute('id');
+  const entryLink = event.currentTarget.getAttribute('entry-link');
 
   // add/remove 'clicked' class
   for (const elem of event.currentTarget.parentElement.children) {
     elem.classList.remove('clicked');
   }
   event.currentTarget.classList.add('clicked');
-  // midSelection = entryLink;
 
   const contentPane = document.getElementById('content-pane');
   contentPane.setAttribute('feed-url', feedUrl);
@@ -871,14 +853,18 @@ function markReadUnread() {
 
     objCache['feeds'][feedUrl]['entries'][entryLink]['read'] = newState;
     chrome.storage.local.set(objCache, function() {
-      const elem = document.getElementById(entryLink);
-      const elemTitle = elem.getElementsByClassName('entry-list-elem-title')[0];
-      elemTitle.classList.add(newState ? 'read' : 'unread');
-      elemTitle.classList.remove(oldState ? 'read' : 'unread');
+      for (const elem of document.getElementsByClassName('entry-list-elem')) {
+        if (elem.getAttribute('entry-link') === entryLink &&
+            elem.getAttribute('feed-url') === feedUrl) {
+          const elemTitle = elem.getElementsByClassName('entry-list-elem-title')[0];
+          elemTitle.classList.add(newState ? 'read' : 'unread');
+          elemTitle.classList.remove(oldState ? 'read' : 'unread');
+          break;
+        }
+      }
     });
   }
 }
-
 
 function deleteEntry() {
   const contentItem = document.getElementById('content-pane');
@@ -889,8 +875,13 @@ function deleteEntry() {
   chrome.storage.local.set(objCache, function() {
     if (!selectNextEntry())
       selectPreviousEntry();
-    const elem = document.getElementById(entryLink);
-    elem.remove();
+    for (const elem of document.getElementsByClassName('entry-list-elem')) {
+      if (elem.getAttribute('entry-link') === entryLink &&
+          elem.getAttribute('feed-url') === feedUrl) {
+        elem.remove();
+        break;
+      }
+    }
   });
 }
 
