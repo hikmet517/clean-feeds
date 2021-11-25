@@ -4,49 +4,23 @@
     <meta charset="utf-8" />
     <title>Clean Feeds</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="viewer.css" />
     <link rel="shortcut icon" type="image/png" href="icons/icon-16.png">
     <script type="module" src="viewer.js"></script>
   </head>
   <body>
     <div id="toolbar">
-      <button id="add-feed" title="Add new feed">
-        <img src="icons/add.svg">
-        Add feed
-      </button>
-      <button id="refresh-feeds" title="Refresh feeds">
-        <img src="icons/refresh.svg">
-        Refresh feeds
-      </button>
-      <button id="switch-theme" title="Switch theme">
-        <img src="icons/colorneg.svg">
-        Switch theme
-      </button>
-      <button id="import-feeds" title="Import feeds from json">
-        <img src="icons/import.svg">
-        Import feeds
-      </button>
-      <button id="export-feeds" title="Export feeds to json">
-        <img src="icons/export.svg">
-        Export feeds
-      </button>
-      <button id="delete-old" title="Delete entries older than n days">
-        <img src="icons/trash.svg">
-        Delete old
-      </button>
-      <button id="clear-data" title="Clear internal data">
-        <img src="icons/trash.svg">
-        Delete all
-      </button>
+      <button id="add-feed" title="Add new feed"><i class="fa fa-plus"></i> Add feed</button>
+      <button id="refresh-feeds" title="Refresh feeds"><i class="fa fa-sync"></i> Refresh feeds</button>
+      <button id="switch-theme" title="Switch theme"><i class="fa fa-palette"></i> Switch theme</button>
+      <button id="import-feeds" title="Import feeds from json"><i class="fa fa-file-import"></i> Import feeds</button>
+      <button id="export-feeds" title="Export feeds to json"><i class="fa fa-file-export"></i> Export feeds</button>
+      <button id="delete-old" title="Delete entries older than n days"><i class="fa fa-trash"></i> Delete old</button>
+      <button id="clear-data" title="Clear internal data"><i class="fa fa-minus-circle"></i> Delete all</button>
       <div id="status-text"></div>
-      <button id="delete-entry" title="Delete entry">
-        <img src="icons/delete.svg">
-        Delete Entry
-      </button>
-      <button id="mark-read" title="Mark as read/unread">
-        <img src="icons/tick.svg">
-        Mark as read
-      </button>
+      <button id="delete-entry" title="Delete entry"><i class="fa fa-times"></i> Delete Entry</button>
+      <button id="mark-read" title="Mark as read/unread"><i class="fa fa-check"></i> Mark as read</button>
     </div>
     <div id="container">
       <div id="left-pane">
@@ -79,9 +53,7 @@
     </div>
 
     <div hidden="true" id="feed-info">
-      <button style="float: right" id="feed-info-close" title="Close">
-        <img src="icons/delete.svg">
-      </button>
+      <button style="float: right" id="feed-info-close" title="Close"><i class="fa fa-times"></i></button>
       <table>
         <tr>
           <td class="td-left">Title:</td>

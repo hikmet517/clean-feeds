@@ -237,7 +237,9 @@ function fillFeedPane() {
 
     const menuElem = document.createElement('button');
     menuElem.classList.add('feed-list-elem-menu');
-    menuElem.appendChild(document.createTextNode('⋮'));
+    let im = document.createElement('i');
+    im.setAttribute('class', 'fa fa-ellipsis-v');
+    menuElem.appendChild(im);
     menuElem.addEventListener('click', showHideFeedMenu);
     menuElem.addEventListener('mousedown', function(event) {
       event.stopPropagation();

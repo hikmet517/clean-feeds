@@ -344,13 +344,16 @@ video, figure, iframe, img {
 
 button {
     font-size: 0.7rem;
-    display: inline-flex;
     align-items: center;
+    border: none;
+    cursor: pointer;
+    color: var(--main-fg-color);
+    background-color: var(--main-bg-color);
 }
 
-#toolbar > button > img {
-    vertical-align: middle;
-    padding: 0.2em;
+#toolbar > button {
+    padding: 0.4rem;
+    margin: 0.1rem;
 }
 
 .toolbar-elem {
