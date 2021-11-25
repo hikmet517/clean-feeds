@@ -66,7 +66,7 @@
 
     --content-pane-bg-color: var(--main-bg-color);
 
-    --toolbar-bg-color: #7a7e78;
+    --toolbar-bg-color: #4a4c48;
     --toolbar-border-color: #72756f;
 }
 
@@ -298,7 +298,7 @@ a {
     /* border: 1px solid #cbd5e0; */
     display: flex;
     flex-direction: row;
-    background-color: var(--main-hover-bg-color);
+    background-color: var(--toolbar-bg-color);
     border: solid 1px var(--toolbar-border-color);
     align-items: center;
 }
@@ -349,6 +349,10 @@ button {
     cursor: pointer;
     color: var(--main-fg-color);
     background-color: var(--main-bg-color);
+}
+
+button:hover {
+    background-color: var(--clicked-bg-color);
 }
 
 #toolbar > button {
