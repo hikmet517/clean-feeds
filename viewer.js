@@ -7,6 +7,7 @@
 // delete old entries (older than 10 days)
 // regex based auto-filtering, (delete automatically if matches)
 // favorited entries (always keep these, do not automatically delete)
+// check: http://www.getfavicon.org/
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
@@ -236,10 +237,7 @@ function fillFeedPane() {
 
     const menuElem = document.createElement('button');
     menuElem.classList.add('feed-list-elem-menu');
-    const menuElemImg = document.createElement('img');
-    menuElemImg.src = 'icons/open-menu.svg';
-    menuElemImg.title = 'Open menu';
-    menuElem.appendChild(menuElemImg);
+    menuElem.appendChild(document.createTextNode('⋮'));
     menuElem.addEventListener('click', showHideFeedMenu);
     menuElem.addEventListener('mousedown', function(event) {
       event.stopPropagation();
@@ -729,6 +727,15 @@ function setLastStyle() {
       elem['style'] = rulestr;
     }
   });
+  chrome.storage.local.get({ theme : '' }, function(obj) {
+    if (obj['theme']) {
+      console.log('setting theme:', obj['theme']);
+      document.documentElement.setAttribute('theme', obj['theme']);
+    }
+    else {
+      document.documentElement.setAttribute('theme', 'light');
+    }
+  });
 }
 
 function deleteOldEntriesFeed() {
@@ -840,6 +847,17 @@ async function refreshFeeds() {
   else {
     statusElem.textContent = "";
   }
+}
+
+function switchTheme() {
+  const curr = document.documentElement.getAttribute('theme');
+  const next = curr === 'light' ? 'dark' : 'light';
+  chrome.storage.local.get({ theme: {} }, function(obj) {
+    obj['theme'] = next;
+    chrome.storage.local.set(obj, function () {
+      document.documentElement.setAttribute('theme', next);
+    });
+  });
 }
 
 function markReadUnread() {
@@ -1098,6 +1116,7 @@ function init() {
   // toolbar buttons
   document.getElementById('add-feed').addEventListener('click', addFeed);
   document.getElementById('refresh-feeds').addEventListener('click', refreshFeeds);
+  document.getElementById('switch-theme').addEventListener('click', switchTheme);
   document.getElementById('import-feeds').addEventListener('click', importFeeds);
   document.getElementById('export-feeds').addEventListener('click', exportFeeds);
   document.getElementById('delete-old').addEventListener('click', deleteOldEntries);

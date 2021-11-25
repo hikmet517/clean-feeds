@@ -1,7 +1,12 @@
-:root {
+:root[theme="light"] {
     --main-border-color: lavender;
     --main-bg-color: snow;
+    --main-fg-color: black;
+    --link-color: blue;
     --main-hover-bg-color: lavender;
+
+    --menu-shadow: rgba(0, 0, 0, 0.35);
+    --properties-shadow: rgba(0, 0, 0, 0.56);
 
     --clicked-bg-color: #d0ecffff;
     --clicked-border-color: #9ebdc3;
@@ -29,6 +34,42 @@
     --toolbar-border-color: #dcdcef;
 }
 
+:root[theme="dark"] {
+    --main-border-color: #356a9f;
+    --main-bg-color: #2e3436;
+    --main-fg-color: white;
+    --link-color: #6ca2ff;
+    --main-hover-bg-color: #284e75;
+
+    --menu-shadow: rgba(64, 134, 195, 0.35);
+    --properties-shadow: rgba(64, 134, 195, 0.56);
+
+    --clicked-bg-color: #2d5884;
+    --clicked-border-color: #468bd1;
+
+    --resizer-bg-color: #535551;
+
+    --main-elem-bg-color: #24344b;
+    --main-elem-border-color: #324766;
+
+    --feed-pane-bg-color: var(--main-bg-color);
+    --feed-elem-bg-color: var(--main-elem-bg-color);
+    --feed-elem-border-color: var(--main-elem-border-color);
+
+    --function-pane-bg-color: var(--main-bg-color);
+    --function-elem-bg-color: var(--main-elem-bg-color);
+    --function-elem-border-color: var(--main-elem-border-color);
+
+    --entry-pane-bg-color: var(--main-bg-color);
+    --entry-elem-bg-color: var(--main-elem-bg-color);
+    --entry-elem-border-color: var(--main-elem-border-color);
+
+    --content-pane-bg-color: var(--main-bg-color);
+
+    --toolbar-bg-color: #7a7e78;
+    --toolbar-border-color: #72756f;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -43,15 +84,17 @@ body {
     font-size: 0.85rem;
     font-family: sans-serif;
     background-color: var(--main-bg-color);
+    color: var(--main-fg-color);
 }
 
 h1 {
-    color: black;
     text-align: center;
+    color: var(--main-fg-color);
 }
 
 a {
     text-decoration-color: darkgray;
+    color: var(--link-color);
 }
 
 #container {
@@ -242,6 +285,7 @@ a {
     border: none;
     background: none;
     cursor: pointer;
+    color: var(--main-fg-color);
 }
 
 .feed-list-elem-menu:hover {
@@ -254,7 +298,7 @@ a {
     /* border: 1px solid #cbd5e0; */
     display: flex;
     flex-direction: row;
-    background-color: lavender;
+    background-color: var(--main-hover-bg-color);
     border: solid 1px var(--toolbar-border-color);
     align-items: center;
 }
@@ -322,7 +366,7 @@ button {
     position: fixed;
     border: 1px solid var(--main-border-color);
     background-color: var(--main-bg-color);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: var(--menu-shadow) 0px 5px 15px;
     z-index: 100;
     font-size: 0.8rem;
 }
@@ -349,7 +393,7 @@ button {
 #feed-info{
     position: fixed;
     padding: 0.5rem;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: var(--properties-shadow) 0px 22px 70px 4px;
     border: 1px solid var(--clicked-border-color);
     background-color: var(--main-bg-color);
     z-index: 100;
