@@ -41,7 +41,7 @@
     --link-color: #6ca2ff;
     --main-hover-bg-color: #284e75;
 
-    --menu-shadow: rgba(64, 134, 195, 0.35);
+    --menu-shadow: rgba(64, 134, 195, 0.40);
     --properties-shadow: rgba(64, 134, 195, 0.56);
 
     --clicked-bg-color: #2d5884;
@@ -286,6 +286,7 @@ a {
     background: none;
     cursor: pointer;
     color: var(--main-fg-color);
+    min-width: 1.1rem;
 }
 
 .feed-list-elem-menu:hover {
@@ -293,9 +294,7 @@ a {
 }
 
 #toolbar {
-    /* height: 2rem; */
     width: 100%;
-    /* border: 1px solid #cbd5e0; */
     display: flex;
     flex-direction: row;
     background-color: var(--toolbar-bg-color);
@@ -345,7 +344,7 @@ video, figure, iframe, img {
 button {
     font-size: 0.7rem;
     align-items: center;
-    border: none;
+    border: 1px solid var(--clicked-bg-color);
     cursor: pointer;
     color: var(--main-fg-color);
     background-color: var(--main-bg-color);
