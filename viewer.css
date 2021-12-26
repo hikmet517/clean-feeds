@@ -104,7 +104,6 @@ a {
     flex: 1;
     margin: 0;
     padding: 0;
-    border: 1px solid var(--main-border-color);
     flex-direction: row;
 }
 
@@ -355,7 +354,7 @@ button:hover {
 }
 
 #toolbar > button {
-    padding: 0.4rem;
+    padding: 0.35rem;
     margin: 0.1rem;
 }
 

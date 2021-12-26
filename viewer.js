@@ -8,6 +8,7 @@
 // regex based auto-filtering, (delete automatically if matches)
 // favorited entries (always keep these, do not automatically delete)
 // check: http://www.getfavicon.org/
+// change manifest to v3, so that we can use promises in storage api
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
@@ -996,13 +997,13 @@ function keyHandler(e) {
     selectPreviousEntry();
   }
 
-  else if (e.key === 'e' || e.key === 'E') {
-    exportFeeds();
-  }
+  // else if (e.key === 'e' || e.key === 'E') {
+  //   exportFeeds();
+  // }
 
-  else if (e.key === 'i' || e.key === 'I' || e.key === 'İ') {
-    importFeeds();
-  }
+  // else if (e.key === 'i' || e.key === 'I' || e.key === 'İ') {
+  //   importFeeds();
+  // }
 
 }
 
