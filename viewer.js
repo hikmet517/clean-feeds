@@ -35,6 +35,26 @@ initResizer(function(prevSibling) {
 });
 
 
+// utility functions
+function lstrip(str, s) {
+  if(s && s !== "") {
+    while (str.startsWith(s)) {
+      str = str.substring(s.length);
+    }
+  }
+  return str;
+}
+
+function rstrip(str, s) {
+  if(s && s !== "") {
+    while (str.endsWith(s)) {
+      return str.substring(0, str.length - s.length);
+    }
+  }
+  return str;
+}
+
+
 async function fetchParseFeed(url, init) {
   console.log('fetching:', url);
 
@@ -307,9 +327,11 @@ function addTag() {
   const input = prompt('Enter tags (separated by space)', defaultPrompt);
   if (input) {
     savedTags = new Set();
-    for (const tag of input.trim().split(' '))
-      if (tag.trim())
-        savedTags.add(tag.trim());
+    for (let tag of input.trim().split(' ')) {
+      tag = lstrip(tag, '#').trim();
+      if (tag)
+        savedTags.add(tag);
+    }
     savedTags = new Array(...savedTags);
 
     // update it
