@@ -553,7 +553,8 @@ function makeQuery(input) {
 
 function queryFeeds(_event) {
   console.log('queryFeeds');
-  const input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])");
+  const dflt = leftSelection === 'query' ? leftData : "";
+  const input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])", dflt);
   makeQuery(input);
 }
 
