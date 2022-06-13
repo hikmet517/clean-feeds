@@ -724,6 +724,12 @@ function fillContentPane(event) {
 	}
   }
 
+  // remove background element if exist (for techrights site)
+  for (const elem of contentElem.getElementsByTagName('div')) {
+	if (elem.style.background)
+	  elem.style.background = '';
+  }
+
   // remove problematic elements
   for (const elem of contentElem.querySelectorAll('script, object, applet, iframe, embed'))
 	elem.remove();
@@ -865,14 +871,19 @@ async function refreshFeeds() {
 
   if (updated) {
 	// save
-	chrome.storage.local.set(objCache, function() {
-	  statusElem.textContent = "";
-	  restoreLeft();
-	});
+	chrome.storage.local.set(objCache);
   }
-  else {
-	statusElem.textContent = "";
-  }
+
+  restoreLeft();
+
+  // send notification
+  chrome.notifications.create(null,
+							  {
+								"type": "basic",
+								"iconUrl": chrome.runtime.getURL("icons/icon-48.png"),
+								"title": "Clean Feeds",
+								"message": "Refreshing is completed"
+							  });
 }
 
 function switchTheme() {

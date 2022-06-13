@@ -4,35 +4,36 @@
   "manifest_version": 2,
   "description": "Feed Reader",
   "icons": {
-    "48": "icons/icon-48.png",
-    "64": "icons/icon.svg",
-    "96": "icons/icon.svg"
+	"48": "icons/icon-48.png",
+	"64": "icons/icon.svg",
+	"96": "icons/icon.svg"
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
+	"scripts": [
+	  "background.js"
+	],
+	"persistent": true
   },
   "permissions": [
-    "tabs",
-    "<all_urls>",
-    "*://*/*",
-    "storage",
-    "unlimitedStorage",
-    "downloads"
+	"tabs",
+	"<all_urls>",
+	"*://*/*",
+	"storage",
+	"unlimitedStorage",
+	"downloads",
+	"notifications"
   ],
   "browser_action": {
-    "default_icon": {
-      "48": "icons/icon-48.png"
-    },
-    "default_title": "Clean Feeds"
+	"default_icon": {
+	  "48": "icons/icon-48.png"
+	},
+	"default_title": "Clean Feeds"
   },
   "web_accessible_resources": ["icons/*"],
   "browser_specific_settings": {
-    "gecko": {
-      "id": "clean-feeds@example.com",
-      "strict_min_version": "42.0"
-    }
+	"gecko": {
+	  "id": "clean-feeds@example.com",
+	  "strict_min_version": "42.0"
+	}
   }
 }
