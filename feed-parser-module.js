@@ -3,7 +3,7 @@
 function parseAtom(dom, feedUrl) {
   const feed = {};
   feed['entries'] = {};
-  feed['checked'] = (new Date()).toJSON();
+  feed['checked'] = (new Date()).toJSON(); // last time it's fetched
   feed['feedlink'] = feedUrl;
 
   const titleNode = dom.querySelector('feed > title');
@@ -81,7 +81,7 @@ function parseAtom(dom, feedUrl) {
 function parseRss(dom, feedUrl) {
   const feed = {};
   feed['entries'] = {};
-  feed['checked'] = (new Date()).toJSON();
+  feed['checked'] = (new Date()).toJSON(); // last time it's fetched
   feed['feedlink'] = feedUrl;
 
   const titleNode = dom.querySelector('rss > channel > title');
