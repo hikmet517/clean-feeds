@@ -574,6 +574,9 @@ function addEntries(entries) {
   });
 
   for (const entry of entries) {
+	if (entry['deleted'] === true)
+	  continue;
+
 	const elem = document.createElement('li');
 	elem.classList.add('entry-list-elem');
 	elem.setAttribute('feed-url', entry['feedlink']);
@@ -917,7 +920,7 @@ function deleteEntry() {
   const feedUrl = contentItem.getAttribute('feed-url');
   const entryLink = contentItem.getAttribute('entry-link');
 
-  delete objCache['feeds'][feedUrl]['entries'][entryLink];
+  objCache['feeds'][feedUrl]['entries'][entryLink]['deleted'] = true;
   chrome.storage.local.set(objCache, function() {
 	if (!selectNextEntry())
 	  selectPreviousEntry();
