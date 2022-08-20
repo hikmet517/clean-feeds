@@ -15,50 +15,55 @@ function tokenize(input) {
   let tokens = [];
   let str = '';
   for (let i = 0; i < input.length; i++) {
-    let c = input[i];
+	let c = input[i];
 
-    // check whitespace
-    if (c == ' ') {
-      if (str.length > 0) {
-        tokens.push(str);
-        str = '';
-      }
-    }
+	// check whitespace
+	if (c == ' ') {
+	  if (str.length > 0) {
+		tokens.push(str);
+		str = '';
+	  }
+	}
 
-    // check symbols
-    else if (symbols.includes(c)) {
-      if (str.length > 0) {
-        tokens.push(str);
-        str = '';
-      }
+	// check symbols
+	else if (symbols.includes(c)) {
+	  if (str.length > 0) {
+		tokens.push(str);
+		str = '';
+	  }
 
-      tokens.push(c);
-    }
+	  tokens.push(c);
+	}
 
-    // others
-    else {
-      str += c;
-    }
+	// others
+	else {
+	  str += c;
+	}
   }
 
   // check remainings
   if (str.length > 0) {
-    tokens.push(str);
+	tokens.push(str);
   }
   return tokens;
+}
+
+function isTag(token) {
+  return !symbols.includes(token);
 }
 
 function normalizeTokens(tokens) {
   let newTokens = [];
   for (let i=0; i<tokens.length-1; i++) {
-    newTokens.push(tokens[i]);
-    // both are tags
-    if ( !symbols.includes(tokens[i]) && !symbols.includes(tokens[i+1]) ) {
-      newTokens.push('&');
-    }
-    else if (!symbols.includes(tokens[i]) && tokens[i+1] === '!') {
-      newTokens.push('&');
-    }
+	newTokens.push(tokens[i]);
+	// both are tags
+	if ((isTag(tokens[i]) && isTag(tokens[i+1]))
+		|| (isTag(tokens[i]) && tokens[i+1] === '!')
+		|| (tokens[i] === ')' && isTag(tokens[i+1]))
+		|| (tokens[i] === ')' && tokens[i+1] === '!')
+		|| (isTag(tokens[i]) && tokens[i+1] === '(')) {
+	  newTokens.push('&');
+	}
   }
   newTokens.push(tokens[tokens.length-1]);
   return newTokens;
@@ -72,49 +77,49 @@ function normalizeTokens(tokens) {
 function parseExprs(tokens) {
   // check 'NOT'
   for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i] == '!') {
-      if (i + 1 >= tokens.length) {
-        console.error("parse error: '!' is in wrong place");
-        return false;
-      }
-      tokens.splice(i, 2, { '!': tokens[i + 1] });
-      i -= 2;
-    }
+	if (tokens[i] == '!') {
+	  if (i + 1 >= tokens.length) {
+		console.error("parse error: '!' is in wrong place");
+		return false;
+	  }
+	  tokens.splice(i, 2, { '!': tokens[i + 1] });
+	  i -= 2;
+	}
   }
 
   // check 'AND'
   for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i] == '&') {
-      if (i - 1 < 0 || i + 1 >= tokens.length) {
-        console.error("parse error: '&' has missing operands");
-        return false;
-      }
-      tokens.splice(i - 1, 3, { '&': { left: tokens[i - 1], right: tokens[i + 1] } });
-      i -= 3;
-    }
+	if (tokens[i] == '&') {
+	  if (i - 1 < 0 || i + 1 >= tokens.length) {
+		console.error("parse error: '&' has missing operands");
+		return false;
+	  }
+	  tokens.splice(i - 1, 3, { '&': { left: tokens[i - 1], right: tokens[i + 1] } });
+	  i -= 3;
+	}
   }
 
   // check 'OR'
   for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i] == '|') {
-      if (i - 1 < 0 || i + 1 >= tokens.length) {
-        console.error("parse error: '|' has missing operands");
-        return false;
-      }
-      tokens.splice(i - 1, 3, { '|': { left: tokens[i - 1], right: tokens[i + 1] } });
-      i -= 3;
-    }
+	if (tokens[i] == '|') {
+	  if (i - 1 < 0 || i + 1 >= tokens.length) {
+		console.error("parse error: '|' has missing operands");
+		return false;
+	  }
+	  tokens.splice(i - 1, 3, { '|': { left: tokens[i - 1], right: tokens[i + 1] } });
+	  i -= 3;
+	}
   }
 
   // check errors
   if (tokens.length != 1) {
-    console.error('parse error');
-    for (let token of tokens) {
-      if (typeof (token) != 'object') {
-        console.error(`around token: '${token}'`);
-      }
-    }
-    return false;
+	console.error('parse error: There is no token');
+	for (let token of tokens) {
+	  if (typeof (token) != 'object') {
+		console.error(`around token: '${token}'`);
+	  }
+	}
+	return false;
   }
   return tokens[0];
 }
@@ -129,44 +134,44 @@ function parseExprs(tokens) {
  */
 function parse(tokens) {
   if (tokens.length == 0)
-    return true;
+	return true;
 
   let stack = [];
 
   // find sub-expressions by checking parens
   for (let token of tokens) {
-    if (token == ')') {
-      let expr = [];
-      let elem = '';
-      while (true) {
-        if (stack.length != 0) {
-          elem = stack.pop();
+	if (token == ')') {
+	  let expr = [];
+	  let elem = '';
+	  while (true) {
+		if (stack.length != 0) {
+		  elem = stack.pop();
 
-          // found matching paren
-          if (elem == '(') {
-            expr.reverse();
-            stack.push({ '()': parseExprs(expr) });
-            break;
-          }
-          else
-            expr.push(elem);
-        }
-        // stack is consumed, cannot found '(', raise error
-        else {
-          console.error("parse error: missing '('");
-          return false;
-        }
-      }
-    }
-    else {
-      stack.push(token);
-    }
+		  // found matching paren
+		  if (elem == '(') {
+			expr.reverse();
+			stack.push({ '()': parseExprs(expr) });
+			break;
+		  }
+		  else
+			expr.push(elem);
+		}
+		// stack is consumed, cannot found '(', raise error
+		else {
+		  console.error("parse error: missing '('");
+		  return false;
+		}
+	  }
+	}
+	else {
+	  stack.push(token);
+	}
   }
 
   // we handled parens, so these are erroneous
   if (stack.includes('(') || stack.includes(')')) {
-    console.error('parse error: missing or too many parentheses');
-    return false;
+	console.error('parse error: missing or too many parentheses');
+	return false;
   }
 
   return parseExprs(stack);
@@ -184,43 +189,43 @@ function parse(tokens) {
 function evalAst(ast, entries, tagProperty) {
   // console.log("ast:", ast);
   if (typeof (ast) == 'object') {
-    for (let [key, val] of Object.entries(ast)) {
-      if (key === '()') {
-        // console.log('recurse ()');
-        return evalAst(val, entries, tagProperty);
-      }
+	for (let [key, val] of Object.entries(ast)) {
+	  if (key === '()') {
+		// console.log('recurse ()');
+		return evalAst(val, entries, tagProperty);
+	  }
 
-      if (key === 'left' || key === 'right') {
-        // console.log(`recurse ${key}`);
-        return evalAst(val, entries, tagProperty);
-      }
+	  if (key === 'left' || key === 'right') {
+		// console.log(`recurse ${key}`);
+		return evalAst(val, entries, tagProperty);
+	  }
 
-      if (key === '&') {
-        // console.log('handle &');
-        return handleAnd(evalAst(val['left'], entries, tagProperty),
-                         evalAst(val['right'], entries, tagProperty));
-      }
+	  if (key === '&') {
+		// console.log('handle &');
+		return handleAnd(evalAst(val['left'], entries, tagProperty),
+						 evalAst(val['right'], entries, tagProperty));
+	  }
 
-      if (key === '|') {
-        // console.log('handle |');
-        return handleOr(evalAst(val['left'], entries, tagProperty),
-                        evalAst(val['right'], entries, tagProperty));
-      }
+	  if (key === '|') {
+		// console.log('handle |');
+		return handleOr(evalAst(val['left'], entries, tagProperty),
+						evalAst(val['right'], entries, tagProperty));
+	  }
 
-      if (key === '!') {
-        // console.log('handle !');
-        return handleNot(evalAst(val, entries, tagProperty), entries);
-      }
+	  if (key === '!') {
+		// console.log('handle !');
+		return handleNot(evalAst(val, entries, tagProperty), entries);
+	  }
 
-      if (typeof (val) === 'string') {
-        // console.log('handle tagg:', val);
-        return handleTag(evalAst(val, entries, tagProperty), entries);
-      }
-    }
+	  if (typeof (val) === 'string') {
+		// console.log('handle tagg:', val);
+		return handleTag(evalAst(val, entries, tagProperty), entries);
+	  }
+	}
   }
   if (typeof (ast) === 'string') {
-    // console.log('handle tag:', ast);
-    return handleTag(ast, entries, tagProperty);
+	// console.log('handle tag:', ast);
+	return handleTag(ast, entries, tagProperty);
   }
   return ast;
 }
@@ -236,9 +241,9 @@ function evalAst(ast, entries, tagProperty) {
 function handleTag(word, entries, tagProperty) {
   let filtered = [];
   for (let entry of entries) {
-    if (entry[tagProperty] && entry[tagProperty].includes(word)) {
-      filtered.push(entry);
-    }
+	if (entry[tagProperty] && entry[tagProperty].includes(word)) {
+	  filtered.push(entry);
+	}
   }
   return filtered;
 }
@@ -251,9 +256,9 @@ function handleTag(word, entries, tagProperty) {
 function handleNot(current, entries) {
   let filtered = [];
   for (let entry of entries) {
-    if (!current.includes(entry)) {
-      filtered.push(entry);
-    }
+	if (!current.includes(entry)) {
+	  filtered.push(entry);
+	}
   } return filtered;
 }
 
@@ -265,11 +270,11 @@ function handleNot(current, entries) {
 function handleAnd(left, right) {
   let filtered = [];
   for (let entryLeft of left) {
-    for (let entryRight of right) {
-      if (entryLeft == entryRight) {
-        filtered.push(entryLeft);
-      }
-    }
+	for (let entryRight of right) {
+	  if (entryLeft == entryRight) {
+		filtered.push(entryLeft);
+	  }
+	}
   }
   return filtered;
 }
@@ -282,9 +287,9 @@ function handleAnd(left, right) {
 function handleOr(left, right) {
   let filtered = left;
   for (let entryRight of right) {
-    if (!filtered.includes(entryRight)) {
-      filtered.push(entryRight);
-    }
+	if (!filtered.includes(entryRight)) {
+	  filtered.push(entryRight);
+	}
   }
   return filtered;
 }
