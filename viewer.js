@@ -449,6 +449,10 @@ function showPropertiesFeed() {
   const entryCount = Object.values(objCache['feeds'][feedUrl]['entries']).length;
   document.getElementById('feed-info-entries').textContent = entryCount;
   document.getElementById('feed-info-numentries').textContent = objCache['feeds'][feedUrl]['numEntries'];
+  let tags = objCache['feeds'][feedUrl]['tags'];
+  if(tags)
+	tags = tags.join(' ');
+  document.getElementById('feed-info-tags').textContent = tags;
   const feedInfoElem = document.getElementById('feed-info');
   feedInfoElem.hidden = false;
   const rect = feedInfoElem.getBoundingClientRect();
@@ -551,7 +555,7 @@ function makeQuery(input) {
 function queryFeeds(_event) {
   console.log('queryFeeds');
   const dflt = leftSelection === 'query' ? leftData : "";
-  const input = prompt("Enter query (boolean algebra using ['&', '|', '!', '(', ')'])", dflt);
+  const input = prompt("Enter query (boolean algebra using '&', '|', '!', '(', ')')", dflt);
   makeQuery(input);
 }
 
