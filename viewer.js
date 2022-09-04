@@ -445,7 +445,16 @@ function showPropertiesFeed() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
   document.getElementById('feed-info-title').textContent = objCache['feeds'][feedUrl]['title'];
-  document.getElementById('feed-info-url').textContent = feedUrl;
+
+  const url_elem = document.getElementById('feed-info-url').children[0];
+  url_elem.textContent = feedUrl;
+  url_elem.setAttribute('href', feedUrl);
+
+  const link_elem = document.getElementById('feed-info-link').children[0];
+  const link = objCache['feeds'][feedUrl]['link'] || '';
+  link_elem.textContent = link;
+  link_elem.setAttribute('href', link);
+  
   const entryCount = Object.values(objCache['feeds'][feedUrl]['entries']).length;
   document.getElementById('feed-info-entries').textContent = entryCount;
   document.getElementById('feed-info-numentries').textContent = objCache['feeds'][feedUrl]['numEntries'];
