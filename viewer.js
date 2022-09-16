@@ -586,6 +586,7 @@ function addEntries(entries) {
 	return (new Date(snd['updated'])) - (new Date(fst['updated']));
   });
 
+  let entryCount = 0;
   for (const entry of entries) {
 	if (entry['deleted'] === true)
 	  continue;
@@ -628,8 +629,9 @@ function addEntries(entries) {
 	elem.appendChild(titleDateElem);
 
 	entryList.appendChild(elem);
+	entryCount += 1;
   }
-  document.getElementById('status-text').textContent = `${entries.length} entries`;
+  document.getElementById('status-text').textContent = `${entryCount} entries`;
 }
 
 
@@ -944,6 +946,10 @@ function deleteEntry() {
 		break;
 	  }
 	}
+	const statusElem = document.getElementById('status-text');
+	let entryCount = Number.parseInt(rstrip(statusElem.textContent, " entries"))
+	entryCount -= 1;
+	statusElem.textContent = `${entryCount} entries`;
   });
 }
 
