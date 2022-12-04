@@ -16,8 +16,7 @@ import initResizer from './resizer-module.js';
 var draggedElement;  // for dragging feed elem
 var objCache;      // cache of feed data
 
-var leftSelection;  // 'all', 'feed', 'tag', 'query'
-var leftData;
+var lastQuery = "";
 
 const NUMENTRIES = 40;
 
@@ -52,11 +51,30 @@ function rstrip(str, s) {
   return str;
 }
 
+function createId(url) {
+  const u = new URL(url);
+  let base = lstrip(u.hostname, "www.") + u.pathname;
+  for (const [key, val] of u.searchParams) {
+	base += key + '-' + val;
+  }
+  base = base.replaceAll('.', '-');
+  base = base.replaceAll('/', '-');
+  base = base.replaceAll(':', '-');
+  base = base.replaceAll('?', '-');
+  base = base.replaceAll('&', '-');
+  base = base.replaceAll('#', '-');
+  base = base.replaceAll('--', '-');
+  base = lstrip(base, '-');
+  base = rstrip(base, '-');
+  base = encodeURIComponent(base);
+  return base;
+}
 
 async function fetchParseFeed(url, init) {
   console.log('fetching:', url);
 
   let feed;
+  let entries;
   try {
 	const response = await fetch(url, {
 	  method: 'GET',
@@ -70,7 +88,8 @@ async function fetchParseFeed(url, init) {
 	}
 
 	const content = await response.text();
-	feed = parseFeed(content, url);
+	[feed, entries] = parseFeed(content, url);
+    feed['id'] = createId(url);
 
 	if (!feed) {
 	  console.error('fetchParseFeed, parseFeed returned false:', url);
@@ -85,8 +104,15 @@ async function fetchParseFeed(url, init) {
   // initialize other data
   if (init) {
 	feed['numEntries'] = NUMENTRIES;
-	for (const [_link, entry] of Object.entries(feed['entries']))
+    feed['entries'] = {};
+    
+	for (const entry of entries) {
 	  entry['read'] = false;
+      entry['feedid'] = feed['id'];
+      const entryId = createId(entry['link']);
+      entry['id'] = entryId;
+      feed['entries'][entryId] = entry;
+    }
 
 	// read icon
 	let success = false;
@@ -155,11 +181,12 @@ async function fetchParseFeed(url, init) {
 }
 
 
-// add new feed, initiated by either clicking the button or pressing 'f'
+// add new feed, initiated by either clicking the button or pressing 'e'
 async function addFeed() {
-  const url = prompt('Enter url');
-  if (url && url.trim()) {
-	const feed = await fetchParseFeed(url.trim(), true);
+  let url = prompt('Enter url');
+  if (url) {
+	url = url.trim();
+	const feed = await fetchParseFeed(url, true);
 
 	if (!feed) {
 	  console.error('fetchParseFeed failed');
@@ -168,17 +195,21 @@ async function addFeed() {
 
 	// save
 	if (!(url in objCache['feeds'])) {
+	  // find order (max(order) + 1)
 	  let order = 0;
 	  for (const feed of Object.values(objCache['feeds']))
 		if (feed['order'] > order)
 		  order = feed['order'];
 	  order = order + 1;
 	  feed['order'] = order;
-	  objCache['feeds'][url] = feed;
+
+	  objCache['feeds'][feed['id']] = feed;
 	  chrome.storage.local.set(objCache, function() {
 		fillFeedPane();
-		restoreLeft();
 	  });
+	}
+	else {
+	  window.alert(`url (${url}) is already added as ${objCache['feeds'][url]}`);
 	}
   }
 }
@@ -222,14 +253,19 @@ function feedListElemDrop(event) {
 function fillFeedPane() {
   console.log('fillFeedPane');
   const tempArray = [];
-  for (const [url, feed] of Object.entries(objCache['feeds'])) {
+  for (const [feedId, feed] of Object.entries(objCache['feeds'])) {
 	const elem = document.createElement('li');
 
 	elem.classList.add('feed-list-elem');
-	elem.setAttribute('id', url);
+	elem.setAttribute('id', feedId);
 	elem.setAttribute('order', feed['order']);
 	elem.setAttribute('title', feed['title']);
-	elem.addEventListener('click', fillEntryPaneByFeed);
+	elem.addEventListener('click', () => {
+      const url = new URL(window.location.origin + window.location.pathname);
+      url.searchParams.set('feed', feedId);
+      window.history.pushState({}, '', url);
+      fillEntryPaneByFeed(feedId)
+    });
 
 	// ==== ELEM'S DRAG FUNCTIONS BEGIN ====
 	elem.setAttribute('draggable', 'true');
@@ -279,11 +315,11 @@ function fillFeedPane() {
 }
 
 function showHideFeedMenu(event) {
-  const feedUrl = event.currentTarget.parentElement.getAttribute('id');
+  const feedId = event.currentTarget.parentElement.getAttribute('id');
   event.stopPropagation();
   const feedMenu = document.getElementById('feed-menu');
   if (('hidden' in feedMenu.attributes)) {
-	feedMenu.setAttribute('feed-url', feedUrl);
+	feedMenu.setAttribute('feed-id', feedId);
 	feedMenu.style.left = event.clientX + 10 + 'px';
 	feedMenu.style.top = event.clientY + 10 + 'px';
 	feedMenu.removeAttribute('hidden');
@@ -343,55 +379,52 @@ function addTag() {
 
 async function refreshFeed() {
   hideFeedContextMenu();
-  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
-  const newFeed = await fetchParseFeed(feedUrl, false);
+  const feedId = document.getElementById('feed-menu').getAttribute('feed-id');
+  const newFeed = await fetchParseFeed(objCache['feeds'][feedId]['feedLink'], false);
   if (!newFeed) {
 	console.error('fetchParseFeed failed');
 	return;
   }
-  objCache['feeds'][feedUrl] = mergeFeeds(objCache['feeds'][feedUrl], newFeed);
+  objCache['feeds'][feedId] = mergeFeeds(objCache['feeds'][feedId], newFeed);
   chrome.storage.local.set(objCache, function() {
-	restoreLeft();
   });
 }
 
 function changeFeedTitle() {
   hideFeedContextMenu();
-  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
-  const oldTitle = objCache['feeds'][feedUrl]['title'];
+  const feedId = document.getElementById('feed-menu').getAttribute('feed-id');
+  const oldTitle = objCache['feeds'][feedId]['title'];
   const input = prompt('Enter new title', oldTitle);
   if (input && input.trim()) {
-	objCache['feeds'][feedUrl]['title'] = input.trim();
-	for (const [_entryUrl, entry] of Object.entries(objCache['feeds'][feedUrl]['entries']))
-	  entry['feedtitle'] = objCache['feeds'][feedUrl]['title'];
+	objCache['feeds'][feedId]['title'] = input.trim();
+	for (const [_entryUrl, entry] of Object.entries(objCache['feeds'][feedId]['entries']))
+	  entry['feedtitle'] = objCache['feeds'][feedId]['title'];
 	chrome.storage.local.set(objCache, function() {
 	  fillFeedPane();
-	  restoreLeft();
 	});
   }
 }
 
 function changeNumEntries() {
   hideFeedContextMenu();
-  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
-  const oldNumEntries = objCache['feeds'][feedUrl]['numEntries'];
+  const feedId = document.getElementById('feed-menu').getAttribute('feed-id');
+  const oldNumEntries = objCache['feeds'][feedId]['numEntries'];
   const input = prompt('Enter number of entries to keep', oldNumEntries);
   if (input && input.trim()) {
-	objCache['feeds'][feedUrl]['numEntries'] = parseInt(input.trim());
+	objCache['feeds'][feedId]['numEntries'] = parseInt(input.trim());
 	chrome.storage.local.set(objCache);
   }
 }
 
 function deleteFeed() {
   hideFeedContextMenu();
-  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
-  const res = window.confirm(`Are you sure you want to delete the feed '${objCache['feeds'][feedUrl]['title']}'`);
+  const feedId = document.getElementById('feed-menu').getAttribute('feed-id');
+  const res = window.confirm(`Are you sure you want to delete the feed '${objCache['feeds'][feedId]['title']}'`);
   if (res) {
-	delete objCache['feeds'][feedUrl];
+	delete objCache['feeds'][feedId];
 	chrome.storage.local.set(objCache, function() {
 	  fillFunctionPane();
 	  fillFeedPane();
-	  restoreLeft();
 	});
   }
 }
@@ -443,22 +476,22 @@ function initFeedMenu() {
 
 function showPropertiesFeed() {
   hideFeedContextMenu();
-  const feedUrl = document.getElementById('feed-menu').getAttribute('feed-url');
-  document.getElementById('feed-info-title').textContent = objCache['feeds'][feedUrl]['title'];
+  const feedId = document.getElementById('feed-menu').getAttribute('feed-id');
+  document.getElementById('feed-info-title').textContent = objCache['feeds'][feedId]['title'];
 
   const url_elem = document.getElementById('feed-info-url').children[0];
-  url_elem.textContent = feedUrl;
-  url_elem.setAttribute('href', feedUrl);
+  url_elem.textContent = feedId;
+  url_elem.setAttribute('href', feedId);
 
   const link_elem = document.getElementById('feed-info-link').children[0];
-  const link = objCache['feeds'][feedUrl]['link'] || '';
+  const link = objCache['feeds'][feedId]['link'] || '';
   link_elem.textContent = link;
   link_elem.setAttribute('href', link);
-  
-  const entryCount = Object.values(objCache['feeds'][feedUrl]['entries']).length;
+
+  const entryCount = Object.values(objCache['feeds'][feedId]['entries']).length;
   document.getElementById('feed-info-entries').textContent = entryCount;
-  document.getElementById('feed-info-numentries').textContent = objCache['feeds'][feedUrl]['numEntries'];
-  let tags = objCache['feeds'][feedUrl]['tags'];
+  document.getElementById('feed-info-numentries').textContent = objCache['feeds'][feedId]['numEntries'];
+  let tags = objCache['feeds'][feedId]['tags'];
   if(tags)
 	tags = tags.join(' ');
   document.getElementById('feed-info-tags').textContent = tags;
@@ -481,7 +514,12 @@ function fillFunctionPane() {
   allFeedsElem.classList.add('function-list-elem');
   allFeedsElem.setAttribute('id', 'all-feeds');
   allFeedsElem.appendChild(document.createTextNode('All Feeds'));
-  allFeedsElem.addEventListener('click', fillEntryPaneAll);
+  allFeedsElem.addEventListener('click', () => {
+    const url = new URL(window.location.origin + window.location.pathname);
+    url.searchParams.set('all', true);
+    window.history.pushState({}, '', url);
+    fillEntryPaneAll();
+  });
   listElem.appendChild(allFeedsElem);
 
   const queryElem = document.createElement('li');
@@ -506,12 +544,17 @@ function fillFunctionPane() {
 	tagElem.classList.add('querytag-feeds');
 	tagElem.appendChild(document.createTextNode('#' + tag));
 	tagElem.setAttribute('id', '#' + tag);
-	tagElem.addEventListener('click', fillEntryPaneByTag);
+	tagElem.addEventListener('click', () => {
+      const url = new URL(window.location.origin + window.location.pathname);
+      url.searchParams.set('tag', tag);
+      window.history.pushState({}, '', url);
+      fillEntryPaneByTag(tag);
+    });
 	listElem.appendChild(tagElem);
   }
 }
 
-function fillEntryPaneByTag(event) {
+function fillEntryPaneByTag(tag) {
   console.log('fillEntryPaneByTag');
 
   // add/remove 'clicked'
@@ -521,9 +564,8 @@ function fillEntryPaneByTag(event) {
   for (const elem of document.getElementsByClassName('feed-list-elem')) {
 	elem.classList.remove('clicked');
   }
-  event.currentTarget.classList.add('clicked');
+  document.getElementById('#' + tag).classList.add('clicked');
 
-  const tag = event.currentTarget.innerText.substr(1);
   const entries = [];
   for (const [_url, feed] of Object.entries(objCache['feeds'])) {
 	if (feed['tags'] && feed['tags'].includes(tag)) {
@@ -531,10 +573,6 @@ function fillEntryPaneByTag(event) {
 	}
   }
   addEntries(entries);
-  restoreMid();
-
-  leftSelection = 'tag';
-  leftData = '#' + tag;
 }
 
 function makeQuery(input) {
@@ -545,7 +583,6 @@ function makeQuery(input) {
 	  entries.push(...Object.values(feed['entries']));
 	}
 	addEntries(entries);
-	restoreMid();
 
 	// change clicked
 	for (const elem of document.getElementsByClassName('function-list-elem')) {
@@ -555,25 +592,19 @@ function makeQuery(input) {
 	  elem.classList.remove('clicked');
 	}
 	document.getElementById('query-feeds').classList.add('clicked');
-
-	leftSelection = 'query';
-	leftData = input;
   }
 }
 
-function queryFeeds(_event) {
+function queryFeeds() {
   console.log('queryFeeds');
-  const dflt = leftSelection === 'query' ? leftData : "";
-  const input = prompt("Enter query (boolean algebra using '&', '|', '!', '(', ')')", dflt);
+  const input = prompt("Enter query (boolean algebra using '&', '|', '!', '(', ')')", lastQuery);
+  lastQuery = input;
+
+  const url = new URL(window.location.origin + window.location.pathname);
+  url.searchParams.set('query', encodeURIComponent(input));
+  window.history.pushState({}, '', url);
+
   makeQuery(input);
-}
-
-
-function restoreMid() {
-  const entryElems = document.getElementsByClassName('entry-list-elem');
-  if (entryElems.length > 0)
-	entryElems[0].click();
-  document.getElementById('entry-pane').scrollTo(0, 0);
 }
 
 // add entries to entry pane
@@ -593,9 +624,15 @@ function addEntries(entries) {
 
 	const elem = document.createElement('li');
 	elem.classList.add('entry-list-elem');
-	elem.setAttribute('feed-url', entry['feedlink']);
-	elem.setAttribute('entry-link', entry['link']);
-	elem.addEventListener('click', fillContentPane);
+	elem.setAttribute('feed-id', entry['feedid']);
+	elem.setAttribute('entry-id', entry['id']);
+	elem.addEventListener('click', () => {
+      const url = new URL(window.location);
+      url.searchParams.set('entryId', entry['id']);
+      url.searchParams.set('feedId', entry['feedid']);
+      window.history.pushState({}, '', url);
+      fillContentPane(entry['feedid'], entry['id']);
+    });
 
 	const titleElem = document.createElement('div');
 	titleElem.appendChild(document.createTextNode(entry['title']));
@@ -635,8 +672,9 @@ function addEntries(entries) {
 }
 
 
-function fillEntryPaneAll(event) {
+function fillEntryPaneAll() {
   console.log('fillEntryPaneAll');
+
   // add/remove 'clicked'
   for (const elem of document.getElementsByClassName('function-list-elem')) {
 	elem.classList.remove('clicked');
@@ -644,7 +682,7 @@ function fillEntryPaneAll(event) {
   for (const elem of document.getElementsByClassName('feed-list-elem')) {
 	elem.classList.remove('clicked');
   }
-  event.currentTarget.classList.add('clicked');
+  document.getElementById('all-feeds').classList.add('clicked');
 
   const entryList = document.getElementById('entry-list');
   entryList.innerHTML = '';  // clear
@@ -657,18 +695,13 @@ function fillEntryPaneAll(event) {
   }
   console.log('total number of entry:', entries.length);
   addEntries(entries);
-  restoreMid();
-
-  leftSelection = 'all';
-  leftData = '';
 }
 
 
 // when a feed (feed-list-elem) on left pane is clicked
 // fill entry-pane (mid-pane)
-function fillEntryPaneByFeed(event) {
+function fillEntryPaneByFeed(feedId) {
   console.log('fillEntryPaneByFeed');
-  const feedUrl = event.currentTarget.getAttribute('id');
 
   // add/remove 'clicked' class
   for (const elem of document.getElementsByClassName('feed-list-elem')) {
@@ -677,41 +710,42 @@ function fillEntryPaneByFeed(event) {
   for (const elem of document.getElementsByClassName('function-list-elem')) {
 	elem.classList.remove('clicked');
   }
-  event.currentTarget.classList.add('clicked');
-
-  const entries = Object.values(objCache['feeds'][feedUrl]['entries']);
+  let feedElem = document.getElementById(feedId);
+  if(feedElem) {
+    feedElem.classList.add('clicked');
+  }
+  const entries = Object.values(objCache['feeds'][feedId]['entries']);
   addEntries(entries);
-  restoreMid();
-
-  leftSelection = 'feed';
-  leftData = feedUrl;
 }
+
 
 // when an entry clicked
 // fill content pane
-function fillContentPane(event) {
+function fillContentPane(feedId, entryId) {
   console.log('fillContentPane');
-  const feedUrl = event.currentTarget.getAttribute('feed-url');
-  const entryLink = event.currentTarget.getAttribute('entry-link');
 
   // add/remove 'clicked' class
-  for (const elem of event.currentTarget.parentElement.children) {
-	elem.classList.remove('clicked');
+  for (const elem of document.getElementsByClassName('entry-list-elem')) {
+    if (elem.getAttribute('feed-id') == feedId && elem.getAttribute('entry-id') == entryId) {
+	  elem.classList.add('clicked');
+    }
+    else {
+	  elem.classList.remove('clicked');
+    }
   }
-  event.currentTarget.classList.add('clicked');
-
+  
   const contentPane = document.getElementById('content-pane');
-  contentPane.setAttribute('feed-url', feedUrl);
-  contentPane.setAttribute('entry-link', entryLink);
+  contentPane.setAttribute('feed-url', objCache['feeds'][feedId]['link']);
+  contentPane.setAttribute('entry-link', objCache['feeds'][feedId]['entries'][entryId]['link']);
   contentPane.innerHTML = '';  // clear old data
 
   // header and link
   const headerDiv = document.createElement('div');
   headerDiv.setAttribute('id', 'content-header');
   const headerElem = document.createElement('h1');
-  headerElem.appendChild(document.createTextNode(objCache['feeds'][feedUrl]['entries'][entryLink]['title']));
+  headerElem.appendChild(document.createTextNode(objCache['feeds'][feedId]['entries'][entryId]['title']));
   const linkElem = document.createElement('a');
-  linkElem.setAttribute('href', objCache['feeds'][feedUrl]['entries'][entryLink]['link']);
+  linkElem.setAttribute('href', objCache['feeds'][feedId]['entries'][entryId]['link']);
   linkElem.appendChild(headerElem);
   headerDiv.appendChild(linkElem);
   contentPane.appendChild(headerDiv);
@@ -719,21 +753,21 @@ function fillContentPane(event) {
   // content
   const contentElem = document.createElement('div');
   contentElem.setAttribute('id', 'content-body');
-  contentElem.innerHTML = objCache['feeds'][feedUrl]['entries'][entryLink]['content'];
+  contentElem.innerHTML = objCache['feeds'][feedId]['entries'][entryId]['content'];
 
   // fix relative img, a links
-  if (objCache['feeds'][feedUrl]['link'] !== '') {
+  if (objCache['feeds'][feedId]['link'] !== '') {
 	for (const elem of contentElem.getElementsByTagName('img')) {
 	  let src = elem.getAttribute('src');
 	  if (src) {
-		src = (new URL(src, objCache['feeds'][feedUrl]['link'])).href;
+		src = (new URL(src, objCache['feeds'][feedId]['link'])).href;
 		elem.setAttribute('src', src);
 	  }
 	}
 	for (const elem of contentElem.getElementsByTagName('a')) {
 	  let src = elem.getAttribute('href');
 	  if (src) {
-		src = (new URL(src, objCache['feeds'][feedUrl]['link'])).href;
+		src = (new URL(src, objCache['feeds'][feedId]['link'])).href;
 		elem.setAttribute('href', src);
 	  }
 	}
@@ -796,9 +830,7 @@ function deleteOldEntriesFeed() {
 	  if (new Date(entry['updated']) < d)
 		delete objCache['feeds'][feedUrl]['entries'][entryUrl];
 	}
-	chrome.storage.local.set(objCache, function() {
-	  restoreLeft();
-	});
+	chrome.storage.local.set(objCache);
   }
 }
 
@@ -813,9 +845,7 @@ function deleteOldEntries() {
 		  delete objCache['feeds'][url]['entries'][entryUrl];
 	  }
 	}
-	chrome.storage.local.set(objCache, function() {
-	  restoreLeft();
-	});
+	chrome.storage.local.set(objCache);
   }
 }
 
@@ -871,9 +901,9 @@ async function refreshFeeds() {
 	  continue;
 	}
 
-	// no new data
+	// new data exists
 	if (newFeed['updated'] !== feed['updated']) {
-	  objCache['feeds'][url] = mergeFeeds(objCache['feeds'][url], newFeed);
+	  objCache['feeds'][newFeed['id']] = mergeFeeds(objCache['feeds'][newFeed['id']], newFeed);
 	  updated = true;
 	}
   }
@@ -883,16 +913,14 @@ async function refreshFeeds() {
 	chrome.storage.local.set(objCache);
   }
 
-  restoreLeft();
-
   // send notification
   chrome.notifications.create(null,
-							  {
-								"type": "basic",
-								"iconUrl": chrome.runtime.getURL("icons/icon-48.png"),
-								"title": "Clean Feeds",
-								"message": "Refreshing is completed"
-							  });
+	{
+	  "type": "basic",
+	  "iconUrl": chrome.runtime.getURL("icons/icon-48.png"),
+	  "title": "Clean Feeds",
+	  "message": "Refreshing is completed"
+	});
 }
 
 function switchTheme() {
@@ -920,11 +948,11 @@ function markReadUnread() {
 	  for (const elem of document.getElementsByClassName('entry-list-elem')) {
 		if (elem.getAttribute('entry-link') === entryLink &&
 			elem.getAttribute('feed-url') === feedUrl) {
-		  const elemTitle = elem.getElementsByClassName('entry-list-elem-title')[0];
-		  elemTitle.classList.add(newState ? 'read' : 'unread');
-		  elemTitle.classList.remove(oldState ? 'read' : 'unread');
-		  break;
-		}
+		      const elemTitle = elem.getElementsByClassName('entry-list-elem-title')[0];
+		      elemTitle.classList.add(newState ? 'read' : 'unread');
+		      elemTitle.classList.remove(oldState ? 'read' : 'unread');
+		      break;
+		    }
 	  }
 	});
   }
@@ -942,9 +970,9 @@ function deleteEntry() {
 	for (const elem of document.getElementsByClassName('entry-list-elem')) {
 	  if (elem.getAttribute('entry-link') === entryLink &&
 		  elem.getAttribute('feed-url') === feedUrl) {
-		elem.remove();
-		break;
-	  }
+		    elem.remove();
+		    break;
+	      }
 	}
 	const statusElem = document.getElementById('status-text');
 	let entryCount = Number.parseInt(rstrip(statusElem.textContent, " entries"))
@@ -1019,11 +1047,11 @@ function keyHandler(e) {
 
   else if (e.key === 'o' || e.key === 'O'
 		   || e.key === 'v' || e.key === 'V') {
-	const link =document.getElementById('content-header').children[0].getAttribute('href');
-	chrome.tabs.getCurrent(function (tab) {
-	  chrome.tabs.create({ url: link, openerTabId: tab.id});
-	});
-  }
+	         const link =document.getElementById('content-header').children[0].getAttribute('href');
+	         chrome.tabs.getCurrent(function (tab) {
+	           chrome.tabs.create({ url: link, openerTabId: tab.id});
+	         });
+           }
 
   else if (e.key === 'b' || e.key === 'B') {
 	const link =document.getElementById('content-header').children[0].getAttribute('href');
@@ -1056,10 +1084,10 @@ function keyHandler(e) {
 
 function exportFeeds() {
   const feeds = [];
-  for (const [url, feed] of Object.entries(objCache['feeds'])) {
+  for (const [_url, feed] of Object.entries(objCache['feeds'])) {
 	const temp = {};
 	temp['title'] = feed['title'];
-	temp['url'] = url;
+	temp['url'] = feed['title'];
 	temp['order'] = feed['order'];
 	temp['tags'] = feed['tags'] ? feed['tags'] : [];
 	feeds.push(temp);
@@ -1133,7 +1161,7 @@ function exportFeedsOPML() {
   doc.appendChild(opmlElem);
 
   const blob = new Blob(['<?xml version="1.0"?>',
-						 doc.documentElement.outerHTML], { type: 'application/xml' });
+	doc.documentElement.outerHTML], { type: 'application/xml' });
   chrome.downloads.download({
 	url: URL.createObjectURL(blob),
 	filename: 'feeds.opml',
@@ -1165,13 +1193,13 @@ function importFeeds() {
 		for (const fetched of fetchedArray) {
 		  if (fetched.status === 'fulfilled' && fetched.value !== false) {
 			const val = fetched.value;
-			const feedUrl = val['feedlink'];
-			objCache['feeds'][feedUrl] = val;
-			objCache['feeds'][feedUrl]['title'] = data['feeds'][i]['title'];
-			for (const [_entryUrl, entry] of Object.entries(objCache['feeds'][feedUrl]['entries']))
-			  entry['feedtitle'] = objCache['feeds'][feedUrl]['title'];
-			objCache['feeds'][feedUrl]['tags'] = data['feeds'][i]['tags'];
-			objCache['feeds'][feedUrl]['order'] = data['feeds'][i]['order'];
+			const feedId = val['id'];
+			objCache['feeds'][feedId] = val;
+			objCache['feeds'][feedId]['title'] = data['feeds'][i]['title'];
+			for (const [_entryUrl, entry] of Object.entries(objCache['feeds'][feedId]['entries']))
+			  entry['feedtitle'] = objCache['feeds'][feedId]['title'];
+			objCache['feeds'][feedId]['tags'] = data['feeds'][i]['tags'];
+			objCache['feeds'][feedId]['order'] = data['feeds'][i]['order'];
 		  }
 		  i++;
 		}
@@ -1179,7 +1207,6 @@ function importFeeds() {
 		  statusElem.textContent = "";
 		  fillFunctionPane();
 		  fillFeedPane();
-		  restoreLeft();
 		});
 	  });
 	};
@@ -1188,31 +1215,30 @@ function importFeeds() {
   inputElem.click();
 }
 
-function restoreLeft() {
-  console.log('restoreLeft');
-  if (!leftSelection || leftSelection === 'all') {
-	leftSelection = 'all';
-	document.getElementById('all-feeds').click();
-  }
 
-  else if (leftSelection === 'feed') {
-	const elem = document.getElementById(leftData);
-	if (elem)  // might be deleted
-	  elem.click();
-	else
-	  document.getElementById('all-feeds').click();
+function urlHandler() {
+  let params = new URLSearchParams(window.location.search);
+  for (const [key, value] of params) {
+	if (key === 'query') {
+      makeQuery(decodeURIComponent(value));
+	}
+	else if (key === 'tag') {
+      console.log('handler tag:', value);
+      fillEntryPaneByTag(value);
+	}
+	else if (key === 'feed') {
+      console.log('handler feed:', value);
+	  fillEntryPaneByFeed(value);
+	}
+    else if (key === 'all') {
+      console.log('handler all');
+      fillEntryPaneAll();
+    }
   }
-
-  else if (leftSelection === 'tag') {
-	const elem = document.getElementById(leftData);
-	if (elem)
-	  elem.click();
-	else
-	  document.getElementById('all-feeds').click();
-  }
-
-  else if (leftSelection === 'query') {
-	makeQuery(leftData);
+  const feedId = params.get('feedId');
+  const entryId = params.get('entryId');
+  if (feedId && entryId) {
+    fillContentPane(feedId, entryId);
   }
 }
 
@@ -1227,9 +1253,12 @@ function init() {
 	  objCache = obj;
 	  fillFunctionPane();
 	  fillFeedPane();
-	  restoreLeft();
+      urlHandler();
 	});
   });
+
+  window.addEventListener('popstate', urlHandler);
+
   // toolbar buttons
   document.getElementById('add-feed').addEventListener('click', addFeed);
   document.getElementById('refresh-feeds').addEventListener('click', refreshFeeds);
@@ -1241,7 +1270,6 @@ function init() {
   document.getElementById('clear-data').addEventListener('click', clearInternalData);
   document.getElementById('delete-entry').addEventListener('click', deleteEntry);
   document.getElementById('mark-read').addEventListener('click', markReadUnread);
-
   document.addEventListener('keydown', keyHandler);
 }
 

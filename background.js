@@ -1,6 +1,6 @@
 function openViewer() {
   const u = chrome.extension.getURL('viewer.html');
-  chrome.tabs.query({ url: u }, (tabs) => {
+  chrome.tabs.query({ url: u + '*' }, (tabs) => {
     // tab is not opened
     if (!tabs || tabs.length === 0) {
       chrome.tabs.create({ url: u });

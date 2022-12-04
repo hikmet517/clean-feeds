@@ -2,7 +2,6 @@
 
 function parseAtom(dom, feedUrl) {
   const feed = {};
-  feed['entries'] = {};
   feed['checked'] = (new Date()).toJSON(); // last time it's fetched
   feed['feedlink'] = feedUrl;
 
@@ -35,6 +34,7 @@ function parseAtom(dom, feedUrl) {
 	feed['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 
   // entries
+  const entries = [];
   for (const entryNode of dom.querySelectorAll('feed > entry')) {
 	const entry = {};
 	entry['feedlink'] = feed['feedlink'];
@@ -72,15 +72,13 @@ function parseAtom(dom, feedUrl) {
 	  if (contentNode)
 		entry['content'] = contentNode.textContent.trim();
 	}
-
-	feed['entries'][entry['link']] = entry;
+	entries.push(entry);
   }
-  return feed;
+  return [feed, entries];
 }
 
 function parseRss(dom, feedUrl) {
   const feed = {};
-  feed['entries'] = {};
   feed['checked'] = (new Date()).toJSON(); // last time it's fetched
   feed['feedlink'] = feedUrl;
 
@@ -104,6 +102,7 @@ function parseRss(dom, feedUrl) {
 	feed['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
 
   // entries
+  const entries = [];
   for (const entryNode of dom.querySelectorAll('rss > channel > item')) {
 	const entry = {};
 	entry['feedlink'] = feed['feedlink'];
@@ -140,9 +139,9 @@ function parseRss(dom, feedUrl) {
 		entry['content'] = entryContent.textContent.trim();
 	}
 
-	feed['entries'][entry['link']] = entry;
+	entries.push(entry);
   }
-  return feed;
+  return [feed, entries];
 }
 
 

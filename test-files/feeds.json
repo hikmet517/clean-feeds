@@ -71,6 +71,16 @@
       "tags": [
         "comic"
       ]
+    },
+    {
+      "title": "Cᐩᐩ Weekly With Jason Turner",
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCxHAlbZQNFU2LgEtiqd2Maw",
+      "order": 9,
+      "tags": [
+        "cpp",
+        "youtube",
+        "dev"
+      ]
     }
   ]
 }
