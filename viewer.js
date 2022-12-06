@@ -18,6 +18,7 @@ var objCache;      // cache of feed data
 
 var lastQuery = "";
 
+const TITLE = 'Clean Feeds';
 const NUMENTRIES = 40;
 
 initResizer(function(prevSibling) {
@@ -565,6 +566,7 @@ function fillEntryPaneByTag(tag) {
     elem.classList.remove('clicked');
   }
   document.getElementById('#' + tag).classList.add('clicked');
+  document.title = `${TITLE} (#${tag})`;
 
   const entries = [];
   for (const [_url, feed] of Object.entries(objCache['feeds'])) {
@@ -593,6 +595,8 @@ function makeQuery(input) {
       elem.classList.remove('clicked');
     }
     document.getElementById('query-feeds').classList.add('clicked');
+
+    document.title = `${TITLE} (${input})`;
 
     const url = new URL(window.location.origin + window.location.pathname);
     url.searchParams.set('query', encodeURIComponent(input));
@@ -643,6 +647,7 @@ function addEntries(entries) {
 
     const titleElem = document.createElement('div');
     titleElem.appendChild(document.createTextNode(entry['title']));
+    titleElem.setAttribute('title', entry['title']);
     titleElem.classList.add('entry-list-elem-title');
     titleElem.classList.add(entry['read'] ? 'read' : 'unread');
     elem.appendChild(titleElem);
@@ -690,6 +695,7 @@ function fillEntryPaneAll() {
     elem.classList.remove('clicked');
   }
   document.getElementById('all-feeds').classList.add('clicked');
+  document.title = `${TITLE} (all)`;
 
   const entryList = document.getElementById('entry-list');
   entryList.innerHTML = '';  // clear
@@ -721,6 +727,7 @@ function fillEntryPaneByFeed(feedId) {
   if(feedElem) {
     feedElem.classList.add('clicked');
   }
+  document.title = `${TITLE} (${objCache['feeds'][feedId]['title']})`;
   const entries = Object.values(objCache['feeds'][feedId]['entries']);
   addEntries(entries);
 }
