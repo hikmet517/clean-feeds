@@ -577,6 +577,7 @@ function fillEntryPaneByTag(tag) {
 
 function makeQuery(input) {
   if (input && input.trim().length != 0) {
+    lastQuery = input;
     const result = queryFilter(input, Object.values(objCache['feeds']), 'tags');
     const entries = [];
     for (const feed of result) {
@@ -596,9 +597,16 @@ function makeQuery(input) {
 }
 
 function queryFeeds() {
-  console.log('queryFeeds');
+  // if lastQuery is empty try to find query from url
+  if (lastQuery === '') {
+    const params = new URLSearchParams(window.location.search);
+    const qParam = params.get('query');
+    if(qParam) {
+      lastQuery = decodeURIComponent(qParam);
+    }
+  }
+
   const input = prompt("Enter query (boolean algebra using '&', '|', '!', '(', ')')", lastQuery);
-  lastQuery = input;
 
   const url = new URL(window.location.origin + window.location.pathname);
   url.searchParams.set('query', encodeURIComponent(input));
@@ -724,6 +732,10 @@ function fillEntryPaneByFeed(feedId) {
 function fillContentPane(feedId, entryId) {
   console.log('fillContentPane');
 
+  if ( !feedId || !entryId) {
+    return;
+  }
+
   // add/remove 'clicked' class
   for (const elem of document.getElementsByClassName('entry-list-elem')) {
     if (elem.getAttribute('feed-id') == feedId && elem.getAttribute('entry-id') == entryId) {
@@ -735,8 +747,8 @@ function fillContentPane(feedId, entryId) {
   }
 
   const contentPane = document.getElementById('content-pane');
-  contentPane.setAttribute('feed-id', objCache['feeds'][feedId]['id']);
-  contentPane.setAttribute('entry-id', objCache['feeds'][feedId]['entries'][entryId]['id']);
+  contentPane.setAttribute('feed-id',feedId);
+  contentPane.setAttribute('entry-id', entryId);
   contentPane.innerHTML = '';  // clear old data
 
   // header and link
@@ -1217,7 +1229,7 @@ function importFeeds() {
 
 
 function urlHandler() {
-  let params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   for (const [key, value] of params) {
     if (key === 'query') {
       makeQuery(decodeURIComponent(value));
