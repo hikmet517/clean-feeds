@@ -593,6 +593,10 @@ function makeQuery(input) {
       elem.classList.remove('clicked');
     }
     document.getElementById('query-feeds').classList.add('clicked');
+
+    const url = new URL(window.location.origin + window.location.pathname);
+    url.searchParams.set('query', encodeURIComponent(input));
+    window.history.pushState({}, '', url);
   }
 }
 
@@ -607,11 +611,6 @@ function queryFeeds() {
   }
 
   const input = prompt("Enter query (boolean algebra using '&', '|', '!', '(', ')')", lastQuery);
-
-  const url = new URL(window.location.origin + window.location.pathname);
-  url.searchParams.set('query', encodeURIComponent(input));
-  window.history.pushState({}, '', url);
-
   makeQuery(input);
 }
 
@@ -740,6 +739,7 @@ function fillContentPane(feedId, entryId) {
   for (const elem of document.getElementsByClassName('entry-list-elem')) {
     if (elem.getAttribute('feed-id') == feedId && elem.getAttribute('entry-id') == entryId) {
       elem.classList.add('clicked');
+      scrollToEntry(elem);
     }
     else {
       elem.classList.remove('clicked');
