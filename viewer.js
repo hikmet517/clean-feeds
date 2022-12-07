@@ -102,17 +102,21 @@ async function fetchParseFeed(url, init) {
     return false;
   }
 
+  // bind entries to feed
+  feed['entries'] = {};
+  for (const entry of entries) {
+    entry['feedid'] = feed['id'];
+    const entryId = createId(entry['link']);
+    entry['id'] = entryId;
+    feed['entries'][entryId] = entry;
+  }
+
+
   // initialize other data
   if (init) {
     feed['numEntries'] = NUMENTRIES;
-    feed['entries'] = {};
-
     for (const entry of entries) {
       entry['read'] = false;
-      entry['feedid'] = feed['id'];
-      const entryId = createId(entry['link']);
-      entry['id'] = entryId;
-      feed['entries'][entryId] = entry;
     }
 
     // read icon
@@ -879,11 +883,11 @@ function clearInternalData() {
 
 function mergeFeeds(oldFeed, newFeed) {
   // merge entries
-  for (const [url, entry] of Object.entries(newFeed['entries'])) {
-    if (!(url in oldFeed['entries'])) {
+  for (const [id, entry] of Object.entries(newFeed['entries'])) {
+    if (!(id in oldFeed['entries'])) {
       entry['icon'] = oldFeed['icon'];
       entry['feedtitle'] = oldFeed['title'];
-      oldFeed['entries'][url] = entry;
+      oldFeed['entries'][id] = entry;
     }
   }
   oldFeed['updated'] = newFeed['updated'];
@@ -911,7 +915,8 @@ async function refreshFeeds() {
   let statusElem = document.getElementById('status-text');
   statusElem.textContent = "Refreshing...";
   let updated = false;
-  for (const [url, feed] of Object.entries(objCache['feeds'])) {
+  for (const [id, feed] of Object.entries(objCache['feeds'])) {
+    const url = feed['feedlink'];
 
     // fetch and check
     const newFeed = await fetchParseFeed(url, false);
@@ -922,7 +927,7 @@ async function refreshFeeds() {
 
     // new data exists
     if (newFeed['updated'] !== feed['updated']) {
-      objCache['feeds'][newFeed['id']] = mergeFeeds(objCache['feeds'][newFeed['id']], newFeed);
+      objCache['feeds'][id] = mergeFeeds(objCache['feeds'][id], newFeed);
       updated = true;
     }
   }
@@ -1237,6 +1242,10 @@ function importFeeds() {
 
 function urlHandler() {
   const params = new URLSearchParams(window.location.search);
+  if (window.location.search === '') {
+    document.getElementById('all-feeds').click();
+    return;
+  }
   for (const [key, value] of params) {
     if (key === 'query') {
       makeQuery(decodeURIComponent(value));
