@@ -849,9 +849,9 @@ function deleteOldEntriesFeed() {
   if (days) {
     const d = new Date();
     d.setDate(d.getDate() - days);
-    for (const [entryUrl, entry] of Object.entries(objCache['feeds'][feedUrl]['entries'])) {
+    for (const [id, entry] of Object.entries(objCache['feeds'][feedUrl]['entries'])) {
       if (new Date(entry['updated']) < d)
-        delete objCache['feeds'][feedUrl]['entries'][entryUrl];
+        delete objCache['feeds'][feedUrl]['entries'][id];
     }
     chrome.storage.local.set(objCache);
   }
@@ -863,9 +863,9 @@ function deleteOldEntries() {
     const d = new Date();
     d.setDate(d.getDate() - days);
     for (const [url, feed] of Object.entries(objCache['feeds'])) {
-      for (const [entryUrl, entry] of Object.entries(feed['entries'])) {
+      for (const [id, entry] of Object.entries(feed['entries'])) {
         if (new Date(entry['updated']) < d)
-          delete objCache['feeds'][url]['entries'][entryUrl];
+          delete objCache['feeds'][url]['entries'][id];
       }
     }
     chrome.storage.local.set(objCache);
@@ -905,7 +905,7 @@ function mergeFeeds(oldFeed, newFeed) {
   // keep only last `NUMENTRIES`
   oldFeed['entries'] = {};
   for (let i=0; i<NUMENTRIES && i<entries.length; i++) {
-    oldFeed['entries'][entries[i]['link']] = entries[i];
+    oldFeed['entries'][entries[i]['id']] = entries[i];
   }
 
   return oldFeed;
@@ -927,7 +927,7 @@ async function refreshFeeds() {
 
     // new data exists
     if (newFeed['updated'] !== feed['updated']) {
-      objCache['feeds'][id] = mergeFeeds(objCache['feeds'][id], newFeed);
+      objCache['feeds'][id] = mergeFeeds(feed, newFeed);
       updated = true;
     }
   }
@@ -936,6 +936,8 @@ async function refreshFeeds() {
     // save
     chrome.storage.local.set(objCache);
   }
+
+  urlHandler();
 
   // send notification
   chrome.notifications.create(null,
@@ -1108,10 +1110,10 @@ function keyHandler(e) {
 
 function exportFeeds() {
   const feeds = [];
-  for (const [_url, feed] of Object.entries(objCache['feeds'])) {
+  for (const feed of Object.values(objCache['feeds'])) {
     const temp = {};
     temp['title'] = feed['title'];
-    temp['url'] = feed['title'];
+    temp['url'] = feed['feedlink'];
     temp['order'] = feed['order'];
     temp['tags'] = feed['tags'] ? feed['tags'] : [];
     feeds.push(temp);
