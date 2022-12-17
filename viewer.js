@@ -211,6 +211,7 @@ async function addFeed() {
       objCache['feeds'][feed['id']] = feed;
       chrome.storage.local.set(objCache, function() {
         fillFeedPane();
+        urlHandler();
       });
     }
     else {
@@ -378,6 +379,7 @@ function addTag() {
     // save it
     chrome.storage.local.set(objCache, function() {
       fillFunctionPane();
+      urlHandler();
     });
   }
 }
@@ -385,7 +387,7 @@ function addTag() {
 async function refreshFeed() {
   hideFeedContextMenu();
   const feedId = document.getElementById('feed-menu').getAttribute('feed-id');
-  const newFeed = await fetchParseFeed(objCache['feeds'][feedId]['feedLink'], false);
+  const newFeed = await fetchParseFeed(objCache['feeds'][feedId]['feedlink'], false);
   if (!newFeed) {
     console.error('fetchParseFeed failed');
     return;
@@ -406,6 +408,7 @@ function changeFeedTitle() {
       entry['feedtitle'] = objCache['feeds'][feedId]['title'];
     chrome.storage.local.set(objCache, function() {
       fillFeedPane();
+      urlHandler();
     });
   }
 }
@@ -430,6 +433,7 @@ function deleteFeed() {
     chrome.storage.local.set(objCache, function() {
       fillFunctionPane();
       fillFeedPane();
+      urlHandler();
     });
   }
 }
@@ -1233,6 +1237,7 @@ function importFeeds() {
           statusElem.textContent = "";
           fillFunctionPane();
           fillFeedPane();
+          urlHandler();
         });
       });
     };
