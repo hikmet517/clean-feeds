@@ -724,6 +724,10 @@ function fillEntryPaneAll() {
 function fillEntryPaneByFeed(feedId) {
   console.log('fillEntryPaneByFeed');
 
+  if(!(feedId in objCache['feeds'])) {
+    return false;
+  }
+
   // add/remove 'clicked' class
   for (const elem of document.getElementsByClassName('feed-list-elem')) {
     elem.classList.remove('clicked');
@@ -738,6 +742,7 @@ function fillEntryPaneByFeed(feedId) {
   document.title = `${TITLE} (${objCache['feeds'][feedId]['title']})`;
   const entries = Object.values(objCache['feeds'][feedId]['entries']);
   addEntries(entries);
+  return true;
 }
 
 
@@ -747,7 +752,7 @@ function fillContentPane(feedId, entryId) {
   console.log('fillContentPane');
 
   if ( !feedId || !entryId) {
-    return;
+    return false;
   }
 
   // add/remove 'clicked' class
@@ -766,6 +771,10 @@ function fillContentPane(feedId, entryId) {
   contentPane.setAttribute('entry-id', entryId);
   contentPane.innerHTML = '';  // clear old data
 
+  if ( !(feedId in objCache['feeds']) || !(entryId in objCache['feeds'][feedId]['entries']) ) {
+    return false;
+  }
+  
   // header and link
   const headerDiv = document.createElement('div');
   headerDiv.setAttribute('id', 'content-header');
@@ -818,6 +827,7 @@ function fillContentPane(feedId, entryId) {
     elem.setAttribute('target', '_blank');
     elem.setAttribute('rel', 'noopener');
   }
+  return true;
 }
 
 
@@ -1258,12 +1268,14 @@ function urlHandler() {
       makeQuery(decodeURIComponent(value));
     }
     else if (key === 'tag') {
-      console.log('handler tag:', value);
       fillEntryPaneByTag(value);
     }
     else if (key === 'feed') {
-      console.log('handler feed:', value);
-      fillEntryPaneByFeed(value);
+      // this may fail if we delete selected feed, in that case
+      // select `All Entries`
+      if ( fillEntryPaneByFeed(value) == false ) {
+        fillEntryPaneAll();
+      }
     }
     else if (key === 'all') {
       console.log('handler all');

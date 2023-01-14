@@ -667,15 +667,6 @@
       ]
     },
     {
-      "title": "NME",
-      "url": "https://www.nme.com/feed",
-      "order": 15,
-      "tags": [
-        "music",
-        "news"
-      ]
-    },
-    {
       "title": "Rust Blog",
       "url": "https://blog.rust-lang.org/feed.xml",
       "order": 40,
@@ -963,6 +954,12 @@
         "news",
         "security"
       ]
+    },
+    {
+      "title": "Manifold",
+      "url": "https://manifold.press/rss",
+      "order": 109,
+      "tags": []
     }
   ]
 }
