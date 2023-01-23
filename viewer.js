@@ -8,6 +8,7 @@
 // favorited entries (always keep these, do not automatically delete)
 // check: http://www.getfavicon.org/
 // better favicon handling: https://dev.to/derlin/get-favicons-from-any-website-using-a-hidden-google-api-3p1e
+// support jsonfeed: https://www.jsonfeed.org/
 
 import queryFilter from './boolean-filter-module.js';
 import parseFeed from './feed-parser-module.js';
