@@ -1,6 +1,5 @@
 // TODOs:
 // settings panel (refresh period)
-// add rdf support
 // show unread entries in feed elem
 // improve error handling, return values of async when failed
 // const correctness
@@ -489,8 +488,10 @@ function showPropertiesFeed() {
   const feedId = document.getElementById('feed-menu').getAttribute('feed-id');
   document.getElementById('feed-info-title').textContent = objCache['feeds'][feedId]['title'];
 
+  document.getElementById('feed-info-id').textContent = feedId;
+
   const url_elem = document.getElementById('feed-info-url').children[0];
-  url_elem.textContent = feedId;
+  url_elem.textContent = objCache['feeds'][feedId]['feedlink'];
   url_elem.setAttribute('href', feedId);
 
   const link_elem = document.getElementById('feed-info-link').children[0];
@@ -775,7 +776,7 @@ function fillContentPane(feedId, entryId) {
   if ( !(feedId in objCache['feeds']) || !(entryId in objCache['feeds'][feedId]['entries']) ) {
     return false;
   }
-  
+
   // header and link
   const headerDiv = document.createElement('div');
   headerDiv.setAttribute('id', 'content-header');

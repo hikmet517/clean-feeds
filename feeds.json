@@ -327,7 +327,7 @@
     {
       "title": "Planet GNU",
       "url": "http://www.gnu.org/rss/whatsnew.rss",
-      "order": 95,
+      "order": 96,
       "tags": [
         "linux"
       ]
@@ -335,7 +335,7 @@
     {
       "title": "Planet Gentoo",
       "url": "https://planet.gentoo.org/atom.xml",
-      "order": 96,
+      "order": 97,
       "tags": [
         "linux"
       ]
@@ -343,7 +343,7 @@
     {
       "title": "Planet KDE | English",
       "url": "https://planet.kde.org/atom.xml",
-      "order": 98,
+      "order": 99,
       "tags": [
         "linux",
         "kde"
@@ -352,7 +352,7 @@
     {
       "title": "Dedoimedo RSS",
       "url": "https://www.dedoimedo.com/rss_feed.xml",
-      "order": 101,
+      "order": 102,
       "tags": [
         "linux",
         "blog"
@@ -369,7 +369,7 @@
     {
       "title": "Planet Debian",
       "url": "https://planet.debian.org/atom.xml",
-      "order": 97,
+      "order": 98,
       "tags": [
         "linux"
       ]
@@ -377,7 +377,7 @@
     {
       "title": "Adventures in Linux and KDE",
       "url": "https://pointieststick.com/feed/",
-      "order": 103,
+      "order": 104,
       "tags": [
         "linux",
         "kde"
@@ -422,7 +422,7 @@
     {
       "title": "Andrzej's C++ blog",
       "url": "https://akrzemi1.wordpress.com/feed/",
-      "order": 35,
+      "order": 36,
       "tags": [
         "cpp",
         "dev",
@@ -430,13 +430,13 @@
       ]
     },
     {
-      "title": "Barry Revzin",
+      "title": "Barry's C++ Blog",
       "url": "https://brevzin.github.io/feed.xml",
-      "order": 36,
+      "order": 35,
       "tags": [
         "cpp",
-        "dev",
-        "blog"
+        "blog",
+        "dev"
       ]
     },
     {
@@ -491,7 +491,7 @@
     {
       "title": "Reclaim The Net",
       "url": "https://reclaimthenet.org/feed/",
-      "order": 105,
+      "order": 106,
       "tags": [
         "news"
       ]
@@ -535,7 +535,7 @@
     {
       "title": "It's FOSS News",
       "url": "https://news.itsfoss.com/feed/",
-      "order": 102,
+      "order": 103,
       "tags": [
         "news",
         "linux"
@@ -552,7 +552,7 @@
     {
       "title": "TorrentFreak",
       "url": "https://torrentfreak.com/feed/",
-      "order": 106,
+      "order": 107,
       "tags": [
         "blog"
       ]
@@ -579,7 +579,7 @@
     {
       "title": "Practical Ethics",
       "url": "http://blog.practicalethics.ox.ac.uk/feed/",
-      "order": 107,
+      "order": 108,
       "tags": [
         "ethics"
       ]
@@ -596,7 +596,7 @@
     {
       "title": "LinuxReviews News (RSS/English)",
       "url": "https://linuxreviews.org/feed.rss",
-      "order": 104,
+      "order": 105,
       "tags": [
         "blog",
         "linux"
@@ -605,7 +605,7 @@
     {
       "title": "Stephen Wolfram Writings",
       "url": "https://writings.stephenwolfram.com/feed/atom/",
-      "order": 108,
+      "order": 109,
       "tags": [
         "blog",
         "science"
@@ -614,7 +614,7 @@
     {
       "title": "Quanta Magazine",
       "url": "https://api.quantamagazine.org/feed/",
-      "order": 111,
+      "order": 112,
       "tags": [
         "science"
       ]
@@ -622,7 +622,7 @@
     {
       "title": "BleepingComputer",
       "url": "https://www.bleepingcomputer.com/feed/",
-      "order": 112,
+      "order": 113,
       "tags": [
         "tech",
         "security"
@@ -784,7 +784,7 @@
     {
       "title": "Linux Magazine News",
       "url": "https://www.linux-magazine.com/rss/feed/lmi_news",
-      "order": 100,
+      "order": 101,
       "tags": [
         "linux",
         "news"
@@ -843,7 +843,7 @@
     {
       "title": "Continuing Ed  — with Edward Snowden",
       "url": "https://edwardsnowden.substack.com/feed/",
-      "order": 113,
+      "order": 114,
       "tags": [
         "blog",
         "security"
@@ -932,7 +932,7 @@
     {
       "title": "The Splintered Mind",
       "url": "http://schwitzsplinters.blogspot.com/feeds/posts/default",
-      "order": 115,
+      "order": 116,
       "tags": [
         "blog",
         "philosophy"
@@ -949,7 +949,7 @@
     {
       "title": "Techdirt",
       "url": "https://www.techdirt.com/feed/",
-      "order": 114,
+      "order": 115,
       "tags": [
         "tech",
         "news",
@@ -959,7 +959,7 @@
     {
       "title": "Manifold",
       "url": "https://manifold.press/rss",
-      "order": 116,
+      "order": 117,
       "tags": [
         "philosophy"
       ]
@@ -967,7 +967,7 @@
     {
       "title": "Kültür Sanat İstanbul",
       "url": "https://kultursanat.istanbul/feed/",
-      "order": 117,
+      "order": 118,
       "tags": [
         "culture"
       ]
@@ -975,7 +975,7 @@
     {
       "title": "Brushing Up Science",
       "url": "https://brushingupscience.com/feed/",
-      "order": 110,
+      "order": 111,
       "tags": [
         "science",
         "blog"
@@ -1029,7 +1029,7 @@
     {
       "title": "Linux Journal - The Original Magazine of the Linux Community",
       "url": "https://www.linuxjournal.com/node/feed",
-      "order": 99,
+      "order": 100,
       "tags": [
         "linux"
       ]
@@ -1037,7 +1037,7 @@
     {
       "title": "Phys.org - latest science and technology news stories",
       "url": "https://phys.org/rss-feed/",
-      "order": 109,
+      "order": 110,
       "tags": [
         "science",
         "news",
@@ -1047,10 +1047,20 @@
     {
       "title": "sizeof(cat)",
       "url": "https://sizeof.cat/index.xml",
-      "order": 118,
+      "order": 119,
       "tags": [
         "tech",
         "blog"
+      ]
+    },
+    {
+      "title": "LWN.net",
+      "url": "https://lwn.net/headlines/newrss",
+      "order": 95,
+      "tags": [
+        "linux",
+        "blog",
+        "news"
       ]
     }
   ]
