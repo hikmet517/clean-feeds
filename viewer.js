@@ -784,6 +784,7 @@ function fillContentPane(feedId, entryId) {
   headerElem.appendChild(document.createTextNode(objCache['feeds'][feedId]['entries'][entryId]['title']));
   const linkElem = document.createElement('a');
   linkElem.setAttribute('href', objCache['feeds'][feedId]['entries'][entryId]['link']);
+  linkElem.setAttribute('target', '_blank');
   linkElem.appendChild(headerElem);
   headerDiv.appendChild(linkElem);
   contentPane.appendChild(headerDiv);

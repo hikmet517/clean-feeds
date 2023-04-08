@@ -75,7 +75,7 @@
     {
       "title": "Dilbert",
       "url": "https://kimmo.suominen.com/stuff/dilbert.xml",
-      "order": 80,
+      "order": 81,
       "tags": [
         "comic"
       ]
@@ -83,7 +83,7 @@
     {
       "title": "Science & Technology - Voice of America",
       "url": "https://learningenglish.voanews.com/api/zmg_pe$myp",
-      "order": 83,
+      "order": 84,
       "tags": [
         "english",
         "news"
@@ -172,7 +172,7 @@
     {
       "title": "Calvin and Hobbes",
       "url": "https://www.comicsrss.com/rss/calvinandhobbes.rss",
-      "order": 81,
+      "order": 82,
       "tags": [
         "comic"
       ]
@@ -237,7 +237,7 @@
     {
       "title": "xkcd.com",
       "url": "https://xkcd.com/atom.xml",
-      "order": 82,
+      "order": 83,
       "tags": [
         "comic"
       ]
@@ -245,7 +245,7 @@
     {
       "title": "Level 3 – English news and easy articles for students of English",
       "url": "https://www.newsinlevels.com/level/level-3/feed/",
-      "order": 84,
+      "order": 85,
       "tags": [
         "english",
         "news"
@@ -254,7 +254,7 @@
     {
       "title": "Level 3 – Easy English articles about famous days in history for students of English",
       "url": "https://www.daysinlevels.com/level/level-3/feed/",
-      "order": 85,
+      "order": 86,
       "tags": [
         "english"
       ]
@@ -262,7 +262,7 @@
     {
       "title": "Everyday Grammar - Voice of America",
       "url": "https://learningenglish.voanews.com/api/zoroqqegtoqq",
-      "order": 86,
+      "order": 87,
       "tags": [
         "english"
       ]
@@ -270,7 +270,7 @@
     {
       "title": "Arts & Culture - Voice of America",
       "url": "https://learningenglish.voanews.com/api/zpyp_e-rm_",
-      "order": 87,
+      "order": 88,
       "tags": [
         "english"
       ]
@@ -278,7 +278,7 @@
     {
       "title": "Idiom of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/idiom-of-the-day.xml",
-      "order": 88,
+      "order": 89,
       "tags": [
         "english"
       ]
@@ -286,7 +286,7 @@
     {
       "title": "Slang of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/slang-of-the-day.xml",
-      "order": 89,
+      "order": 90,
       "tags": [
         "english"
       ]
@@ -294,7 +294,7 @@
     {
       "title": "Saying of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/saying-of-the-day.xml",
-      "order": 90,
+      "order": 91,
       "tags": [
         "english"
       ]
@@ -302,7 +302,7 @@
     {
       "title": "Phrasal Verb of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/phrasal-verb-of-the-day.xml",
-      "order": 91,
+      "order": 92,
       "tags": [
         "english"
       ]
@@ -310,7 +310,7 @@
     {
       "title": "Wordnik",
       "url": "https://blog.wordnik.com/feed",
-      "order": 93,
+      "order": 94,
       "tags": [
         "english"
       ]
@@ -327,7 +327,7 @@
     {
       "title": "Planet GNU",
       "url": "http://www.gnu.org/rss/whatsnew.rss",
-      "order": 96,
+      "order": 98,
       "tags": [
         "linux"
       ]
@@ -335,7 +335,7 @@
     {
       "title": "Planet Gentoo",
       "url": "https://planet.gentoo.org/atom.xml",
-      "order": 97,
+      "order": 99,
       "tags": [
         "linux"
       ]
@@ -343,7 +343,7 @@
     {
       "title": "Planet KDE | English",
       "url": "https://planet.kde.org/atom.xml",
-      "order": 99,
+      "order": 101,
       "tags": [
         "linux",
         "kde"
@@ -352,7 +352,7 @@
     {
       "title": "Dedoimedo RSS",
       "url": "https://www.dedoimedo.com/rss_feed.xml",
-      "order": 102,
+      "order": 104,
       "tags": [
         "linux",
         "blog"
@@ -369,7 +369,7 @@
     {
       "title": "Planet Debian",
       "url": "https://planet.debian.org/atom.xml",
-      "order": 98,
+      "order": 100,
       "tags": [
         "linux"
       ]
@@ -377,7 +377,7 @@
     {
       "title": "Adventures in Linux and KDE",
       "url": "https://pointieststick.com/feed/",
-      "order": 104,
+      "order": 106,
       "tags": [
         "linux",
         "kde"
@@ -491,7 +491,7 @@
     {
       "title": "Reclaim The Net",
       "url": "https://reclaimthenet.org/feed/",
-      "order": 106,
+      "order": 108,
       "tags": [
         "news"
       ]
@@ -535,7 +535,7 @@
     {
       "title": "It's FOSS News",
       "url": "https://news.itsfoss.com/feed/",
-      "order": 103,
+      "order": 105,
       "tags": [
         "news",
         "linux"
@@ -552,7 +552,7 @@
     {
       "title": "TorrentFreak",
       "url": "https://torrentfreak.com/feed/",
-      "order": 107,
+      "order": 109,
       "tags": [
         "blog"
       ]
@@ -579,7 +579,7 @@
     {
       "title": "Practical Ethics",
       "url": "http://blog.practicalethics.ox.ac.uk/feed/",
-      "order": 108,
+      "order": 110,
       "tags": [
         "ethics"
       ]
@@ -596,7 +596,7 @@
     {
       "title": "LinuxReviews News (RSS/English)",
       "url": "https://linuxreviews.org/feed.rss",
-      "order": 105,
+      "order": 107,
       "tags": [
         "blog",
         "linux"
@@ -605,7 +605,7 @@
     {
       "title": "Stephen Wolfram Writings",
       "url": "https://writings.stephenwolfram.com/feed/atom/",
-      "order": 109,
+      "order": 112,
       "tags": [
         "blog",
         "science"
@@ -614,7 +614,7 @@
     {
       "title": "Quanta Magazine",
       "url": "https://api.quantamagazine.org/feed/",
-      "order": 112,
+      "order": 115,
       "tags": [
         "science"
       ]
@@ -622,7 +622,7 @@
     {
       "title": "BleepingComputer",
       "url": "https://www.bleepingcomputer.com/feed/",
-      "order": 113,
+      "order": 116,
       "tags": [
         "tech",
         "security"
@@ -640,7 +640,7 @@
     {
       "title": "Matthew Garrett",
       "url": "https://mjg59.dreamwidth.org/data/rss",
-      "order": 67,
+      "order": 68,
       "tags": [
         "blog",
         "linux",
@@ -650,7 +650,7 @@
     {
       "title": "meain/blog",
       "url": "https://blog.meain.io/feed.xml",
-      "order": 75,
+      "order": 76,
       "tags": [
         "blog",
         "dev",
@@ -660,7 +660,7 @@
     {
       "title": "Coding Horror",
       "url": "https://blog.codinghorror.com/rss/",
-      "order": 79,
+      "order": 80,
       "tags": [
         "dev",
         "blog"
@@ -678,7 +678,7 @@
     {
       "title": "Random Thoughts",
       "url": "https://lars.ingebrigtsen.no/feed/",
-      "order": 71,
+      "order": 72,
       "tags": [
         "blog",
         "emacs"
@@ -731,7 +731,7 @@
     {
       "title": "Faultlore",
       "url": "https://gankra.github.io/blah/rss.xml",
-      "order": 70,
+      "order": 71,
       "tags": [
         "blog",
         "dev"
@@ -740,7 +740,7 @@
     {
       "title": "Deciphering Glyph",
       "url": "https://feeds.feedburner.com/glyph",
-      "order": 76,
+      "order": 77,
       "tags": [
         "dev",
         "blog"
@@ -784,7 +784,7 @@
     {
       "title": "Linux Magazine News",
       "url": "https://www.linux-magazine.com/rss/feed/lmi_news",
-      "order": 101,
+      "order": 103,
       "tags": [
         "linux",
         "news"
@@ -793,7 +793,7 @@
     {
       "title": "Blog – Hackaday",
       "url": "https://hackaday.com/blog/feed/",
-      "order": 78,
+      "order": 79,
       "tags": [
         "blog",
         "tech",
@@ -804,7 +804,7 @@
     {
       "title": "Real Python",
       "url": "https://realpython.com/atom.xml",
-      "order": 73,
+      "order": 74,
       "tags": [
         "dev",
         "blog",
@@ -833,7 +833,7 @@
     {
       "title": "fasterthanli.me",
       "url": "https://fasterthanli.me/index.xml",
-      "order": 72,
+      "order": 73,
       "tags": [
         "dev",
         "blog",
@@ -843,7 +843,7 @@
     {
       "title": "Continuing Ed  — with Edward Snowden",
       "url": "https://edwardsnowden.substack.com/feed/",
-      "order": 114,
+      "order": 117,
       "tags": [
         "blog",
         "security"
@@ -870,7 +870,7 @@
     {
       "title": "The GitHub Blog",
       "url": "https://github.blog/feed/",
-      "order": 77,
+      "order": 78,
       "tags": [
         "dev",
         "blog"
@@ -879,7 +879,7 @@
     {
       "title": "Bartosz Ciechanowski",
       "url": "https://ciechanow.ski/atom.xml",
-      "order": 69,
+      "order": 70,
       "tags": [
         "blog",
         "science",
@@ -915,7 +915,7 @@
     {
       "title": "Cadence's Blog",
       "url": "https://cadence.moe/blog/rss.xml",
-      "order": 68,
+      "order": 69,
       "tags": [
         "dev",
         "blog"
@@ -932,7 +932,7 @@
     {
       "title": "The Splintered Mind",
       "url": "http://schwitzsplinters.blogspot.com/feeds/posts/default",
-      "order": 116,
+      "order": 119,
       "tags": [
         "blog",
         "philosophy"
@@ -941,7 +941,7 @@
     {
       "title": "Videos in Levels",
       "url": "https://www.videosinlevels.com/feed/",
-      "order": 92,
+      "order": 93,
       "tags": [
         "english"
       ]
@@ -949,7 +949,7 @@
     {
       "title": "Techdirt",
       "url": "https://www.techdirt.com/feed/",
-      "order": 115,
+      "order": 118,
       "tags": [
         "tech",
         "news",
@@ -959,7 +959,7 @@
     {
       "title": "Manifold",
       "url": "https://manifold.press/rss",
-      "order": 117,
+      "order": 120,
       "tags": [
         "philosophy"
       ]
@@ -967,7 +967,7 @@
     {
       "title": "Kültür Sanat İstanbul",
       "url": "https://kultursanat.istanbul/feed/",
-      "order": 118,
+      "order": 121,
       "tags": [
         "culture"
       ]
@@ -975,7 +975,7 @@
     {
       "title": "Brushing Up Science",
       "url": "https://brushingupscience.com/feed/",
-      "order": 111,
+      "order": 114,
       "tags": [
         "science",
         "blog"
@@ -984,7 +984,7 @@
     {
       "title": "Scali's OpenBlog™",
       "url": "https://scalibq.wordpress.com/feed/",
-      "order": 74,
+      "order": 75,
       "tags": [
         "blog",
         "tech"
@@ -993,7 +993,7 @@
     {
       "title": "The MagPi",
       "url": "https://magpi.raspberrypi.com/feed",
-      "order": 94,
+      "order": 95,
       "tags": [
         "tech",
         "blog"
@@ -1029,7 +1029,7 @@
     {
       "title": "Linux Journal - The Original Magazine of the Linux Community",
       "url": "https://www.linuxjournal.com/node/feed",
-      "order": 100,
+      "order": 102,
       "tags": [
         "linux"
       ]
@@ -1037,7 +1037,7 @@
     {
       "title": "Phys.org - latest science and technology news stories",
       "url": "https://phys.org/rss-feed/",
-      "order": 110,
+      "order": 113,
       "tags": [
         "science",
         "news",
@@ -1047,7 +1047,7 @@
     {
       "title": "sizeof(cat)",
       "url": "https://sizeof.cat/index.xml",
-      "order": 119,
+      "order": 122,
       "tags": [
         "tech",
         "blog"
@@ -1056,11 +1056,83 @@
     {
       "title": "LWN.net",
       "url": "https://lwn.net/headlines/newrss",
-      "order": 95,
+      "order": 96,
       "tags": [
         "linux",
         "blog",
         "news"
+      ]
+    },
+    {
+      "title": "CHM",
+      "url": "https://computerhistory.org/feed/atom",
+      "order": 111,
+      "tags": [
+        "tech"
+      ]
+    },
+    {
+      "title": "Garry's Blog",
+      "url": "https://garry.blog/feed/atom",
+      "order": 67,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Internet Archive Blogs",
+      "url": "https://blog.archive.org/feed/",
+      "order": 97,
+      "tags": [
+        "tech",
+        "blog"
+      ]
+    },
+    {
+      "title": "Simon Willison TIL",
+      "url": "https://til.simonwillison.net/tils/feed.atom",
+      "order": 123,
+      "tags": [
+        "blog",
+        "dev"
+      ]
+    },
+    {
+      "title": "Penguin Pete's Greatest Hits",
+      "url": "https://penguinpetes.com/wordpress/feed/",
+      "order": 124,
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "title": "How-To Geek",
+      "url": "https://feeds.howtogeek.com/HowToGeek",
+      "order": 125,
+      "tags": [
+        "blog",
+        "tech"
+      ]
+    },
+    {
+      "title": "Sandor Dargo's Blog",
+      "url": "https://www.sandordargo.com/feed.xml",
+      "order": 126,
+      "tags": [
+        "dev",
+        "cpp",
+        "blog"
+      ]
+    },
+    {
+      "title": "Python Blog",
+      "url": "https://blog.python.org/feeds/posts/default?alt=rss",
+      "order": 127,
+      "tags": [
+        "python",
+        "blog",
+        "dev"
       ]
     }
   ]
