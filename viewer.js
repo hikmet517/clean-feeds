@@ -812,10 +812,18 @@ function fillContentPane(feedId, entryId) {
     }
   }
 
-  // remove background element if exist (for techrights site)
+  // remove background element if exists
   for (const elem of contentElem.getElementsByTagName('div')) {
     if (elem.style.background)
       elem.style.background = '';
+  }
+
+  // remove width attribute in media tags (video, figure, iframe, img)
+  for (const elem of contentElem.querySelectorAll("video,figure,iframe,img")) {
+    if (elem.hasAttribute('width'))
+      elem.removeAttribute('width')
+    if (elem.hasAttribute('height'))
+      elem.removeAttribute('height')
   }
 
   // remove problematic elements
