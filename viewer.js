@@ -19,7 +19,7 @@ var objCache;      // cache of feed data
 var lastQuery = "";
 
 const TITLE = 'Clean Feeds';
-const NUMENTRIES = 40;
+const NUMENTRIES = 25;
 
 initResizer(function(prevSibling) {
   // save settings
