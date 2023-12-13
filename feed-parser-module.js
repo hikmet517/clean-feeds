@@ -22,6 +22,9 @@ function parseAtom(dom, feedUrl) {
   if ( !(feed['link'].startsWith('http://') || feed['link'].startsWith('https://'))) {
     feed['link'] = base + feed['link'];
   }
+  if ( !(feed['link'].startsWith('http://') || feed['link'].startsWith('https://'))) {
+    feed['link'] = (new URL(feedUrl)).origin;
+  }
 
   const iconNode = dom.querySelector('icon');
   if (iconNode && iconNode.textContent.trim()) {
@@ -48,7 +51,13 @@ function parseAtom(dom, feedUrl) {
     // entry link
     const entryLink = entryNode.querySelector('link:not([rel]), link[rel=alternate]');
     if (entryLink && entryLink.getAttribute('href')) {
-      entry['link'] = entryLink.getAttribute('href').trim();
+      if ( entryLink.getAttribute('href').startsWith('http://') ||
+           entryLink.getAttribute('href').startsWith('https://') ) {
+        entry['link'] = entryLink.getAttribute('href').trim();
+      }
+      else {
+        entry['link'] = (new URL(entryLink.getAttribute('href'), feed['link'])).href;
+      }
     }
 
     if (!entry['link'] || !entry['title']) {
