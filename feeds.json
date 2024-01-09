@@ -3,7 +3,7 @@
     {
       "title": "Planet Emacslife",
       "url": "http://planet.emacslife.com/atom.xml",
-      "order": 58,
+      "order": 59,
       "tags": [
         "emacs",
         "blog"
@@ -21,7 +21,7 @@
     {
       "title": "Howardism",
       "url": "http://www.howardism.org/index.xml",
-      "order": 62,
+      "order": 63,
       "tags": [
         "emacs",
         "blog"
@@ -30,7 +30,7 @@
     {
       "title": "Xah Programing Blog",
       "url": "http://xahlee.info/comp/blog.xml",
-      "order": 69,
+      "order": 70,
       "tags": [
         "blog",
         "dev"
@@ -48,7 +48,7 @@
     {
       "title": "begriffs.com",
       "url": "https://begriffs.com/atom.xml",
-      "order": 57,
+      "order": 58,
       "tags": [
         "blog",
         "dev"
@@ -66,7 +66,7 @@
     {
       "title": "Karthinks",
       "url": "https://karthinks.com/index.xml",
-      "order": 61,
+      "order": 62,
       "tags": [
         "emacs",
         "blog"
@@ -75,7 +75,7 @@
     {
       "title": "Dilbert",
       "url": "https://kimmo.suominen.com/stuff/dilbert.xml",
-      "order": 96,
+      "order": 100,
       "tags": [
         "comic"
       ]
@@ -83,7 +83,7 @@
     {
       "title": "Science & Technology - Voice of America",
       "url": "https://learningenglish.voanews.com/api/zmg_pe$myp",
-      "order": 104,
+      "order": 108,
       "tags": [
         "english",
         "news"
@@ -100,7 +100,7 @@
     {
       "title": "mathspp.com feed",
       "url": "https://mathspp.com/blog.atom",
-      "order": 53,
+      "order": 54,
       "tags": [
         "blog",
         "dev",
@@ -127,7 +127,7 @@
     {
       "title": "Jeffrey Paul",
       "url": "https://sneak.berlin/feed.xml",
-      "order": 55,
+      "order": 56,
       "tags": [
         "blog",
         "tech"
@@ -136,7 +136,7 @@
     {
       "title": "Tristan Hume",
       "url": "https://thume.ca/atom.xml",
-      "order": 54,
+      "order": 55,
       "tags": [
         "dev",
         "blog"
@@ -153,7 +153,7 @@
     {
       "title": "Eccentric Computing",
       "url": "https://ecc-comp.blogspot.com/feeds/posts/default?alt=atom",
-      "order": 56,
+      "order": 57,
       "tags": [
         "dev",
         "blog"
@@ -162,7 +162,7 @@
     {
       "title": "Calvin and Hobbes",
       "url": "https://www.comicsrss.com/rss/calvinandhobbes.rss",
-      "order": 97,
+      "order": 101,
       "tags": [
         "comic"
       ]
@@ -227,7 +227,7 @@
     {
       "title": "xkcd.com",
       "url": "https://xkcd.com/atom.xml",
-      "order": 99,
+      "order": 103,
       "tags": [
         "comic"
       ]
@@ -235,7 +235,7 @@
     {
       "title": "Level 3 – English news and easy articles for students of English",
       "url": "https://www.newsinlevels.com/level/level-3/feed/",
-      "order": 105,
+      "order": 109,
       "tags": [
         "english",
         "news"
@@ -244,7 +244,7 @@
     {
       "title": "Level 3 – Easy English articles about famous days in history for students of English",
       "url": "https://www.daysinlevels.com/level/level-3/feed/",
-      "order": 106,
+      "order": 110,
       "tags": [
         "english"
       ]
@@ -252,7 +252,7 @@
     {
       "title": "Everyday Grammar - Voice of America",
       "url": "https://learningenglish.voanews.com/api/zoroqqegtoqq",
-      "order": 107,
+      "order": 111,
       "tags": [
         "english"
       ]
@@ -260,7 +260,7 @@
     {
       "title": "Arts & Culture - Voice of America",
       "url": "https://learningenglish.voanews.com/api/zpyp_e-rm_",
-      "order": 108,
+      "order": 112,
       "tags": [
         "english"
       ]
@@ -268,7 +268,7 @@
     {
       "title": "Idiom of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/idiom-of-the-day.xml",
-      "order": 109,
+      "order": 113,
       "tags": [
         "english"
       ]
@@ -276,7 +276,7 @@
     {
       "title": "Slang of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/slang-of-the-day.xml",
-      "order": 110,
+      "order": 114,
       "tags": [
         "english"
       ]
@@ -284,7 +284,7 @@
     {
       "title": "Saying of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/saying-of-the-day.xml",
-      "order": 111,
+      "order": 115,
       "tags": [
         "english"
       ]
@@ -292,7 +292,7 @@
     {
       "title": "Phrasal Verb of the Day | Vocabulary | EnglishClub",
       "url": "https://www.englishclub.com/ref/phrasal-verb-of-the-day.xml",
-      "order": 112,
+      "order": 116,
       "tags": [
         "english"
       ]
@@ -300,7 +300,7 @@
     {
       "title": "Wordnik",
       "url": "https://blog.wordnik.com/feed",
-      "order": 114,
+      "order": 118,
       "tags": [
         "english"
       ]
@@ -317,7 +317,7 @@
     {
       "title": "Planet GNU",
       "url": "http://www.gnu.org/rss/whatsnew.rss",
-      "order": 118,
+      "order": 122,
       "tags": [
         "linux"
       ]
@@ -325,7 +325,7 @@
     {
       "title": "Planet Gentoo",
       "url": "https://planet.gentoo.org/atom.xml",
-      "order": 119,
+      "order": 123,
       "tags": [
         "linux"
       ]
@@ -333,7 +333,7 @@
     {
       "title": "Planet KDE | English",
       "url": "https://planet.kde.org/atom.xml",
-      "order": 121,
+      "order": 125,
       "tags": [
         "linux",
         "kde"
@@ -342,7 +342,7 @@
     {
       "title": "Dedoimedo RSS",
       "url": "https://www.dedoimedo.com/rss_feed.xml",
-      "order": 124,
+      "order": 128,
       "tags": [
         "linux",
         "blog"
@@ -359,7 +359,7 @@
     {
       "title": "Planet Debian",
       "url": "https://planet.debian.org/atom.xml",
-      "order": 120,
+      "order": 124,
       "tags": [
         "linux"
       ]
@@ -367,7 +367,7 @@
     {
       "title": "Adventures in Linux and KDE",
       "url": "https://pointieststick.com/feed/",
-      "order": 125,
+      "order": 129,
       "tags": [
         "linux",
         "kde"
@@ -384,7 +384,7 @@
     {
       "title": "C'est la Z",
       "url": "https://cestlaz.github.io/rss.xml",
-      "order": 63,
+      "order": 64,
       "tags": [
         "emacs",
         "blog"
@@ -393,7 +393,7 @@
     {
       "title": "Cᐩᐩ Weekly With Jason Turner",
       "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCxHAlbZQNFU2LgEtiqd2Maw",
-      "order": 50,
+      "order": 51,
       "tags": [
         "cpp",
         "youtube",
@@ -403,7 +403,7 @@
     {
       "title": "Chris's Wiki :: blog",
       "url": "https://utcc.utoronto.ca/~cks/space/blog/?atom",
-      "order": 71,
+      "order": 72,
       "tags": [
         "linux",
         "blog"
@@ -432,7 +432,7 @@
     {
       "title": "Philip's .conf/feed/all feed",
       "url": "https://ruzkuku.com/all.atom",
-      "order": 59,
+      "order": 60,
       "tags": [
         "emacs",
         "linux",
@@ -442,7 +442,7 @@
     {
       "title": "Worklog of Christian Tietze",
       "url": "https://christiantietze.de/feed.atom",
-      "order": 60,
+      "order": 61,
       "tags": [
         "emacs",
         "blog"
@@ -451,7 +451,7 @@
     {
       "title": "C++ Stories",
       "url": "https://www.cppstories.com/index.xml",
-      "order": 49,
+      "order": 50,
       "tags": [
         "cpp",
         "blog",
@@ -471,7 +471,7 @@
     {
       "title": "Reclaim The Net",
       "url": "https://reclaimthenet.org/feed/",
-      "order": 126,
+      "order": 130,
       "tags": [
         "news"
       ]
@@ -479,7 +479,7 @@
     {
       "title": "Xah Emacs Blog",
       "url": "http://xahlee.info/emacs/emacs/blog.xml",
-      "order": 68,
+      "order": 69,
       "tags": [
         "emacs",
         "blog"
@@ -506,7 +506,7 @@
     {
       "title": "Joel on Software",
       "url": "https://www.joelonsoftware.com/feed/",
-      "order": 64,
+      "order": 65,
       "tags": [
         "blog",
         "dev"
@@ -523,7 +523,7 @@
     {
       "title": "TorrentFreak",
       "url": "https://torrentfreak.com/feed/",
-      "order": 127,
+      "order": 131,
       "tags": [
         "blog"
       ]
@@ -531,7 +531,7 @@
     {
       "title": "unixsheikh.com",
       "url": "https://unixsheikh.com/feed.rss",
-      "order": 70,
+      "order": 71,
       "tags": [
         "blog",
         "linux",
@@ -541,7 +541,7 @@
     {
       "title": "@radekmie",
       "url": "https://radekmie.github.io/atom.xml",
-      "order": 72,
+      "order": 73,
       "tags": [
         "blog",
         "dev"
@@ -550,7 +550,7 @@
     {
       "title": "Practical Ethics",
       "url": "http://blog.practicalethics.ox.ac.uk/feed/",
-      "order": 128,
+      "order": 132,
       "tags": [
         "ethics"
       ]
@@ -558,7 +558,7 @@
     {
       "title": "Drew DeVault's blog",
       "url": "https://drewdevault.com/blog/index.xml",
-      "order": 76,
+      "order": 77,
       "tags": [
         "blog",
         "dev"
@@ -567,7 +567,7 @@
     {
       "title": "Stephen Wolfram Writings",
       "url": "https://writings.stephenwolfram.com/feed/atom/",
-      "order": 131,
+      "order": 135,
       "tags": [
         "blog",
         "science"
@@ -576,7 +576,7 @@
     {
       "title": "Quanta Magazine",
       "url": "https://api.quantamagazine.org/feed/",
-      "order": 134,
+      "order": 138,
       "tags": [
         "science"
       ]
@@ -584,7 +584,7 @@
     {
       "title": "BleepingComputer",
       "url": "https://www.bleepingcomputer.com/feed/",
-      "order": 135,
+      "order": 139,
       "tags": [
         "tech",
         "security"
@@ -593,7 +593,7 @@
     {
       "title": "Tom MacWright",
       "url": "https://macwright.com/atom.xml",
-      "order": 73,
+      "order": 74,
       "tags": [
         "dev",
         "blog"
@@ -602,7 +602,7 @@
     {
       "title": "Matthew Garrett",
       "url": "https://mjg59.dreamwidth.org/data/rss",
-      "order": 79,
+      "order": 80,
       "tags": [
         "blog",
         "linux",
@@ -612,7 +612,7 @@
     {
       "title": "meain/blog",
       "url": "https://blog.meain.io/feed.xml",
-      "order": 91,
+      "order": 95,
       "tags": [
         "blog",
         "dev",
@@ -622,7 +622,7 @@
     {
       "title": "Coding Horror",
       "url": "https://blog.codinghorror.com/rss/",
-      "order": 95,
+      "order": 99,
       "tags": [
         "dev",
         "blog"
@@ -631,7 +631,7 @@
     {
       "title": "Rust Blog",
       "url": "https://blog.rust-lang.org/feed.xml",
-      "order": 51,
+      "order": 52,
       "tags": [
         "dev",
         "blog"
@@ -640,7 +640,7 @@
     {
       "title": "Random Thoughts",
       "url": "https://lars.ingebrigtsen.no/feed/",
-      "order": 86,
+      "order": 89,
       "tags": [
         "blog",
         "emacs"
@@ -693,7 +693,7 @@
     {
       "title": "Faultlore",
       "url": "https://gankra.github.io/blah/rss.xml",
-      "order": 85,
+      "order": 88,
       "tags": [
         "blog",
         "dev",
@@ -703,7 +703,7 @@
     {
       "title": "Deciphering Glyph",
       "url": "https://feeds.feedburner.com/glyph",
-      "order": 92,
+      "order": 96,
       "tags": [
         "dev",
         "blog"
@@ -721,7 +721,7 @@
     {
       "title": "Mastering Emacs",
       "url": "https://www.masteringemacs.org/feed",
-      "order": 67,
+      "order": 68,
       "tags": [
         "emacs",
         "blog"
@@ -730,7 +730,7 @@
     {
       "title": "Andreas Kling",
       "url": "https://awesomekling.github.io/feed.xml",
-      "order": 78,
+      "order": 79,
       "tags": [
         "dev",
         "blog"
@@ -739,7 +739,7 @@
     {
       "title": "Linux Magazine News",
       "url": "https://www.linux-magazine.com/rss/feed/lmi_news",
-      "order": 123,
+      "order": 127,
       "tags": [
         "linux",
         "news"
@@ -748,7 +748,7 @@
     {
       "title": "Blog – Hackaday",
       "url": "https://hackaday.com/blog/feed/",
-      "order": 94,
+      "order": 98,
       "tags": [
         "blog",
         "tech",
@@ -759,7 +759,7 @@
     {
       "title": "Real Python",
       "url": "https://realpython.com/atom.xml",
-      "order": 89,
+      "order": 93,
       "tags": [
         "dev",
         "blog",
@@ -788,7 +788,7 @@
     {
       "title": "fasterthanli.me",
       "url": "https://fasterthanli.me/index.xml",
-      "order": 87,
+      "order": 91,
       "tags": [
         "dev",
         "blog",
@@ -798,7 +798,7 @@
     {
       "title": "Continuing Ed  — with Edward Snowden",
       "url": "https://edwardsnowden.substack.com/feed/",
-      "order": 136,
+      "order": 140,
       "tags": [
         "blog",
         "security"
@@ -807,7 +807,7 @@
     {
       "title": "The Boston Diaries",
       "url": "http://boston.conman.org/index.atom",
-      "order": 74,
+      "order": 75,
       "tags": [
         "blog",
         "dev"
@@ -816,7 +816,7 @@
     {
       "title": "jwz",
       "url": "https://cdn.jwz.org/blog/feed/",
-      "order": 75,
+      "order": 76,
       "tags": [
         "blog",
         "dev"
@@ -825,7 +825,7 @@
     {
       "title": "The GitHub Blog",
       "url": "https://github.blog/feed/",
-      "order": 93,
+      "order": 97,
       "tags": [
         "dev",
         "blog"
@@ -834,7 +834,7 @@
     {
       "title": "Bartosz Ciechanowski",
       "url": "https://ciechanow.ski/atom.xml",
-      "order": 84,
+      "order": 86,
       "tags": [
         "blog",
         "science",
@@ -853,7 +853,7 @@
     {
       "title": "Eli Bendersky's website",
       "url": "https://eli.thegreenplace.net/feeds/all.atom.xml",
-      "order": 77,
+      "order": 78,
       "tags": [
         "dev",
         "blog"
@@ -870,7 +870,7 @@
     {
       "title": "Cadence's Blog",
       "url": "https://cadence.moe/blog/rss.xml",
-      "order": 83,
+      "order": 85,
       "tags": [
         "dev",
         "blog"
@@ -879,7 +879,7 @@
     {
       "title": "The Splintered Mind",
       "url": "http://schwitzsplinters.blogspot.com/feeds/posts/default",
-      "order": 137,
+      "order": 141,
       "tags": [
         "blog",
         "philosophy"
@@ -888,7 +888,7 @@
     {
       "title": "Videos in Levels",
       "url": "https://www.videosinlevels.com/feed/",
-      "order": 113,
+      "order": 117,
       "tags": [
         "english"
       ]
@@ -896,7 +896,7 @@
     {
       "title": "Manifold",
       "url": "https://manifold.press/rss",
-      "order": 138,
+      "order": 142,
       "tags": [
         "philosophy"
       ]
@@ -904,7 +904,7 @@
     {
       "title": "Kültür Sanat İstanbul",
       "url": "https://kultursanat.istanbul/feed/",
-      "order": 139,
+      "order": 143,
       "tags": [
         "culture"
       ]
@@ -912,7 +912,7 @@
     {
       "title": "Brushing Up Science",
       "url": "https://brushingupscience.com/feed/",
-      "order": 133,
+      "order": 137,
       "tags": [
         "science",
         "blog"
@@ -921,7 +921,7 @@
     {
       "title": "Scali's OpenBlog™",
       "url": "https://scalibq.wordpress.com/feed/",
-      "order": 90,
+      "order": 94,
       "tags": [
         "blog",
         "tech"
@@ -930,7 +930,7 @@
     {
       "title": "The MagPi",
       "url": "https://magpi.raspberrypi.com/feed",
-      "order": 115,
+      "order": 119,
       "tags": [
         "tech",
         "blog"
@@ -967,7 +967,7 @@
     {
       "title": "Linux Journal - The Original Magazine of the Linux Community",
       "url": "https://www.linuxjournal.com/node/feed",
-      "order": 122,
+      "order": 126,
       "tags": [
         "linux"
       ]
@@ -975,7 +975,7 @@
     {
       "title": "Phys.org - latest science and technology news stories",
       "url": "https://phys.org/rss-feed/",
-      "order": 132,
+      "order": 136,
       "tags": [
         "science",
         "news",
@@ -985,7 +985,7 @@
     {
       "title": "sizeof(cat)",
       "url": "https://sizeof.cat/index.xml",
-      "order": 140,
+      "order": 144,
       "tags": [
         "tech",
         "blog"
@@ -994,7 +994,7 @@
     {
       "title": "LWN.net",
       "url": "https://lwn.net/headlines/newrss",
-      "order": 116,
+      "order": 120,
       "tags": [
         "linux",
         "blog",
@@ -1004,7 +1004,7 @@
     {
       "title": "CHM (Computer History Museum)",
       "url": "https://computerhistory.org/feed/atom",
-      "order": 129,
+      "order": 133,
       "tags": [
         "tech"
       ]
@@ -1012,7 +1012,7 @@
     {
       "title": "Internet Archive Blogs",
       "url": "https://blog.archive.org/feed/",
-      "order": 117,
+      "order": 121,
       "tags": [
         "tech",
         "blog"
@@ -1021,7 +1021,7 @@
     {
       "title": "Simon Willison TIL",
       "url": "https://til.simonwillison.net/tils/feed.atom",
-      "order": 141,
+      "order": 145,
       "tags": [
         "blog",
         "dev"
@@ -1030,7 +1030,7 @@
     {
       "title": "Penguin Pete's Greatest Hits",
       "url": "https://penguinpetes.com/wordpress/feed/",
-      "order": 142,
+      "order": 146,
       "tags": [
         "blog"
       ]
@@ -1038,7 +1038,7 @@
     {
       "title": "Sandor Dargo's Blog",
       "url": "https://www.sandordargo.com/feed.xml",
-      "order": 143,
+      "order": 147,
       "tags": [
         "dev",
         "cpp",
@@ -1048,7 +1048,7 @@
     {
       "title": "Python Blog",
       "url": "https://blog.python.org/feeds/posts/default?alt=rss",
-      "order": 144,
+      "order": 148,
       "tags": [
         "python",
         "blog",
@@ -1058,7 +1058,7 @@
     {
       "title": "Random ASCII – tech blog of Bruce Dawson",
       "url": "https://randomascii.wordpress.com/feed",
-      "order": 145,
+      "order": 149,
       "tags": [
         "blog",
         "dev",
@@ -1068,7 +1068,7 @@
     {
       "title": "Changelog",
       "url": "https://changelog.com/posts/feed",
-      "order": 146,
+      "order": 150,
       "tags": [
         "blog",
         "dev"
@@ -1086,7 +1086,7 @@
     {
       "title": "tsdh.org",
       "url": "https://tsdh.org/rss.xml",
-      "order": 66,
+      "order": 67,
       "tags": [
         "dev",
         "emacs"
@@ -1095,7 +1095,7 @@
     {
       "title": "ervin web review",
       "url": "https://ervin.ipsquad.net/atom.xml",
-      "order": 88,
+      "order": 92,
       "tags": [
         "dev",
         "blog"
@@ -1104,7 +1104,7 @@
     {
       "title": "Kickstart Embedded",
       "url": "https://kickstartembedded.com/feed/",
-      "order": 65,
+      "order": 66,
       "tags": [
         "dev",
         "linux",
@@ -1134,7 +1134,7 @@
     {
       "title": "Habr",
       "url": "https://habr.com/en/rss/articles/?fl=en",
-      "order": 52,
+      "order": 53,
       "tags": [
         "dev",
         "cpp",
@@ -1154,7 +1154,7 @@
     {
       "title": "vas3k's blog",
       "url": "https://vas3k.blog/rss/",
-      "order": 82,
+      "order": 83,
       "tags": [
         "blog",
         "dev",
@@ -1164,7 +1164,7 @@
     {
       "title": "tonsky.me",
       "url": "https://tonsky.me/atom.xml",
-      "order": 81,
+      "order": 82,
       "tags": [
         "dev",
         "blog"
@@ -1182,7 +1182,7 @@
     {
       "title": "BetterExplained",
       "url": "https://betterexplained.com/feed/",
-      "order": 130,
+      "order": 134,
       "tags": [
         "math",
         "science",
@@ -1192,7 +1192,7 @@
     {
       "title": "Michael O. Church",
       "url": "https://michaelochurch.wordpress.com/feed",
-      "order": 80,
+      "order": 81,
       "tags": [
         "blog",
         "tech",
@@ -1202,7 +1202,7 @@
     {
       "title": "Atlas Obscura - Latest Articles and Places",
       "url": "https://www.atlasobscura.com/feeds/latest",
-      "order": 147,
+      "order": 151,
       "tags": [
         "culture"
       ]
@@ -1256,7 +1256,7 @@
     {
       "title": "Oglaf! -- Comics. Often dirty.",
       "url": "https://www.oglaf.com/feeds/rss/",
-      "order": 98,
+      "order": 102,
       "tags": [
         "comic"
       ]
@@ -1264,7 +1264,7 @@
     {
       "title": "what if?",
       "url": "https://what-if.xkcd.com/feed.atom",
-      "order": 100,
+      "order": 104,
       "tags": [
         "blog",
         "humour"
@@ -1273,7 +1273,7 @@
     {
       "title": "Men Are Better Than Women, by Dick Masterson",
       "url": "https://www.menarebetterthanwomen.com/feed/atom/",
-      "order": 101,
+      "order": 105,
       "tags": [
         "comic",
         "blog",
@@ -1283,7 +1283,7 @@
     {
       "title": "Improbable Research",
       "url": "https://improbable.com/feed/",
-      "order": 103,
+      "order": 107,
       "tags": [
         "humour",
         "blog",
@@ -1293,7 +1293,7 @@
     {
       "title": "ElectroBoom",
       "url": "https://www.electroboom.com/?feed=rss2",
-      "order": 102,
+      "order": 106,
       "tags": [
         "blog",
         "humour"
@@ -1325,6 +1325,45 @@
         "science",
         "humour",
         "news"
+      ]
+    },
+    {
+      "title": "Thomas Trapp",
+      "url": "https://thomastrapp.com/feed.xml",
+      "order": 49,
+      "tags": [
+        "dev",
+        "cpp",
+        "blog"
+      ]
+    },
+    {
+      "title": "David Heinemeier Hansson",
+      "url": "https://world.hey.com/dhh/feed.atom",
+      "order": 90,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "computers are bad",
+      "url": "https://computer.rip/rss.xml",
+      "order": 84,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Core Dumped",
+      "url": "https://coredumped.dev/index.xml",
+      "order": 87,
+      "tags": [
+        "dev",
+        "blog",
+        "rust",
+        "emacs"
       ]
     }
   ]
