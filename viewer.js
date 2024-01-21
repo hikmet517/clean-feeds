@@ -1139,6 +1139,7 @@ function exportFeeds() {
     const temp = {};
     temp['title'] = feed['title'];
     temp['url'] = feed['feedlink'];
+    temp['link'] = feed['link'];
     temp['order'] = feed['order'];
     temp['tags'] = feed['tags'] ? feed['tags'] : [];
     feeds.push(temp);
