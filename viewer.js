@@ -871,30 +871,34 @@ function deleteOldEntriesFeed() {
   hideFeedContextMenu();
   const feedUrl = document.getElementById('feed-menu').getAttribute('feed-id');
   const days = parseInt(window.prompt('Delete entries older than (days)'));
-  if (days) {
-    const d = new Date();
-    d.setDate(d.getDate() - days);
-    for (const [id, entry] of Object.entries(objCache['feeds'][feedUrl]['entries'])) {
-      if (new Date(entry['updated']) < d)
-        delete objCache['feeds'][feedUrl]['entries'][id];
+  const now = new Date();
+  for (const [id, entry] of Object.entries(objCache['feeds'][feedUrl]['entries'])) {
+    const feed_updated = new Date(entry['updated']);
+    if (now.getDay() - feed_updated.getDay() > days) {
+      delete objCache['feeds'][feedUrl]['entries'][id];
     }
-    chrome.storage.local.set(objCache);
   }
+  chrome.storage.local.set(objCache, function() {
+    fillFeedPane();
+    urlHandler();
+  });
 }
 
 function deleteOldEntries() {
   const days = parseInt(window.prompt('Delete entries older than (days)'));
-  if (days) {
-    const d = new Date();
-    d.setDate(d.getDate() - days);
-    for (const [url, feed] of Object.entries(objCache['feeds'])) {
-      for (const [id, entry] of Object.entries(feed['entries'])) {
-        if (new Date(entry['updated']) < d)
-          delete objCache['feeds'][url]['entries'][id];
+  const now = new Date();
+  for (const [url, feed] of Object.entries(objCache['feeds'])) {
+    for (const [id, entry] of Object.entries(feed['entries'])) {
+      const updated = new Date(entry['updated']);
+      if (now.getDay() - updated.getDay() > days) {
+        delete objCache['feeds'][url]['entries'][id];
       }
     }
-    chrome.storage.local.set(objCache);
   }
+  chrome.storage.local.set(objCache, function() {
+    fillFeedPane();
+    urlHandler();
+  });
 }
 
 function clearInternalData() {
