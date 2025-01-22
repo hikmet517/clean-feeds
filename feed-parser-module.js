@@ -124,8 +124,15 @@ function parseRss(dom, feedUrl) {
 
     // entry link
     const entryLink = entryNode.querySelector('link');
-    if (entryLink)
-      entry['link'] = entryLink.textContent.trim();
+    if (entryLink) {
+      let link = entryLink.textContent.trim();
+      if (link.length > 0 && link[0] == '/') {
+        let base = new URL(feed['feedlink']);
+        base.pathname = link;
+        link = base.href;
+      }
+      entry['link'] = link;
+    }
 
     if (!entry['link'] || !entry['title']) {
       console.warn('Entry does not have a link or title:', entry);

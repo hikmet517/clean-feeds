@@ -571,7 +571,8 @@
       "link": "https://torrentfreak.com/",
       "order": 140,
       "tags": [
-        "blog"
+        "blog",
+        "piracy"
       ]
     },
     {
@@ -822,7 +823,7 @@
       "title": "Real Python",
       "url": "https://realpython.com/atom.xml",
       "link": "https://realpython.com/",
-      "order": 98,
+      "order": 97,
       "tags": [
         "dev",
         "blog",
@@ -993,7 +994,7 @@
       "title": "Scali's OpenBlog™",
       "url": "https://scalibq.wordpress.com/feed/",
       "link": "https://scalibq.wordpress.com",
-      "order": 99,
+      "order": 98,
       "tags": [
         "blog",
         "tech"
@@ -1186,7 +1187,7 @@
       "title": "ervin web review",
       "url": "https://ervin.ipsquad.net/atom.xml",
       "link": "https://ervin.ipsquad.net/",
-      "order": 97,
+      "order": 96,
       "tags": [
         "dev",
         "blog"
@@ -1584,7 +1585,7 @@
       "title": "World Playground Deceit - New content",
       "url": "https://world-playground-deceit.net/global.xml",
       "link": "https://world-playground-deceit.net/blog/2024/git_secret.html",
-      "order": 96,
+      "order": 163,
       "tags": [
         "blog",
         "dev"
@@ -1616,11 +1617,92 @@
       "title": "manuel uberti",
       "url": "https://manueluberti.eu/feed.xml",
       "link": "https://manueluberti.eu/",
-      "order": 100,
+      "order": 99,
       "tags": [
         "blog",
         "dev",
         "emacs"
+      ]
+    },
+    {
+      "title": "Anna’s Blog",
+      "url": "https://annas-archive.se/blog/rss.xml",
+      "link": "https://annas-archive.li/blog/",
+      "order": 162,
+      "tags": [
+        "blog",
+        "piracy"
+      ]
+    },
+    {
+      "title": "justine.lol",
+      "url": "https://justine.lol/rss.xml",
+      "link": "https://justine.lol",
+      "order": 100,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "fhur's blog",
+      "url": "https://fhur.me/feed.xml",
+      "link": "https://fhur.me/",
+      "order": 164,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "AksDev",
+      "url": "https://akselmo.dev/feed.xml",
+      "link": "https://akselmo.dev",
+      "order": 165,
+      "tags": [
+        "dev",
+        "blog",
+        "linux"
+      ]
+    },
+    {
+      "title": "New Scientist - Home",
+      "url": "https://www.newscientist.com/feed/home/",
+      "link": "https://www.newscientist.com/",
+      "order": 161,
+      "tags": [
+        "news",
+        "science"
+      ]
+    },
+    {
+      "title": "Fish-shell Blog",
+      "url": "https://fishshell.com/blog/feed.xml",
+      "link": "https://fishshell.com/blog/",
+      "order": 166,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Engineering Inspiration",
+      "url": "https://www.engins.org/feed/",
+      "link": "https://www.engins.org",
+      "order": 167,
+      "tags": [
+        "tech",
+        "blog"
+      ]
+    },
+    {
+      "title": "Vintage Computing and Gaming",
+      "url": "https://www.vintagecomputing.com/index.php/feed/atom",
+      "link": "https://www.vintagecomputing.com",
+      "order": 168,
+      "tags": [
+        "tech",
+        "blog"
       ]
     }
   ]
