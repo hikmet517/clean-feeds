@@ -66,9 +66,12 @@ function parseAtom(dom, feedUrl) {
     }
 
     entry['updated'] = (new Date()).toJSON();
-    const updatedNode = entryNode.querySelector('updated');
-    if (updatedNode)
+    let updatedNode = entryNode.querySelector('updated');
+    if (!updatedNode)
+      updatedNode = entryNode.querySelector('published');
+    if (updatedNode) {
       entry['updated'] = (new Date(updatedNode.textContent.trim())).toJSON();
+    }
 
     // entry content
     entry['content'] = '';

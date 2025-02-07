@@ -1704,6 +1704,17 @@
         "tech",
         "blog"
       ]
+    },
+    {
+      "title": "www.marginalia.nu on marginalia.nu",
+      "url": "https://www.marginalia.nu/index.xml",
+      "link": "https://www.marginalia.nu/",
+      "order": 169,
+      "tags": [
+        "tech",
+        "dev",
+        "blog"
+      ]
     }
   ]
 }
