@@ -1715,6 +1715,47 @@
         "dev",
         "blog"
       ]
+    },
+    {
+      "title": "Ersei 'n Stuff",
+      "url": "https://ersei.net/en/blog.atom",
+      "link": "https://ersei.net/en/blog",
+      "order": 170,
+      "tags": [
+        "blog",
+        "tech"
+      ]
+    },
+    {
+      "title": "benzblog",
+      "url": "https://bentsukun.ch//index.xml",
+      "link": "https://bentsukun.ch/",
+      "order": 171,
+      "tags": [
+        "dev",
+        "blog",
+        "tech"
+      ]
+    },
+    {
+      "title": "okmij.org",
+      "url": "https://okmij.org/ftp/rss.xml",
+      "link": "https://okmij.org/ftp/",
+      "order": 172,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "datagubbe",
+      "url": "https://www.datagubbe.se/atom.xml",
+      "link": "https://www.datagubbe.se",
+      "order": 173,
+      "tags": [
+        "blog",
+        "tech"
+      ]
     }
   ]
 }
