@@ -747,17 +747,6 @@
       ]
     },
     {
-      "title": "Faultlore",
-      "url": "https://gankra.github.io/blah/rss.xml",
-      "link": "https://gankra.github.io/blah/",
-      "order": 91,
-      "tags": [
-        "blog",
-        "dev",
-        "rust"
-      ]
-    },
-    {
       "title": "Deciphering Glyph",
       "url": "https://feeds.feedburner.com/glyph",
       "link": "https://blog.glyph.im/",
@@ -1755,6 +1744,142 @@
       "tags": [
         "blog",
         "tech"
+      ]
+    },
+    {
+      "title": "Faultlore",
+      "url": "https://faultlore.com/blah/rss.xml",
+      "link": "https://gankra.github.io/blah/",
+      "order": 174,
+      "tags": [
+        "blog",
+        "dev",
+        "rust"
+      ]
+    },
+    {
+      "title": "Chris Done's blog",
+      "url": "http://localhost:8000/chrisdone-com-posts",
+      "link": "https://chrisdone.com/",
+      "order": 175,
+      "tags": [
+        "dev",
+        "blog",
+        "emacs"
+      ]
+    },
+    {
+      "title": "Simon Tatham's quasi-blog",
+      "url": "http://localhost:8000/chiark-greenend-org-uk-~sgtatham-quasiblog",
+      "link": "https://www.chiark.greenend.org.uk/~sgtatham/",
+      "order": 176,
+      "tags": [
+        "dev",
+        "blog",
+        "cpp"
+      ]
+    },
+    {
+      "title": "GNU Guix — Blog",
+      "url": "https://guix.gnu.org/feeds/blog.atom",
+      "link": "https://guix.gnu.org/blog/",
+      "order": 177,
+      "tags": [
+        "linux",
+        "blog"
+      ]
+    },
+    {
+      "title": "Steve Klabnik",
+      "url": "https://steveklabnik.com/feed.xml",
+      "link": "https://steveklabnik.com/",
+      "order": 178,
+      "tags": [
+        "dev",
+        "blog",
+        "rust"
+      ]
+    },
+    {
+      "title": "V8",
+      "url": "https://v8.dev/blog.atom",
+      "link": "https://v8.dev/",
+      "order": 179,
+      "tags": [
+        "blog",
+        "dev",
+        "js"
+      ]
+    },
+    {
+      "title": "Great Scott Gadgets",
+      "url": "https://greatscottgadgets.com/feed.xml",
+      "link": "http://greatscottgadgets.com/",
+      "order": 180,
+      "tags": [
+        "embedded",
+        "electronics"
+      ]
+    },
+    {
+      "title": "Stevey's Blog Rants",
+      "url": "https://steve-yegge.blogspot.com/feeds/posts/default",
+      "link": "https://steve-yegge.blogspot.com/",
+      "order": 181,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Leon Trolski",
+      "url": "https://leontrolski.github.io/leontrolski.rss",
+      "link": "https://leontrolski.github.io",
+      "order": 182,
+      "tags": [
+        "dev",
+        "blog",
+        "python"
+      ]
+    },
+    {
+      "title": "Pointers Gone Wild",
+      "url": "https://pointersgonewild.com/rss.xml",
+      "link": "https://pointersgonewild.com/",
+      "order": 183,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Ratfactor Feed",
+      "url": "https://ratfactor.com/atom.xml",
+      "link": "http://ratfactor.com/",
+      "order": 184,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Techdirt",
+      "url": "https://www.techdirt.com/feed/",
+      "link": "https://www.techdirt.com",
+      "order": 185,
+      "tags": [
+        "blog",
+        "news",
+        "tech"
+      ]
+    },
+    {
+      "title": "Westenberg.",
+      "url": "https://www.joanwestenberg.com/feed/",
+      "link": "https://www.joanwestenberg.com/",
+      "order": 186,
+      "tags": [
+        "blog"
       ]
     }
   ]
