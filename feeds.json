@@ -1,16 +1,6 @@
 {
   "feeds": [
     {
-      "title": "Planet Emacslife",
-      "url": "http://planet.emacslife.com/atom.xml",
-      "link": "https://planet.emacslife.com/",
-      "order": 62,
-      "tags": [
-        "emacs",
-        "blog"
-      ]
-    },
-    {
       "title": "Engadget",
       "url": "http://www.engadget.com/rss.xml",
       "link": "https://www.engadget.com/",
@@ -63,7 +53,7 @@
     {
       "title": "Gizmodo",
       "url": "https://gizmodo.com/rss",
-      "link": "https://gizmodo.com",
+      "link": "https://gizmodo.com/",
       "order": 5,
       "tags": [
         "tech",
@@ -78,15 +68,6 @@
       "tags": [
         "emacs",
         "blog"
-      ]
-    },
-    {
-      "title": "Dilbert",
-      "url": "https://kimmo.suominen.com/stuff/dilbert.xml",
-      "link": "https://dilbert.com/",
-      "order": 110,
-      "tags": [
-        "comic"
       ]
     },
     {
@@ -114,7 +95,7 @@
     {
       "title": "mathspp.com feed",
       "url": "https://mathspp.com/blog.atom",
-      "link": "https://mathspp.com/blog/til/automatically-push-code-changes-during-live-coding",
+      "link": "https://mathspp.com/blog/til/images-in-docstrings",
       "order": 57,
       "tags": [
         "blog",
@@ -239,7 +220,7 @@
     {
       "title": "The Verge",
       "url": "https://www.theverge.com/rss/index.xml",
-      "link": "https://www.theverge.com/",
+      "link": "https://www.theverge.com",
       "order": 3,
       "tags": [
         "tech",
@@ -425,7 +406,7 @@
     {
       "title": "C'est la Z",
       "url": "https://cestlaz.github.io/rss.xml",
-      "link": "https://cestlaz.github.io/",
+      "link": "https://cestlaz.zamansky.net/",
       "order": 66,
       "tags": [
         "emacs",
@@ -441,16 +422,6 @@
         "cpp",
         "youtube",
         "dev"
-      ]
-    },
-    {
-      "title": "Chris's Wiki :: blog",
-      "url": "https://utcc.utoronto.ca/~cks/space/blog/?atom",
-      "link": "https://utcc.utoronto.ca/~cks/space/blog/",
-      "order": 74,
-      "tags": [
-        "linux",
-        "blog"
       ]
     },
     {
@@ -631,7 +602,8 @@
       "link": "https://www.quantamagazine.org",
       "order": 147,
       "tags": [
-        "science"
+        "science",
+        "magazine"
       ]
     },
     {
@@ -719,7 +691,7 @@
     {
       "title": "Jason's Movie Blog",
       "url": "https://jasonsmovieblog.com/feed/",
-      "link": "https://jasonsmovieblog.com/",
+      "link": "https://jasonsmovieblog.com",
       "order": 43,
       "tags": [
         "film",
@@ -838,17 +810,6 @@
         "science",
         "dev",
         "tech"
-      ]
-    },
-    {
-      "title": "fasterthanli.me",
-      "url": "https://fasterthanli.me/index.xml",
-      "link": "https://fasterthanli.me",
-      "order": 95,
-      "tags": [
-        "dev",
-        "blog",
-        "rust"
       ]
     },
     {
@@ -992,7 +953,7 @@
     {
       "title": "The MagPi",
       "url": "https://magpi.raspberrypi.com/feed",
-      "link": "https://magpi.raspberrypi.com/articles",
+      "link": "https://magazine.raspberrypi.com/articles",
       "order": 128,
       "tags": [
         "tech",
@@ -1040,7 +1001,7 @@
       ]
     },
     {
-      "title": "Phys.org - latest science and technology news stories",
+      "title": "Phys.org",
       "url": "https://phys.org/rss-feed/",
       "link": "https://phys.org/",
       "order": 145,
@@ -1048,16 +1009,6 @@
         "science",
         "news",
         "tech"
-      ]
-    },
-    {
-      "title": "sizeof(cat)",
-      "url": "https://sizeof.cat/index.xml",
-      "link": "https://sizeof.cat/",
-      "order": 152,
-      "tags": [
-        "tech",
-        "blog"
       ]
     },
     {
@@ -1093,7 +1044,7 @@
     {
       "title": "Simon Willison TIL",
       "url": "https://til.simonwillison.net/tils/feed.atom",
-      "link": "https://til.simonwillison.net/ham-radio/general",
+      "link": "https://til.simonwillison.net/cloudflare/rate-limiting",
       "order": 153,
       "tags": [
         "blog",
@@ -1421,17 +1372,6 @@
       ]
     },
     {
-      "title": "Thomas Trapp",
-      "url": "https://thomastrapp.com/feed.xml",
-      "link": "https://thomastrapp.com",
-      "order": 51,
-      "tags": [
-        "dev",
-        "cpp",
-        "blog"
-      ]
-    },
-    {
       "title": "David Heinemeier Hansson",
       "url": "https://world.hey.com/dhh/feed.atom",
       "link": "https://world.hey.com/dhh",
@@ -1466,7 +1406,7 @@
     {
       "title": "Tildes Atom feed",
       "url": "https://tildes.net/topics.atom",
-      "link": "https://www.vermontpublic.org/local-news/2024-05-15/max-the-cat-honorary-doctorate-vermont-state-university-castleton",
+      "link": "https://www.youtube.com/watch?v=0V_KNyNIWDc",
       "order": 18,
       "tags": [
         "reddit-like",
@@ -1477,24 +1417,13 @@
     {
       "title": "~comp - Tildes",
       "url": "https://tildes.net/~comp/topics.atom",
-      "link": "https://tildes.net/~comp/1gcy/how_do_you_organize_your_linux_packages",
+      "link": "http://www.oldskool.org/shrines/lbd",
       "order": 19,
       "tags": [
         "reddit-like",
         "tech",
         "dev",
         "blog"
-      ]
-    },
-    {
-      "title": "250bpm",
-      "url": "https://250bpm.com/rss.xml",
-      "link": "http://250bpm.com",
-      "order": 90,
-      "tags": [
-        "dev",
-        "blog",
-        "tech"
       ]
     },
     {
@@ -1515,7 +1444,8 @@
       "tags": [
         "blog",
         "philosophy",
-        "culture"
+        "culture",
+        "magazine"
       ]
     },
     {
@@ -1573,7 +1503,7 @@
     {
       "title": "World Playground Deceit - New content",
       "url": "https://world-playground-deceit.net/global.xml",
-      "link": "https://world-playground-deceit.net/blog/2024/git_secret.html",
+      "link": "https://world-playground-deceit.net/blog/2025/07/music-review-eyehategod-dopesick-1996-.html",
       "order": 163,
       "tags": [
         "blog",
@@ -1667,7 +1597,7 @@
     {
       "title": "Fish-shell Blog",
       "url": "https://fishshell.com/blog/feed.xml",
-      "link": "https://fishshell.com/blog/",
+      "link": "https://fishshell.com/",
       "order": 166,
       "tags": [
         "dev",
@@ -1863,23 +1793,128 @@
       ]
     },
     {
-      "title": "Techdirt",
-      "url": "https://www.techdirt.com/feed/",
-      "link": "https://www.techdirt.com",
+      "title": "LessWrong",
+      "url": "https://www.lesswrong.com/feed.xml",
+      "link": "https://www.lesswrong.com",
       "order": 185,
       "tags": [
+        "reddit-like",
+        "dev",
         "blog",
-        "news",
         "tech"
       ]
     },
     {
-      "title": "Westenberg.",
-      "url": "https://www.joanwestenberg.com/feed/",
-      "link": "https://www.joanwestenberg.com/",
+      "title": "LXer Linux News",
+      "url": "https://lxer.com/module/newswire/headlines.rss",
+      "link": "https://lxer.com/",
       "order": 186,
       "tags": [
+        "linux",
+        "blog",
+        "news"
+      ]
+    },
+    {
+      "title": "Happi Hacking - Blog",
+      "url": "http://localhost:8000/happihacking-com-blog",
+      "link": "https://happihacking.com/",
+      "order": 187,
+      "tags": [
+        "dev",
         "blog"
+      ]
+    },
+    {
+      "title": "mcyoung",
+      "url": "https://mcyoung.xyz/feed",
+      "link": "https://mcyoung.xyz/https://mcyoung.xyz/",
+      "order": 188,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Baldur Bjarnason's Essays",
+      "url": "https://www.baldurbjarnason.com/essays.xml",
+      "link": "https://www.baldurbjarnason.com/",
+      "order": 189,
+      "tags": [
+        "blog",
+        "tech",
+        "essay"
+      ]
+    },
+    {
+      "title": "Arcan",
+      "url": "https://arcan-fe.com/feed/",
+      "link": "https://arcan-fe.com",
+      "order": 190,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Henrik Warne's blog",
+      "url": "https://henrikwarne.com/feed/",
+      "link": "https://henrikwarne.com",
+      "order": 191,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Live Science",
+      "url": "https://www.livescience.com/feeds.xml",
+      "link": "https://www.livescience.com",
+      "order": 192,
+      "tags": [
+        "science",
+        "news"
+      ]
+    },
+    {
+      "title": "Scientific American",
+      "url": "https://www.scientificamerican.com/platform/syndication/rss/",
+      "link": "https://www.scientificamerican.com",
+      "order": 193,
+      "tags": [
+        "science",
+        "news"
+      ]
+    },
+    {
+      "title": "AMS News",
+      "url": "https://www.ams.org/cgi-bin/content/news_items.cgi?rss=1",
+      "link": "http://www.ams.org",
+      "order": 194,
+      "tags": [
+        "science",
+        "mathematics"
+      ]
+    },
+    {
+      "title": "Invisible Oranges – The Metal Blog",
+      "url": "https://www.invisibleoranges.com/feed/",
+      "link": "https://www.invisibleoranges.com",
+      "order": 195,
+      "tags": [
+        "music",
+        "news"
+      ]
+    },
+    {
+      "title": "Gwern.net Newsletter",
+      "url": "https://gwern.substack.com/feed",
+      "link": "https://gwern.substack.com",
+      "order": 196,
+      "tags": [
+        "blog",
+        "tech",
+        "essay"
       ]
     }
   ]
