@@ -1585,10 +1585,10 @@
       ]
     },
     {
-      "title": "New Scientist - Home",
+      "title": "New Scientist",
       "url": "https://www.newscientist.com/feed/home/",
       "link": "https://www.newscientist.com/",
-      "order": 161,
+      "order": 202,
       "tags": [
         "news",
         "science"
@@ -1915,6 +1915,71 @@
         "blog",
         "tech",
         "essay"
+      ]
+    },
+    {
+      "title": "Whenhen.com Blog - Sync' up! ... without getting drained",
+      "url": "https://blog.whenhen.com/rss.xml",
+      "link": "https://blog.whenhen.com",
+      "order": 197,
+      "tags": [
+        "blog",
+        "dev"
+      ]
+    },
+    {
+      "title": "(lambda (x) (create x))",
+      "url": "https://lambdacreate.com/static/feed.xml",
+      "link": "https://lambdacreate.com",
+      "order": 198,
+      "tags": [
+        "dev",
+        "blog",
+        "lisp"
+      ]
+    },
+    {
+      "title": "Seirdy’s Home",
+      "url": "https://seirdy.one/atom.xml",
+      "link": "https://seirdy.one/notes/2025/01/26/firefox-certificate-transparency/",
+      "order": 199,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "twdev.blog",
+      "url": "https://twdev.blog/posts/index.xml",
+      "link": "https://twdev.blog/posts/",
+      "order": 200,
+      "tags": [
+        "dev",
+        "blog",
+        "cpp"
+      ]
+    },
+    {
+      "title": "Pid Eins",
+      "url": "https://0pointer.net/blog/index.atom",
+      "link": "https://0pointer.net/blog/",
+      "order": 201,
+      "tags": [
+        "dev",
+        "linux",
+        "blog",
+        "systemd"
+      ]
+    },
+    {
+      "title": "EmbeddedRelated",
+      "url": "https://www.embeddedrelated.com/blogs_rss.php",
+      "link": "https://www.embeddedrelated.com/blogs.php",
+      "order": 203,
+      "tags": [
+        "blog",
+        "dev",
+        "embedded"
       ]
     }
   ]

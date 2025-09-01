@@ -491,8 +491,9 @@ function showPropertiesFeed() {
   document.getElementById('feed-info-id').textContent = feedId;
 
   const url_elem = document.getElementById('feed-info-url').children[0];
-  url_elem.textContent = objCache['feeds'][feedId]['feedlink'];
-  url_elem.setAttribute('href', feedId);
+  const url = objCache['feeds'][feedId]['feedlink'];
+  url_elem.textContent = url;
+  url_elem.setAttribute('href', url);
 
   const link_elem = document.getElementById('feed-info-link').children[0];
   const link = objCache['feeds'][feedId]['link'] || '';
