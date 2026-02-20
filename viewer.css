@@ -36,7 +36,7 @@
 
 :root[theme="dark"] {
     --main-border-color: #356a9f;
-    --main-bg-color: #2e3436;
+    --main-bg-color: #1c1b22;
     --main-fg-color: white;
     --link-color: #6ca2ff;
     --main-hover-bg-color: #284e75;
@@ -49,8 +49,8 @@
 
     --resizer-bg-color: #535551;
 
-    --main-elem-bg-color: #323F43;
-    --main-elem-border-color: #222E32;
+    --main-elem-bg-color: #23222b;
+    --main-elem-border-color: #4A4A4A;
 
     --feed-pane-bg-color: var(--main-bg-color);
     --feed-elem-bg-color: var(--main-elem-bg-color);
