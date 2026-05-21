@@ -52,6 +52,12 @@ function rstrip(str, s) {
   return str;
 }
 
+AbortSignal.timeout ??= function timeout(ms) {
+  const ctrl = new AbortController();
+  setTimeout(() => ctrl.abort(), ms);
+  return ctrl.signal;
+}
+
 function createId(url) {
   const u = new URL(url);
   let base = lstrip(u.hostname, "www.") + u.pathname;
@@ -80,11 +86,12 @@ async function fetchParseFeed(url, init) {
     const response = await fetch(url, {
       method: 'GET',
       redirect: 'follow',
-      referrerPolicy: 'no-referrer'
+      referrerPolicy: 'no-referrer',
+      signal: AbortSignal.timeout(20000)
     });
 
     if (!response.ok) {
-      console.error('fetchParseFeed, fetch failed, response:', response);
+      console.error(`fetchParseFeed, fetch failed, url: ${url}, response: ${response}`);
       return false;
     }
 
@@ -93,12 +100,12 @@ async function fetchParseFeed(url, init) {
     feed['id'] = createId(url);
 
     if (!feed) {
-      console.error('fetchParseFeed, parseFeed returned false:', url);
+      console.error('fetchParseFeed, parseFeed failed, url:', url);
       return false;
     }
   }
   catch (error) {
-    console.error('fetchParseFeed catched:', error);
+    console.error(`fetchParseFeed exception, url: ${url}, error: ${error}`);
     return false;
   }
 
@@ -123,21 +130,24 @@ async function fetchParseFeed(url, init) {
     let success = false;
     if (feed['icon']) {
       try {
-        console.log('first try', feed['icon']);
-        const response = await fetch(feed['icon'], {redirect: 'error'});
+        console.log('first method', feed['icon']);
+        const response = await fetch(feed['icon'], {
+          redirect: 'error',
+          signal: AbortSignal.timeout(5000)
+        });
         if (response.ok) {
           success = true;
         }
       }
       catch {
-        console.log('first try failed');
+        console.log('first method failed');
         delete feed['icon'];
       }
     }
     if (!success && feed['link']) {
       try {
-        console.log('second try');
-        const response = await fetch(feed['link']);
+        console.log('second method');
+        const response = await fetch(feed['link'], {signal: AbortSignal.timeout(5000)});
         if (response.ok) {
           const content = await response.text();
           const parser = new DOMParser();
@@ -147,8 +157,8 @@ async function fetchParseFeed(url, init) {
             if (att && att == 'icon' || att == 'shortcut icon') {
               const url = elem.getAttribute('href').trim();
               const newurl = (new URL(url, feed['link'])).href;
-              console.log('second try, new url:', newurl);
-              const resp = await fetch(newurl, {redirect: 'error'});
+              console.log('second method, new url:', newurl);
+              const resp = await fetch(newurl, {redirect: 'error', signal: AbortSignal.timeout(5000)});
               if (resp.ok) {
                 feed['icon'] = newurl;
                 success = true;
@@ -158,22 +168,22 @@ async function fetchParseFeed(url, init) {
         }
       }
       catch {
-        console.log('second try failed');
+        console.log('second method failed');
       }
     }
     if (!success) {
       try {
-        console.log('third try');
+        console.log('third method');
         const url = (new URL('/favicon.ico', feed['link'])).href;
-        console.log('third try, new url', url);
-        const response = await fetch(url);
+        console.log('third method, new url', url);
+        const response = await fetch(url, {signal: AbortSignal.timeout(5000)});
         if (response.ok) {
           feed['icon'] = url;
           success = true;
         }
       }
       catch {
-        console.log('third try failed');
+        console.log('third method failed');
       }
     }
     if (feed['icon']) {
@@ -1245,11 +1255,11 @@ function importFeeds() {
         const feedRes = fetchParseFeed(feed['url'], true);
         fetchedArray.push(feedRes);
       }
-      Promise.allSettled(fetchedArray).then(function(fetchedArray) {
+      Promise.allSettled(fetchedArray).then(function(results) {
         let i = 0;
-        for (const fetched of fetchedArray) {
-          if (fetched.status === 'fulfilled' && fetched.value !== false) {
-            const val = fetched.value;
+        for (const result of results) {
+          if (result.status === 'fulfilled' && result.value !== false) {
+            const val = result.value;
             const feedId = val['id'];
             objCache['feeds'][feedId] = val;
             objCache['feeds'][feedId]['title'] = data['feeds'][i]['title'];
