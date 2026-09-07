@@ -623,7 +623,7 @@
       "title": "Coding Horror",
       "url": "https://blog.codinghorror.com/rss/",
       "link": "https://blog.codinghorror.com/",
-      "order": 94,
+      "order": 231,
       "tags": [
         "dev",
         "blog"
@@ -1323,16 +1323,6 @@
       ]
     },
     {
-      "title": "David Heinemeier Hansson",
-      "url": "https://world.hey.com/dhh/feed.atom",
-      "link": "https://world.hey.com/dhh",
-      "order": 84,
-      "tags": [
-        "dev",
-        "blog"
-      ]
-    },
-    {
       "title": "computers are bad",
       "url": "https://computer.rip/rss.xml",
       "link": "https://computer.rip",
@@ -1413,10 +1403,11 @@
       "title": "Alexis King’s Blog",
       "url": "https://lexi-lambda.github.io/feeds/all.atom.xml",
       "link": "https://lexi-lambda.github.io/",
-      "order": 85,
+      "order": 235,
       "tags": [
         "dev",
-        "blog"
+        "blog",
+        "lisp"
       ]
     },
     {
@@ -1713,18 +1704,6 @@
       ]
     },
     {
-      "title": "LessWrong",
-      "url": "https://www.lesswrong.com/feed.xml",
-      "link": "https://www.lesswrong.com",
-      "order": 170,
-      "tags": [
-        "reddit-like",
-        "dev",
-        "blog",
-        "tech"
-      ]
-    },
-    {
       "title": "LXer Linux News",
       "url": "https://lxer.com/module/newswire/headlines.rss",
       "link": "https://lxer.com/",
@@ -1815,16 +1794,6 @@
         "blog",
         "tech",
         "essay"
-      ]
-    },
-    {
-      "title": "Whenhen.com Blog - Sync' up! ... without getting drained",
-      "url": "https://blog.whenhen.com/rss.xml",
-      "link": "https://blog.whenhen.com",
-      "order": 181,
-      "tags": [
-        "blog",
-        "dev"
       ]
     },
     {
@@ -2099,16 +2068,6 @@
       ]
     },
     {
-      "title": "sean goedecke",
-      "url": "https://www.seangoedecke.com/rss.xml",
-      "link": "https://seangoedecke.com",
-      "order": 210,
-      "tags": [
-        "dev",
-        "blog"
-      ]
-    },
-    {
       "title": "LMNT",
       "url": "https://lmnt.me/feed.xml",
       "link": "https://lmnt.me/",
@@ -2219,6 +2178,154 @@
       "tags": [
         "blog",
         "security"
+      ]
+    },
+    {
+      "title": "MaskRay",
+      "url": "https://maskray.me/blog/atom.xml",
+      "link": "https://maskray.me/blog/",
+      "order": 219,
+      "tags": [
+        "dev",
+        "blog",
+        "c",
+        "assembly"
+      ]
+    },
+    {
+      "title": "Giampaolo Rodola",
+      "url": "https://gmpy.dev/feeds/atom.all.xml",
+      "link": "https://gmpy.dev/",
+      "order": 220,
+      "tags": [
+        "dev",
+        "blog",
+        "python"
+      ]
+    },
+    {
+      "title": "David Graeber",
+      "url": "https://davidgraeber.org/feed/",
+      "link": "https://davidgraeber.org/",
+      "order": 221,
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "title": "The Atlantic",
+      "url": "https://www.theatlantic.com/feed/all/",
+      "link": "https://www.theatlantic.com/",
+      "order": 222,
+      "tags": [
+        "magazine"
+      ]
+    },
+    {
+      "title": "Nelson Figueroa",
+      "url": "https://nelson.cloud/posts/index.xml",
+      "link": "https://nelson.cloud/posts/",
+      "order": 223,
+      "tags": [
+        "dev",
+        "blog",
+        "web"
+      ]
+    },
+    {
+      "title": "JustDario",
+      "url": "https://justdario.com/feed/",
+      "link": "https://justdario.com/",
+      "order": 224,
+      "tags": [
+        "blog",
+        "tech"
+      ]
+    },
+    {
+      "title": "Marcus on AI",
+      "url": "https://garymarcus.substack.com/feed",
+      "link": "https://garymarcus.substack.com",
+      "order": 225,
+      "tags": [
+        "ai",
+        "blog"
+      ]
+    },
+    {
+      "title": "Paul Krugman",
+      "url": "https://paulkrugman.substack.com/feed",
+      "link": "https://paulkrugman.substack.com",
+      "order": 226,
+      "tags": [
+        "ai",
+        "tech",
+        "blog"
+      ]
+    },
+    {
+      "title": "Chris Norlund",
+      "url": "https://norlund.substack.com/feed",
+      "link": "https://norlund.substack.com",
+      "order": 227,
+      "tags": [
+        "news",
+        "blog",
+        "tech",
+        "politics"
+      ]
+    },
+    {
+      "title": "The Clean Code Blog",
+      "url": "https://blog.cleancoder.com/atom.xml",
+      "link": "http://blog.cleancoder.com/",
+      "order": 228,
+      "tags": []
+    },
+    {
+      "title": "Zig Devlog",
+      "url": "https://ziglang.org/devlog/index.xml",
+      "link": "https://ziglang.org/devlog/",
+      "order": 229,
+      "tags": [
+        "dev",
+        "zig",
+        "blog"
+      ]
+    },
+    {
+      "title": "Martin Kleppmann's blog",
+      "url": "https://feeds.feedburner.com/martinkl?format=xml",
+      "link": "http://martin.kleppmann.com/",
+      "order": 230,
+      "tags": [
+        "dev",
+        "blog"
+      ]
+    },
+    {
+      "title": "Joshua Barretto's Blog",
+      "url": "https://blog.jsbarretto.com/rss.xml",
+      "link": "https://blog.jsbarretto.com",
+      "order": 232,
+      "tags": []
+    },
+    {
+      "title": "Tom 7 Radar",
+      "url": "http://radar.spacebar.org/f/a/weblog/rss/1",
+      "link": "http://radar.spacebar.org/",
+      "order": 233,
+      "tags": []
+    },
+    {
+      "title": "Farid Zakaria’s Blog",
+      "url": "https://fzakaria.com/feed.xml",
+      "link": "https://fzakaria.com/",
+      "order": 234,
+      "tags": [
+        "dev",
+        "blog",
+        "nix"
       ]
     }
   ]
