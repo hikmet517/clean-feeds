@@ -1,7 +1,7 @@
 {
+  "manifest_version": 3,
   "name": "Clean Feeds",
   "version": "0.0.2",
-  "manifest_version": 2,
   "description": "Feed Reader",
   "icons": {
     "48": "icons/icon-48.png",
@@ -9,27 +9,26 @@
     "96": "icons/icon.svg"
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
+    "service_worker": "background.js"
   },
   "permissions": [
     "tabs",
-    "<all_urls>",
-    "*://*/*",
     "storage",
     "unlimitedStorage",
     "downloads",
-    "notifications"
+    "notifications",
+    "scripting",
+    "activeTab"
   ],
-  "browser_action": {
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
     "default_icon": {
       "48": "icons/icon-48.png"
     },
     "default_title": "Clean Feeds"
   },
-  "web_accessible_resources": ["icons/*"],
   "browser_specific_settings": {
     "gecko": {
       "id": "clean-feeds@example.com",
