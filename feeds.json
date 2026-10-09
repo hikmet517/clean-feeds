@@ -85,7 +85,7 @@
     {
       "title": "mathspp.com feed",
       "url": "https://mathspp.com/blog.atom",
-      "link": "https://mathspp.com/blog/til/collections-deque-is-implemented-in-blocks",
+      "link": "https://mathspp.com/blog/til/using-maturin-through-uv",
       "order": 52,
       "tags": [
         "blog",
@@ -219,7 +219,7 @@
     {
       "title": "Level 3 – English news and easy articles for students of English",
       "url": "https://www.newsinlevels.com/level/level-3/feed/",
-      "link": "https://newsinlevels.com/level/level-3/",
+      "link": "https://www.newsinlevels.com/level/level-3/",
       "order": 108,
       "tags": [
         "english",
@@ -229,7 +229,7 @@
     {
       "title": "Level 3 – Easy English articles about famous days in history for students of English",
       "url": "https://www.daysinlevels.com/level/level-3/feed/",
-      "link": "https://daysinlevels.com/level/level-3/",
+      "link": "https://www.daysinlevels.com/level/level-3/",
       "order": 109,
       "tags": [
         "english"
@@ -452,7 +452,7 @@
     {
       "title": "Reclaim The Net",
       "url": "https://reclaimthenet.org/feed/",
-      "link": "https://reclaimthenet.org/",
+      "link": "https://reclaimthenet.org",
       "order": 128,
       "tags": [
         "news"
@@ -1015,7 +1015,7 @@
     {
       "title": "Simon Willison TIL",
       "url": "https://til.simonwillison.net/tils/feed.atom",
-      "link": "https://til.simonwillison.net/llms/llm-shebang",
+      "link": "https://til.simonwillison.net/datasette/datasette-parseable-opentelemetry",
       "order": 141,
       "tags": [
         "blog",
@@ -1347,7 +1347,7 @@
     {
       "title": "Tildes Atom feed",
       "url": "https://tildes.net/topics.atom",
-      "link": "https://tildes.net/~games/1uae/tildes_minecraft_weekly",
+      "link": "https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/",
       "order": 16,
       "tags": [
         "reddit-like",
@@ -1358,7 +1358,7 @@
     {
       "title": "~comp - Tildes",
       "url": "https://tildes.net/~comp/topics.atom",
-      "link": "https://tildes.net/~comp/1u9x/what_programming_technical_projects_have_you_been_working_on",
+      "link": "https://news.mit.edu/2026/margaret-hamilton-computing-pioneer-dies-1007",
       "order": 17,
       "tags": [
         "reddit-like",
@@ -1403,11 +1403,10 @@
       "title": "Alexis King’s Blog",
       "url": "https://lexi-lambda.github.io/feeds/all.atom.xml",
       "link": "https://lexi-lambda.github.io/",
-      "order": 235,
+      "order": 236,
       "tags": [
         "dev",
-        "blog",
-        "lisp"
+        "blog"
       ]
     },
     {
@@ -1435,7 +1434,7 @@
     {
       "title": "World Playground Deceit - New content",
       "url": "https://world-playground-deceit.net/global.xml",
-      "link": "https://world-playground-deceit.net/blog/2026/05/novel-review-terry-pratchett-night-watch-2002-.html",
+      "link": "https://world-playground-deceit.net/blog/2026/10/better-window-splitting-in-emacs.html",
       "order": 149,
       "tags": [
         "blog",
@@ -2326,6 +2325,16 @@
         "dev",
         "blog",
         "nix"
+      ]
+    },
+    {
+      "title": "The View from Aristeia (Scott Meyers)",
+      "url": "https://scottmeyers.blogspot.com/feeds/posts/default",
+      "link": "https://scottmeyers.blogspot.com/",
+      "order": 237,
+      "tags": [
+        "dev",
+        "blog"
       ]
     }
   ]

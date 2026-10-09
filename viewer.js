@@ -1268,6 +1268,17 @@ function importFeeds() {
             objCache['feeds'][feedId]['tags'] = data['feeds'][i]['tags'];
             objCache['feeds'][feedId]['order'] = data['feeds'][i]['order'];
           }
+          else {
+            const feedId = createId(data['feeds'][i]['url']);
+            objCache['feeds'][feedId] = {};
+            objCache['feeds'][feedId]['entries'] = [];
+            objCache['feeds'][feedId]['numEntries'] = NUMENTRIES;
+            objCache['feeds'][feedId]['title'] = data['feeds'][i]['title'];
+            objCache['feeds'][feedId]['feedlink'] = data['feeds'][i]['url'];
+            objCache['feeds'][feedId]['link'] = data['feeds'][i]['link'];
+            objCache['feeds'][feedId]['order'] = data['feeds'][i]['order'];
+            objCache['feeds'][feedId]['tags'] = data['feeds'][i]['tags'];
+          }
           i++;
         }
         chrome.storage.local.set(objCache, function() {
